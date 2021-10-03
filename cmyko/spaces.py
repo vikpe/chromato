@@ -1,6 +1,6 @@
 import attr
 
-from .constants import RGB_MIN
+from .constants import RGB_MIN, CMYK_MIN
 
 
 class ColorSpace(object):
@@ -43,7 +43,7 @@ class YIQ(ColorSpace):
 
 @attr.s
 class CMYK(ColorSpace):
-    c = attr.ib(default=0, converter=float)
-    m = attr.ib(default=0, converter=float)
-    y = attr.ib(default=0, converter=float)
-    k = attr.ib(default=0, converter=float)
+    c = attr.ib(default=CMYK_MIN, converter=float)
+    m = attr.ib(default=CMYK_MIN, converter=float)
+    y = attr.ib(default=CMYK_MIN, converter=float)
+    k = attr.ib(default=CMYK_MIN, converter=float)
