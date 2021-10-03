@@ -130,11 +130,10 @@ def rgb_to_cmyk(rgb) -> CMYK:
     y = 1 - b / RGB_SCALE
 
     # extract out k [0,1]
-    min_cmy = min(c, m, y)
-    c = c - min_cmy
-    m = m - min_cmy
-    y = y - min_cmy
-    k = min_cmy
+    k = min(c, m, y)
+    c = c - k
+    m = m - k
+    y = y - k
 
     # rescale to the range [0,cmyk_scale]
     return CMYK(*[c * CMYK_SCALE, m * CMYK_SCALE, y * CMYK_SCALE, k * CMYK_SCALE])
@@ -165,7 +164,7 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)
 
 
