@@ -1,4 +1,4 @@
-from cmyko import cmyko
+from cmyko import cmyko, math
 
 # contants
 RGB_WHITE = cmyko.RGB(255, 255, 255)
@@ -89,11 +89,11 @@ def test_cmyk_to_rgb():
 
 # operations
 def test_lerp():
-    assert cmyko.lerp(10, 0, 0) == 10
-    assert cmyko.lerp(0, 10, 0.5) == 5
-    assert cmyko.lerp(10, 1, 0.5) == 5.5
-    assert cmyko.lerp(1, 2, 0.5) == 1.5
-    assert cmyko.lerp(1, 2, 1) == 2
+    assert math.lerp(10, 0, 0) == 10
+    assert math.lerp(0, 10, 0.5) == 5
+    assert math.lerp(10, 1, 0.5) == 5.5
+    assert math.lerp(1, 2, 0.5) == 1.5
+    assert math.lerp(1, 2, 1) == 2
 
 
 def test_blend():

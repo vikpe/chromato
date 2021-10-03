@@ -2,6 +2,8 @@ import colorsys
 
 import attr
 
+from .math import lerp
+
 
 # formats
 class ColorSpace(object):
@@ -164,15 +166,11 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)
 
 
 # operations
-def lerp(v1: float, v2: float, factor: float) -> float:
-    return v1 + ((v2 - v1) * factor)
-
-
 def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
     r = lerp(color1.rgb.r, color2.rgb.r, factor)
     g = lerp(color1.rgb.g, color2.rgb.g, factor)
