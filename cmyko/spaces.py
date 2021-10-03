@@ -9,15 +9,15 @@ class ColorSpace(object):
             yield val
 
 
+class HEX(str):
+    pass
+
+
 @attr.s
 class RGB(ColorSpace):
     r = attr.ib(default=RGB_MIN, converter=int)
     g = attr.ib(default=RGB_MIN, converter=int)
     b = attr.ib(default=RGB_MIN, converter=int)
-
-
-class HEX(str):
-    pass
 
 
 @attr.s
