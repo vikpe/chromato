@@ -1,6 +1,6 @@
 import attr
 
-from .constants import RGB_MIN, CMYK_MIN
+from .constants import RGB_MIN, CMYK_MIN, HLS_MIN, HSV_MIN
 
 
 class ColorSpace(object):
@@ -22,16 +22,16 @@ class RGB(ColorSpace):
 
 @attr.s
 class HLS(ColorSpace):
-    h = attr.ib(default=0, converter=float)
-    l = attr.ib(default=0, converter=float)
-    s = attr.ib(default=0, converter=float)
+    h = attr.ib(default=HLS_MIN, converter=float)
+    l = attr.ib(default=HLS_MIN, converter=float)
+    s = attr.ib(default=HLS_MIN, converter=float)
 
 
 @attr.s
 class HSV(ColorSpace):
-    h = attr.ib(default=0, converter=float)
-    s = attr.ib(default=0, converter=float)
-    v = attr.ib(default=0, converter=float)
+    h = attr.ib(default=HSV_MIN, converter=float)
+    s = attr.ib(default=HSV_MIN, converter=float)
+    v = attr.ib(default=HSV_MIN, converter=float)
 
 
 @attr.s
