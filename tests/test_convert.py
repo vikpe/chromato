@@ -1,4 +1,4 @@
-from cmyko import cmyko, convert, spaces
+from cmyko import convert, spaces
 
 RGB_WHITE = spaces.RGB(255, 255, 255)
 RGB_GRAY = spaces.RGB(127, 127, 127)
@@ -20,6 +20,13 @@ CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
 CMYK_RED = spaces.CMYK(0, 100, 100, 0)
 CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
 CMYK_BLUE = spaces.CMYK(100, 100, 0, 0)
+
+HLS_WHITE = spaces.HLS(0, 255, 0)
+HLS_GRAY = spaces.HLS(0, 127, 0)
+HLS_BLACK = spaces.HLS(0, 0, 0)
+HLS_RED = spaces.HLS(0, 127.5, -1.007905138339921)
+HLS_GREEN = spaces.HLS(1 / 3, 127.5, -1.007905138339921)
+HLS_BLUE = spaces.HLS(2 / 3, 127.5, -1.007905138339921)
 
 
 def test_hex_to_rgb():
@@ -59,11 +66,21 @@ def test_cmyk_to_rgb():
 
 
 def test_rgb_to_hls():
-    pass
+    assert convert.rgb_to_hls(RGB_WHITE) == HLS_WHITE
+    assert convert.rgb_to_hls(RGB_GRAY) == HLS_GRAY
+    assert convert.rgb_to_hls(RGB_BLACK) == HLS_BLACK
+    assert convert.rgb_to_hls(RGB_RED) == HLS_RED
+    assert convert.rgb_to_hls(RGB_GREEN) == HLS_GREEN
+    assert convert.rgb_to_hls(RGB_BLUE) == HLS_BLUE
 
 
 def test_hls_to_rgb():
-    pass
+    assert convert.hls_to_rgb(HLS_WHITE) == RGB_WHITE
+    assert convert.hls_to_rgb(HLS_GRAY) == RGB_GRAY
+    assert convert.hls_to_rgb(HLS_BLACK) == RGB_BLACK
+    assert convert.hls_to_rgb(HLS_RED) == RGB_RED
+    assert convert.hls_to_rgb(HLS_GREEN) == RGB_GREEN
+    assert convert.hls_to_rgb(HLS_BLUE) == RGB_BLUE
 
 
 def test_rgb_to_hsv():
