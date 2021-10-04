@@ -1,6 +1,7 @@
 import attr
 
 from .constants import RGB_MIN, CMYK_MIN, HLS_MIN, HSV_MIN
+from .math import float_to_rgb_value
 
 
 class ColorSpace(object):
@@ -15,9 +16,9 @@ class HEX(str):
 
 @attr.s
 class RGB(ColorSpace):
-    r = attr.ib(default=RGB_MIN, converter=float)
-    g = attr.ib(default=RGB_MIN, converter=float)
-    b = attr.ib(default=RGB_MIN, converter=float)
+    r = attr.ib(default=RGB_MIN, converter=float_to_rgb_value)
+    g = attr.ib(default=RGB_MIN, converter=float_to_rgb_value)
+    b = attr.ib(default=RGB_MIN, converter=float_to_rgb_value)
 
 
 @attr.s
