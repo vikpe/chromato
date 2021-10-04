@@ -1,42 +1,45 @@
-from .cmyko import Color
-from .constants import RGB_MAX, RGB_MIN
-from .math import lerp
-from .spaces import RGB
+from . import cmyko, constants, math, spaces
 
 
-def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
-    r = lerp(color1.rgb.r, color2.rgb.r, factor)
-    g = lerp(color1.rgb.g, color2.rgb.g, factor)
-    b = lerp(color1.rgb.b, color2.rgb.b, factor)
+def blend(color1: cmyko.Color, color2: cmyko.Color, factor: float = 0.5) -> cmyko.Color:
+    r = math.lerp(color1.rgb.r, color2.rgb.r, factor)
+    g = math.lerp(color1.rgb.g, color2.rgb.g, factor)
+    b = math.lerp(color1.rgb.b, color2.rgb.b, factor)
 
-    return Color(RGB(r, g, b))
+    return cmyko.Color(spaces.RGB(r, g, b))
 
 
-def shade(color: Color, factor: float) -> Color:
-    black = Color(RGB(RGB_MIN, RGB_MIN, RGB_MIN))
+def shade(color: cmyko.Color, factor: float) -> cmyko.Color:
+    black = cmyko.Color(
+        spaces.RGB(constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN)
+    )
     return blend(color, black, factor=factor)
 
 
-def tone(color: Color, factor: float) -> Color:
-    gray = Color(RGB(RGB_MAX / 2, RGB_MAX / 2, RGB_MAX / 2))
+def tone(color: cmyko.Color, factor: float) -> cmyko.Color:
+    gray = cmyko.Color(
+        spaces.RGB(constants.RGB_MAX / 2, constants.RGB_MAX / 2, constants.RGB_MAX / 2)
+    )
     return blend(color, gray, factor=factor)
 
 
-def tint(color: Color, factor: float) -> Color:
-    white = Color(RGB(RGB_MAX, RGB_MAX, RGB_MAX))
+def tint(color: cmyko.Color, factor: float) -> cmyko.Color:
+    white = cmyko.Color(
+        spaces.RGB(constants.RGB_MAX, constants.RGB_MAX, constants.RGB_MAX)
+    )
     return blend(color, white, factor=factor)
 
 
-def grayscale(color: Color) -> Color:
+def grayscale(color: cmyko.Color) -> cmyko.Color:
     r, g, b = color.rgb
     weighted_average = 0.299 * r + 0.587 * g + 0.114 * b
-    return Color((weighted_average, weighted_average, weighted_average))
+    return cmyko.Color(spaces.RGB(weighted_average, weighted_average, weighted_average))
 
 
-def invert(color: Color) -> Color:
-    return Color([RGB_MAX - v for v in color.rgb])
+def invert(color: cmyko.Color) -> cmyko.Color:
+    return cmyko.Color([constants.RGB_MAX - v for v in color.rgb])
 
 
-def complement(color: Color) -> Color:
+def complement(color: cmyko.Color) -> cmyko.Color:
     k = sum([max(*color.rgb), min(*color.rgb)])
-    return Color([k - v for v in color.rgb])
+    return cmyko.Color([k - v for v in color.rgb])

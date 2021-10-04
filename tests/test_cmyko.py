@@ -6,7 +6,6 @@ HEX_RED = spaces.HEX("ff0000")
 
 def test_color():
     color = cmyko.Color(RGB_RED)
-    assert color == cmyko.Color.from_hex(HEX_RED)
     assert color.rgb == RGB_RED
     assert color.hex == HEX_RED
     assert color.cmyk == spaces.CMYK(0, 100, 100, 0)
