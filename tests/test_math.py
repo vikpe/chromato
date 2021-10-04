@@ -11,3 +11,7 @@ def test_lerp():
 
 def test_float_to_rgb_value():
     assert math.float_to_rgb_value(1 / 3) == 0.3333
+
+
+def test_sum_of_max_and_min():
+    assert math.sum_of_max_and_min(10, 5, 8) == 15
