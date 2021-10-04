@@ -25,3 +25,9 @@ def tone(color: Color, factor: float) -> Color:
 def tint(color: Color, factor: float) -> Color:
     white = Color(RGB(RGB_MAX, RGB_MAX, RGB_MAX))
     return blend(color, white, factor=factor)
+
+
+def grayscale(color: Color) -> Color:
+    r, g, b = color.rgb
+    weighted_average = 0.299 * r + 0.587 * g + 0.114 * b
+    return Color((weighted_average, weighted_average, weighted_average))

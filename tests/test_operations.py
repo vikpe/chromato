@@ -34,3 +34,11 @@ def test_tone():
     assert operations.tone(COLOR_WHITE, 0.5) == cmyko.Color((191.25, 191.25, 191.25))
     assert operations.tone(COLOR_BLACK, 0.5) == cmyko.Color((63.75, 63.75, 63.75))
     assert operations.tone(COLOR_BLACK, 1) == COLOR_GRAY
+
+
+def test_grayscale():
+    assert operations.grayscale(COLOR_WHITE) == COLOR_WHITE
+    assert operations.grayscale(COLOR_GRAY) == COLOR_GRAY
+    assert operations.grayscale(COLOR_BLACK) == COLOR_BLACK
+    assert operations.grayscale(COLOR_RED) == cmyko.Color((76.245, 76.245, 76.245))
+    assert operations.grayscale(COLOR_BLUE) == cmyko.Color((29.07, 29.07, 29.07))
