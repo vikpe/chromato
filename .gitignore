@@ -1,8 +1,8 @@
-dist/
 __pycache__/
 .coverage
 .idea/
-.tox/
+dist/
+htmlcov/
 *.egg-info/
 *.py[cod]
 *$py.class
