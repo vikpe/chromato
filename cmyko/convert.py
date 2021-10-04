@@ -2,15 +2,7 @@ import colorsys
 
 from .constants import RGB_MIN, RGB_MAX, CMYK_MIN, CMYK_MAX
 from .parse import parse_hex
-from .spaces import RGB, HLS, HSV, YIQ, CMYK
-
-
-def rgb_to_yiq(rgb) -> YIQ:
-    return YIQ(*colorsys.rgb_to_yiq(*rgb))
-
-
-def yiq_to_rgb(yiq) -> RGB:
-    return RGB(*colorsys.yiq_to_rgb(*yiq))
+from .spaces import RGB, HLS, HSV, CMYK
 
 
 def rgb_to_hls(rgb) -> HLS:

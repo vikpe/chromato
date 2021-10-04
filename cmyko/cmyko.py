@@ -5,7 +5,6 @@ from .convert import (
     rgb_to_cmyk,
     rgb_to_hls,
     rgb_to_hsv,
-    rgb_to_yiq,
     hex_to_rgb,
 )
 from .parse import parse_rgb
@@ -35,7 +34,3 @@ class Color(object):
     @property
     def hsv(self):
         return rgb_to_hsv(self.rgb)
-
-    @property
-    def yiq(self):
-        return rgb_to_yiq(self.rgb)

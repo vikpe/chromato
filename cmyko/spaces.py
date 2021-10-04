@@ -35,13 +35,6 @@ class HSV(ColorSpace):
 
 
 @attr.s
-class YIQ(ColorSpace):
-    y = attr.ib(default=0, converter=float)
-    i = attr.ib(default=0, converter=float)
-    q = attr.ib(default=0, converter=float)
-
-
-@attr.s
 class CMYK(ColorSpace):
     c = attr.ib(default=CMYK_MIN, converter=float)
     m = attr.ib(default=CMYK_MIN, converter=float)

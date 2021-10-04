@@ -1,6 +1,5 @@
 from cmyko import cmyko, convert, spaces
 
-# contants
 RGB_WHITE = spaces.RGB(255, 255, 255)
 RGB_GRAY = spaces.RGB(127, 127, 127)
 RGB_BLACK = spaces.RGB(0, 0, 0)
@@ -21,13 +20,6 @@ CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
 CMYK_RED = spaces.CMYK(0, 100, 100, 0)
 CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
 CMYK_BLUE = spaces.CMYK(100, 100, 0, 0)
-
-COLOR_WHITE = cmyko.Color(RGB_WHITE)
-COLOR_GRAY = cmyko.Color(RGB_GRAY)
-COLOR_BLACK = cmyko.Color(RGB_BLACK)
-COLOR_RED = cmyko.Color(RGB_RED)
-COLOR_GREEN = cmyko.Color(RGB_GREEN)
-COLOR_BLUE = cmyko.Color(RGB_BLUE)
 
 
 def test_hex_to_rgb():
@@ -64,3 +56,19 @@ def test_cmyk_to_rgb():
     assert convert.cmyk_to_rgb(CMYK_RED) == RGB_RED
     assert convert.cmyk_to_rgb(CMYK_GREEN) == RGB_GREEN
     assert convert.cmyk_to_rgb(CMYK_BLUE) == RGB_BLUE
+
+
+def test_rgb_to_hls():
+    pass
+
+
+def test_hls_to_rgb():
+    pass
+
+
+def test_rgb_to_hsv():
+    pass
+
+
+def hsv_to_rgb():
+    pass
