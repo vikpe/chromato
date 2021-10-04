@@ -39,7 +39,7 @@ def rgb_to_cmyk(rgb) -> CMYK:
     y = y - k
 
     # rescale to the range [0,100]
-    return CMYK(*[c * CMYK_MAX, m * CMYK_MAX, y * CMYK_MAX, k * CMYK_MAX])
+    return CMYK(*[v * CMYK_MAX for v in (c, m, y, k)])
 
 
 def cmyk_to_rgb(cmyk) -> RGB:
