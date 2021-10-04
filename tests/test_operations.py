@@ -1,33 +1,10 @@
-from cmyko import cmyko, operations, spaces
+from cmyko import cmyko, operations
 
-# contants
-RGB_WHITE = spaces.RGB(255, 255, 255)
-RGB_GRAY = spaces.RGB(127, 127, 127)
-RGB_BLACK = spaces.RGB(0, 0, 0)
-RGB_RED = spaces.RGB(255, 0, 0)
-RGB_GREEN = spaces.RGB(0, 255, 0)
-RGB_BLUE = spaces.RGB(0, 0, 255)
-
-HEX_WHITE = "ffffff"
-HEX_GRAY = "7f7f7f"
-HEX_BLACK = "000000"
-HEX_RED = "ff0000"
-HEX_GREEN = "00ff00"
-HEX_BLUE = "0000ff"
-
-CMYK_WHITE = spaces.CMYK(0, 0, 0, 0)
-CMYK_GRAY = spaces.CMYK(0, 0, 0, 50.19607843137255)
-CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
-CMYK_RED = spaces.CMYK(0, 100, 100, 0)
-CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
-CMYK_BLUE = spaces.CMYK(100, 100, 0, 0)
-
-COLOR_WHITE = cmyko.Color(RGB_WHITE)
-COLOR_GRAY = cmyko.Color(RGB_GRAY)
-COLOR_BLACK = cmyko.Color(RGB_BLACK)
-COLOR_RED = cmyko.Color(RGB_RED)
-COLOR_GREEN = cmyko.Color(RGB_GREEN)
-COLOR_BLUE = cmyko.Color(RGB_BLUE)
+COLOR_WHITE = cmyko.Color((255, 255, 255))
+COLOR_GRAY = cmyko.Color((127, 127, 127))
+COLOR_BLACK = cmyko.Color((0, 0, 0))
+COLOR_RED = cmyko.Color((255, 0, 0))
+COLOR_BLUE = cmyko.Color((0, 0, 255))
 
 
 def test_blend():
