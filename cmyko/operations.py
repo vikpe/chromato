@@ -1,6 +1,6 @@
 from .cmyko import Color
 from .constants import RGB_MAX, RGB_MIN
-from .math import lerp, sum_of_max_and_min
+from .math import lerp
 from .spaces import RGB
 
 
@@ -38,5 +38,5 @@ def invert(color: Color) -> Color:
 
 
 def complement(color: Color) -> Color:
-    k = sum_of_max_and_min(*color.rgb)
+    k = sum([max(*color.rgb), min(*color.rgb)])
     return Color([k - v for v in color.rgb])
