@@ -21,12 +21,6 @@ def parse(*args) -> spaces.RGB:
             if isinstance(arg, int):
                 r = arg
 
-            elif isinstance(arg, tuple) and 3 == len(arg):
-                r, g, b = arg
-
-            elif isinstance(arg, list) and 3 == len(arg):
-                r, g, b = arg
-
             elif isinstance(arg, spaces.RGB):
                 r, g, b = arg
 
@@ -42,6 +36,12 @@ def parse(*args) -> spaces.RGB:
             elif isinstance(arg, spaces.HEX):
                 r, g, b = convert.hex_to_rgb(arg)
 
+            elif isinstance(arg, tuple) and 3 == len(arg):
+                r, g, b = arg
+
+            elif isinstance(arg, list) and 3 == len(arg):
+                r, g, b = arg
+
             elif isinstance(arg, str) and len(arg) > 0:
                 r, g, b = convert.hex_to_rgb(parse_hex(arg))
 
@@ -55,4 +55,4 @@ def parse(*args) -> spaces.RGB:
     except BaseException:
         raise ValueError("Unable to parse value", args)
 
-    return spaces.RGB(*(r, g, b))
+    return spaces.RGB(r, g, b)
