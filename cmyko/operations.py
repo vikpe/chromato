@@ -1,4 +1,5 @@
 from .cmyko import Color
+from .constants import RGB_MAX, RGB_MIN
 from .math import lerp
 from .spaces import RGB
 
@@ -12,23 +13,14 @@ def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
 
 
 def shade(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(0, 0, 0)), factor=factor)
+    return blend(color, Color(RGB(RGB_MIN, RGB_MIN, RGB_MIN)), factor=factor)
 
 
 def tone(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(127.5, 127.5, 127.5)), factor=factor)
+    return blend(
+        color, Color(RGB(RGB_MAX / 2, RGB_MAX / 2, RGB_MAX / 2)), factor=factor
+    )
 
 
 def tint(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(255, 255, 255)), factor=factor)
-
-
-"""
-TODO
-* hue
-* saturate
-* desaturate
-* grayscale
-* invert
-* complement
-"""
+    return blend(color, Color(RGB(RGB_MAX, RGB_MAX, RGB_MAX)), factor=factor)
