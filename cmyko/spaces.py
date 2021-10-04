@@ -15,9 +15,9 @@ class HEX(str):
 
 @attr.s
 class RGB(ColorSpace):
-    r = attr.ib(default=RGB_MIN, converter=int)
-    g = attr.ib(default=RGB_MIN, converter=int)
-    b = attr.ib(default=RGB_MIN, converter=int)
+    r = attr.ib(default=RGB_MIN, converter=float)
+    g = attr.ib(default=RGB_MIN, converter=float)
+    b = attr.ib(default=RGB_MIN, converter=float)
 
 
 @attr.s

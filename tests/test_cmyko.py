@@ -10,5 +10,5 @@ def test_color():
     assert color.rgb == RGB_RED
     assert color.hex == HEX_RED
     assert color.cmyk == spaces.CMYK(0, 100, 100, 0)
-    assert color.hls == spaces.HLS(0, 127.5, -1.007905138339921)
-    assert color.hsv == spaces.HSV(0, 1, 255)
+    assert color.hls == spaces.HLS(0, 0.5, 1)
+    assert color.hsv == spaces.HSV(0, 1, 1)

@@ -16,7 +16,7 @@ def shade(color: Color, factor: float) -> Color:
 
 
 def tone(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(127, 127, 127)), factor=factor)
+    return blend(color, Color(RGB(127.5, 127.5, 127.5)), factor=factor)
 
 
 def tint(color: Color, factor: float) -> Color:

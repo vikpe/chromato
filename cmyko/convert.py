@@ -6,19 +6,19 @@ from .spaces import RGB, HLS, HSV, CMYK
 
 
 def rgb_to_hls(rgb) -> HLS:
-    return HLS(*colorsys.rgb_to_hls(*rgb))
+    return HLS(*colorsys.rgb_to_hls(*[v / RGB_MAX for v in rgb]))
 
 
 def hls_to_rgb(hls) -> RGB:
-    return RGB(*colorsys.hls_to_rgb(*hls))
+    return RGB(*[RGB_MAX * v for v in colorsys.hls_to_rgb(*hls)])
 
 
 def rgb_to_hsv(rgb) -> HSV:
-    return HSV(*colorsys.rgb_to_hsv(*rgb))
+    return HSV(*colorsys.rgb_to_hsv(*[v / RGB_MAX for v in rgb]))
 
 
 def hsv_to_rgb(hsv) -> RGB:
-    return RGB(*colorsys.hsv_to_rgb(*hsv))
+    return RGB(*[RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)])
 
 
 def rgb_to_cmyk(rgb) -> CMYK:
@@ -50,9 +50,9 @@ def cmyk_to_rgb(cmyk) -> RGB:
     return RGB(r, g, b)
 
 
-def int_to_hex(_int: int) -> str:
-    template = "{:02x}" if _int < 16 else "{:x}"
-    return template.format(_int)
+def float_to_hex(_float: float) -> str:
+    template = "{:02x}" if _float < 16 else "{:x}"
+    return template.format(int(_float))
 
 
 def hex_to_int(_hex: str) -> int:
@@ -60,7 +60,7 @@ def hex_to_int(_hex: str) -> int:
 
 
 def rgb_to_hex(rgb) -> str:
-    return "".join(map(int_to_hex, rgb))
+    return "".join(map(float_to_hex, rgb))
 
 
 def hex_to_rgb(_hex) -> RGB:
