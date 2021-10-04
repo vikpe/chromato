@@ -11,3 +11,4 @@ def test_lerp():
 
 def test_float_to_rgb_value():
     assert math.float_to_rgb_value(1 / 3) == 0.3333
+    assert math.float_to_rgb_value("0.33") == 0.33

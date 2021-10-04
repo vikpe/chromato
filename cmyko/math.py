@@ -6,4 +6,4 @@ def lerp(v1: float, v2: float, factor: float) -> float:
 
 
 def float_to_rgb_value(value) -> float:
-    return round(value, RGB_PRECISION)
+    return round(float(value), RGB_PRECISION)
