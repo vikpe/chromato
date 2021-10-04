@@ -10,8 +10,6 @@ class Color:
     def __eq__(self, other):
         if isinstance(other, Color):
             return self.rgb == other.rgb
-        elif isinstance(other, spaces.RGB):
-            return self.rgb == other
         else:
             return False
 
