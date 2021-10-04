@@ -42,3 +42,11 @@ def test_grayscale():
     assert operations.grayscale(COLOR_BLACK) == COLOR_BLACK
     assert operations.grayscale(COLOR_RED) == cmyko.Color((76.245, 76.245, 76.245))
     assert operations.grayscale(COLOR_BLUE) == cmyko.Color((29.07, 29.07, 29.07))
+
+
+def test_invert():
+    assert operations.invert(COLOR_WHITE) == COLOR_BLACK
+    assert operations.invert(COLOR_GRAY) == COLOR_GRAY
+    assert operations.invert(COLOR_BLACK) == COLOR_WHITE
+    assert operations.invert(COLOR_RED) == cmyko.Color((0, 255, 255))
+    assert operations.invert(COLOR_BLUE) == cmyko.Color((255, 255, 0))
