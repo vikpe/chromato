@@ -50,3 +50,17 @@ def test_invert():
     assert operations.invert(COLOR_BLACK) == COLOR_WHITE
     assert operations.invert(COLOR_RED) == cmyko.Color((0, 255, 255))
     assert operations.invert(COLOR_BLUE) == cmyko.Color((255, 255, 0))
+    assert operations.invert(cmyko.Color.from_hex("ff6699")) == cmyko.Color(
+        (0, 153, 102)
+    )
+
+
+def test_complement():
+    assert operations.complement(COLOR_WHITE) == COLOR_WHITE
+    assert operations.complement(COLOR_GRAY) == COLOR_GRAY
+    assert operations.complement(COLOR_BLACK) == COLOR_BLACK
+    assert operations.complement(COLOR_RED) == cmyko.Color((0, 255, 255))
+    assert operations.complement(COLOR_BLUE) == cmyko.Color((255, 255, 0))
+    assert operations.complement(cmyko.Color.from_hex("ff6699")) == cmyko.Color(
+        (102, 255, 204)
+    )

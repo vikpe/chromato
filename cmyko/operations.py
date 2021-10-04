@@ -1,6 +1,6 @@
 from .cmyko import Color
 from .constants import RGB_MAX, RGB_MIN
-from .math import lerp
+from .math import lerp, sum_of_max_and_min
 from .spaces import RGB
 
 
@@ -35,3 +35,8 @@ def grayscale(color: Color) -> Color:
 
 def invert(color: Color) -> Color:
     return Color([RGB_MAX - v for v in color.rgb])
+
+
+def complement(color: Color) -> Color:
+    k = sum_of_max_and_min(*color.rgb)
+    return Color([k - v for v in color.rgb])
