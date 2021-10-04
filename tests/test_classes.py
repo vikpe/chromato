@@ -9,6 +9,5 @@ def test_color():
     assert color.cmyk == spaces.CMYK(0, 100, 100, 0)
     assert color.hls == spaces.HLS(0, 0.5, 1)
     assert color.hsv == spaces.HSV(0, 1, 1)
-
-    assert classes.Color(255, 0, 0) == classes.Color("ff0000")
-    assert classes.Color(255, 0, 0) != "255 0 0"
+    assert color == classes.Color("ff0000")
+    assert color != "255 0 0"
