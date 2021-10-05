@@ -8,12 +8,12 @@ RGB_GREEN = spaces.RGB(0, 255, 0)
 RGB_BLUE = spaces.RGB(0, 0, 255)
 
 # HEX
-HEX_WHITE = "ffffff"
-HEX_GRAY = "7f7f7f"
-HEX_BLACK = "000000"
-HEX_RED = "ff0000"
-HEX_GREEN = "00ff00"
-HEX_BLUE = "0000ff"
+HEX_WHITE = spaces.HEX("ffffff")
+HEX_GRAY = spaces.HEX("7f7f7f")
+HEX_BLACK = spaces.HEX("000000")
+HEX_RED = spaces.HEX("ff0000")
+HEX_GREEN = spaces.HEX("00ff00")
+HEX_BLUE = spaces.HEX("0000ff")
 
 
 def test_hex_to_rgb():
