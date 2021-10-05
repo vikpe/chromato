@@ -24,7 +24,7 @@ def hsv_to_rgb(hsv) -> RGB:
 def rgb_to_cmyk(rgb) -> CMYK:
     r, g, b = rgb
 
-    if (r == RGB_MIN) and (g == RGB_MIN) and (b == RGB_MIN):
+    if (r, g, b) == (RGB_MIN, RGB_MIN, RGB_MIN):
         return CMYK(CMYK_MIN, CMYK_MIN, CMYK_MIN, CMYK_MAX)  # black
 
     # rgb [0,255] -> cmy [0,1]
