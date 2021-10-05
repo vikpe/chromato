@@ -1,17 +1,20 @@
-from . import convert, constants, spaces
+from . import convert, constants, spaces, validation
 
 
 def parse_hex(_hex) -> spaces.HEX:
     try:
-        result = _hex.lstrip("#")
+        if not validation.is_valid_hex(_hex):
+            raise
 
-        if 3 == len(result):
-            result = "".join(char * 2 for char in result)
+        parsed_hex = _hex.lstrip("#")
+
+        if 3 == len(parsed_hex):
+            parsed_hex = "".join(char * 2 for char in parsed_hex)
 
     except BaseException:
         raise ValueError("Unable to parse value as HEX", _hex)
 
-    return spaces.HEX(result)
+    return spaces.HEX(parsed_hex)
 
 
 def parse_hsv(*args) -> spaces.HSV:

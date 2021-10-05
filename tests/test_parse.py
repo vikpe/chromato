@@ -9,7 +9,7 @@ def test_parse_hex():
     assert parse.parse_hex("#f0f") == "ff00ff"
 
     # invalid
-    invalid_values = [[], spaces.RGB(255, 0, 0)]
+    invalid_values = [None, False, " ", "fox", spaces.RGB(255, 0, 0)]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
