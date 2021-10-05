@@ -41,7 +41,7 @@ def parse_hsv(*args) -> spaces.HSV:
 
 
 def parse_hls(*args) -> spaces.HLS:
-    h, l, s = (constants.HLS_MIN, constants.HLS_MIN, constants.HLS_MIN)
+    h, l, s = spaces.HLS()
 
     try:
         num_args = len(args)
@@ -72,12 +72,7 @@ def parse_hls(*args) -> spaces.HLS:
 
 
 def parse_cmyk(*args) -> spaces.CMYK:
-    c, m, y, k = (
-        constants.CMYK_MIN,
-        constants.CMYK_MIN,
-        constants.CMYK_MIN,
-        constants.CMYK_MAX,
-    )
+    c, m, y, k = spaces.CMYK()
 
     try:
         num_args = len(args)
