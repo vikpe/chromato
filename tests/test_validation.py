@@ -17,6 +17,9 @@ def test_is_valid_hex():
     assert validation.is_valid_hex("ab") is False
     assert validation.is_valid_hex("abcd") is False
     assert validation.is_valid_hex("abcde") is False
+    assert validation.is_valid_hex(None) is False
+    assert validation.is_valid_hex([]) is False
+    assert validation.is_valid_hex(()) is False
 
 
 def test_is_valid_rgb_value():
