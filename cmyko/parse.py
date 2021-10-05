@@ -9,6 +9,37 @@ def parse_hex(_hex) -> str:
         return result
 
 
+def parse_hsv(*args) -> spaces.HSV:
+    h, s, v = spaces.HSV()
+
+    try:
+        num_args = len(args)
+
+        if 1 == num_args:
+            arg = args[0]
+
+            if isinstance(arg, spaces.HSV):
+                return arg
+
+            elif isinstance(arg, tuple) or isinstance(arg, list):
+                return parse_hsv(*arg)
+            else:
+                h = arg
+
+        elif 2 == num_args:
+            h, s = args
+
+        elif 3 == num_args:
+            h, s, v = args
+
+        hsv = spaces.HSV(h, s, v)
+
+    except BaseException:
+        raise ValueError("Unable to parse value as HSV", args)
+
+    return hsv
+
+
 def parse_hls(*args) -> spaces.HLS:
     h, l, s = (constants.HLS_MIN, constants.HLS_MIN, constants.HLS_MIN)
 
