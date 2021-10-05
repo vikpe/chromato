@@ -1,7 +1,7 @@
 import colorsys
 
 from .constants import RGB_MIN, RGB_MAX, CMYK_MIN, CMYK_MAX
-from .parse import parse_hex, parse
+from .parse import parse_hex, parse, parse_cmyk
 from .spaces import RGB, HLS, HSV, CMYK, HEX
 
 
@@ -44,8 +44,8 @@ def rgb_to_cmyk(*args) -> CMYK:
     return CMYK(*[v * CMYK_MAX for v in (c, m, y, k)])
 
 
-def cmyk_to_rgb(cmyk) -> RGB:
-    c, m, y, k = cmyk
+def cmyk_to_rgb(*args) -> RGB:
+    c, m, y, k = parse_cmyk(*args)
     r = RGB_MAX * (1.0 - (c + k) / CMYK_MAX)
     g = RGB_MAX * (1.0 - (m + k) / CMYK_MAX)
     b = RGB_MAX * (1.0 - (y + k) / CMYK_MAX)
@@ -70,5 +70,5 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)

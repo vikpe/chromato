@@ -75,6 +75,11 @@ def test_cmyk_to_rgb():
     assert convert.cmyk_to_rgb(CMYK_GREEN) == RGB_GREEN
     assert convert.cmyk_to_rgb(CMYK_BLUE) == RGB_BLUE
 
+    assert convert.cmyk_to_rgb(*CMYK_WHITE) == RGB_WHITE
+    assert convert.cmyk_to_rgb(0, 0, 0, 0) == RGB_WHITE
+    assert convert.cmyk_to_rgb((0, 0, 0, 0)) == RGB_WHITE
+    assert convert.cmyk_to_rgb([0, 0, 0, 0]) == RGB_WHITE
+
 
 # HLS
 HLS_WHITE = spaces.HLS(0, 1, 0)
