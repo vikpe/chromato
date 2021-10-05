@@ -24,6 +24,11 @@ def test_hex_to_rgb():
     assert convert.hex_to_rgb(HEX_GREEN) == RGB_GREEN
     assert convert.hex_to_rgb(HEX_BLUE) == RGB_BLUE
 
+    assert convert.hex_to_rgb("fff") == RGB_WHITE
+    assert convert.hex_to_rgb("#fff") == RGB_WHITE
+    assert convert.hex_to_rgb("ffffff") == RGB_WHITE
+    assert convert.hex_to_rgb("#ffffff") == RGB_WHITE
+
 
 def test_rgb_to_hex():
     assert convert.rgb_to_hex(RGB_WHITE) == HEX_WHITE
