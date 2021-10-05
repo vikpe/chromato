@@ -9,6 +9,28 @@ def test_parse_hex():
     assert parse.parse_hex("#f0f") == "ff00ff"
 
 
+def test_parse_hls():
+    hls_white = spaces.HLS(0, 0, 0)
+
+    assert parse.parse_hls(0) == hls_white
+    assert parse.parse_hls(False) == hls_white
+    assert parse.parse_hls(1) == spaces.HLS(1, 0, 0)
+    assert parse.parse_hls(1, 0.5) == spaces.HLS(1, 0.5, 0)
+    assert parse.parse_hls(1, 0.5, 0.2) == spaces.HLS(1, 0.5, 0.2)
+    assert parse.parse_hls(1, 0.5, 0.2) == spaces.HLS(1, 0.5, 0.2)
+    assert parse.parse_hls("1", "0.5", "0.2") == spaces.HLS(1, 0.5, 0.2)
+    assert parse.parse_hls((1, 0.5, 0.2)) == spaces.HLS(1, 0.5, 0.2)
+    assert parse.parse_hls([1, 0.5, 0.2]) == spaces.HLS(1, 0.5, 0.2)
+    assert parse.parse_hls(spaces.HLS(0, 1, 0)) == spaces.HLS(0, 1, 0)
+
+    # invalid
+    invalid_values = [None, "a", spaces.RGB(255, 0, 0)]
+
+    for value in invalid_values:
+        with pytest.raises(ValueError):
+            parse.parse_hls(value)
+
+
 def test_parse_cmyk():
     cmyk_black = spaces.CMYK(0, 0, 0, 100)
 

@@ -9,6 +9,37 @@ def parse_hex(_hex) -> str:
         return result
 
 
+def parse_hls(*args) -> spaces.HLS:
+    h, l, s = (constants.HLS_MIN, constants.HLS_MIN, constants.HLS_MIN)
+
+    try:
+        num_args = len(args)
+
+        if 1 == num_args:
+            arg = args[0]
+
+            if isinstance(arg, spaces.HLS):
+                return arg
+
+            elif isinstance(arg, tuple) or isinstance(arg, list):
+                return parse_hls(*arg)
+            else:
+                h = arg
+
+        elif 2 == num_args:
+            h, l = args
+
+        elif 3 == num_args:
+            h, l, s = args
+
+        hls = spaces.HLS(h, l, s)
+
+    except BaseException:
+        raise ValueError("Unable to parse value as HLS", args)
+
+    return hls
+
+
 def parse_cmyk(*args) -> spaces.CMYK:
     c, m, y, k = (
         constants.CMYK_MIN,
