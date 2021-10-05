@@ -41,9 +41,9 @@ def grayscale(color: classes.Color) -> classes.Color:
 
 
 def invert(color: classes.Color) -> classes.Color:
-    return classes.Color([constants.RGB_MAX - v for v in color.rgb])
+    return classes.Color(spaces.RGB(*[constants.RGB_MAX - v for v in color.rgb]))
 
 
 def complement(color: classes.Color) -> classes.Color:
     k = sum([max(*color.rgb), min(*color.rgb)])
-    return classes.Color([k - v for v in color.rgb])
+    return classes.Color(spaces.RGB(*[k - v for v in color.rgb]))
