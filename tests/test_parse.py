@@ -32,10 +32,10 @@ def test_parse_hsv():
 
 
 def test_parse_hls():
-    hls_white = spaces.HLS(0, 0, 0)
+    hls_black = spaces.HLS()
 
-    assert parse.parse_hls(0) == hls_white
-    assert parse.parse_hls(False) == hls_white
+    assert parse.parse_hls(0) == hls_black
+    assert parse.parse_hls(False) == hls_black
     assert parse.parse_hls(1) == spaces.HLS(1, 0, 0)
     assert parse.parse_hls(1, 0.5) == spaces.HLS(1, 0.5, 0)
     assert parse.parse_hls(1, 0.5, 0.2) == spaces.HLS(1, 0.5, 0.2)
