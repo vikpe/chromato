@@ -33,6 +33,11 @@ def test_rgb_to_hex():
     assert convert.rgb_to_hex(RGB_GREEN) == HEX_GREEN
     assert convert.rgb_to_hex(RGB_BLUE) == HEX_BLUE
 
+    assert convert.rgb_to_hex(*RGB_WHITE) == HEX_WHITE
+    assert convert.rgb_to_hex(255, 255, 255) == HEX_WHITE
+    assert convert.rgb_to_hex((255, 255, 255)) == HEX_WHITE
+    assert convert.rgb_to_hex([255, 255, 255]) == HEX_WHITE
+
 
 # CMYK
 CMYK_WHITE = spaces.CMYK(0, 0, 0, 0)

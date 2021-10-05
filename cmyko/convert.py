@@ -1,7 +1,7 @@
 import colorsys
 
 from .constants import RGB_MIN, RGB_MAX, CMYK_MIN, CMYK_MAX
-from .parse import parse_hex
+from .parse import parse_hex, parse
 from .spaces import RGB, HLS, HSV, CMYK, HEX
 
 
@@ -59,8 +59,9 @@ def hex_to_int(_hex: str) -> int:
     return int(_hex, 16)
 
 
-def rgb_to_hex(rgb) -> HEX:
-    return HEX("".join(map(float_to_hex, rgb)))
+def rgb_to_hex(*args) -> HEX:
+    parsed_rgb = parse(*args)
+    return HEX("".join(map(float_to_hex, parsed_rgb)))
 
 
 def hex_to_rgb(_hex) -> RGB:
