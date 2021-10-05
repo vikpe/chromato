@@ -9,6 +9,45 @@ def parse_hex(_hex) -> str:
         return result
 
 
+def parse_cmyk(*args) -> spaces.CMYK:
+    c, m, y, k = (
+        constants.CMYK_MIN,
+        constants.CMYK_MIN,
+        constants.CMYK_MIN,
+        constants.CMYK_MAX,
+    )
+
+    try:
+        num_args = len(args)
+
+        if 1 == num_args:
+            arg = args[0]
+
+            if isinstance(arg, spaces.CMYK):
+                return arg
+
+            elif isinstance(arg, tuple) or isinstance(arg, list):
+                return parse_cmyk(*arg)
+            else:
+                c = arg
+
+        elif 2 == num_args:
+            c, m = args
+
+        elif 3 == num_args:
+            c, m, y = args
+
+        elif 4 == num_args:
+            c, m, y, k = args
+
+        cmyk = spaces.CMYK(c, m, y, k)
+
+    except BaseException:
+        raise ValueError("Unable to parse value as CMYK", args)
+
+    return cmyk
+
+
 def parse(*args) -> spaces.RGB:
     r, g, b = (constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN)
 

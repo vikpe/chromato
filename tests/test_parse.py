@@ -9,6 +9,28 @@ def test_parse_hex():
     assert parse.parse_hex("#f0f") == "ff00ff"
 
 
+def test_parse_cmyk():
+    cmyk_black = spaces.CMYK(0, 0, 0, 100)
+
+    assert parse.parse_cmyk(0) == cmyk_black
+    assert parse.parse_cmyk(False) == cmyk_black
+    assert parse.parse_cmyk(50) == spaces.CMYK(50, 0, 0, 100)
+    assert parse.parse_cmyk(50, 20) == spaces.CMYK(50, 20, 0, 100)
+    assert parse.parse_cmyk(50, 20, 10) == spaces.CMYK(50, 20, 10, 100)
+    assert parse.parse_cmyk(50, 20, 10, 5) == spaces.CMYK(50, 20, 10, 5)
+    assert parse.parse_cmyk("50", "20", "10", "5") == spaces.CMYK(50, 20, 10, 5)
+    assert parse.parse_cmyk((50, 20, 10, 5)) == spaces.CMYK(50, 20, 10, 5)
+    assert parse.parse_cmyk([50, 20, 10, 5]) == spaces.CMYK(50, 20, 10, 5)
+    assert parse.parse_cmyk(spaces.CMYK(0, 50, 0, 50)) == spaces.CMYK(0, 50, 0, 50)
+
+    # invalid
+    invalid_values = [None, "a", spaces.RGB(255, 0, 0)]
+
+    for value in invalid_values:
+        with pytest.raises(ValueError):
+            parse.parse_cmyk(value)
+
+
 def test_parse():
     rgb_red = spaces.RGB(255, 0, 0)
     rgb_black = spaces.RGB(0, 0, 0)
