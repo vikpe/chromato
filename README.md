@@ -1,2 +1,2 @@
-# cmyko
-Python color utilities.
+# chromato
+> Fresh color utilities for Python
