@@ -1,7 +1,7 @@
 import colorsys
 
 from .constants import RGB_MIN, RGB_MAX, CMYK_MIN, CMYK_MAX
-from .parse import parse_hex, parse, parse_cmyk, parse_hls
+from .parse import parse_hex, parse, parse_cmyk, parse_hls, parse_hsv
 from .spaces import RGB, HLS, HSV, CMYK, HEX
 
 
@@ -20,7 +20,8 @@ def rgb_to_hsv(*args) -> HSV:
     return HSV(*colorsys.rgb_to_hsv(*[v / RGB_MAX for v in rgb]))
 
 
-def hsv_to_rgb(hsv) -> RGB:
+def hsv_to_rgb(*args) -> RGB:
+    hsv = parse_hsv(*args)
     return RGB(*[RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)])
 
 

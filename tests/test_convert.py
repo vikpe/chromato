@@ -148,3 +148,8 @@ def test_hsv_to_rgb():
     assert convert.hsv_to_rgb(HSV_RED) == RGB_RED
     assert convert.hsv_to_rgb(HSV_GREEN) == RGB_GREEN
     assert convert.hsv_to_rgb(HSV_BLUE) == RGB_BLUE
+
+    assert convert.hsv_to_rgb(*HSV_WHITE) == RGB_WHITE
+    assert convert.hsv_to_rgb(0, 0, 1) == RGB_WHITE
+    assert convert.hsv_to_rgb((0, 0, 1)) == RGB_WHITE
+    assert convert.hsv_to_rgb([0, 0, 1]) == RGB_WHITE
