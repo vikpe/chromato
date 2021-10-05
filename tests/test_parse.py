@@ -54,7 +54,7 @@ def test_parse_hls():
 
 
 def test_parse_cmyk():
-    cmyk_black = spaces.CMYK(0, 0, 0, 100)
+    cmyk_black = spaces.CMYK()
 
     assert parse.parse_cmyk(0) == cmyk_black
     assert parse.parse_cmyk(False) == cmyk_black
@@ -77,7 +77,7 @@ def test_parse_cmyk():
 
 def test_parse():
     rgb_red = spaces.RGB(255, 0, 0)
-    rgb_black = spaces.RGB(0, 0, 0)
+    rgb_black = spaces.RGB()
 
     # valid
     assert parse.parse() == rgb_black
