@@ -46,4 +46,4 @@ class CMYK(ColorSpace):
     c = attr.ib(default=constants.CMYK_MIN, converter=float)
     m = attr.ib(default=constants.CMYK_MIN, converter=float)
     y = attr.ib(default=constants.CMYK_MIN, converter=float)
-    k = attr.ib(default=constants.CMYK_MIN, converter=float)
+    k = attr.ib(default=constants.CMYK_MAX, converter=float)
