@@ -8,6 +8,13 @@ def test_parse_hex():
     assert parse.parse_hex("f0f") == "ff00ff"
     assert parse.parse_hex("#f0f") == "ff00ff"
 
+    # invalid
+    invalid_values = [[], spaces.RGB(255, 0, 0)]
+
+    for value in invalid_values:
+        with pytest.raises(ValueError):
+            parse.parse_hex(value)
+
 
 def test_parse_hsv():
     hsv_black = spaces.HSV()

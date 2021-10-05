@@ -1,12 +1,17 @@
 from . import convert, constants, spaces
 
 
-def parse_hex(_hex) -> str:
-    result = _hex.lstrip("#")
-    if 3 == len(result):
-        return "".join(c * 2 for c in result)
-    else:
-        return result
+def parse_hex(_hex) -> spaces.HEX:
+    try:
+        result = _hex.lstrip("#")
+
+        if 3 == len(result):
+            result = "".join(char * 2 for char in result)
+
+    except BaseException:
+        raise ValueError("Unable to parse value as HEX", _hex)
+
+    return spaces.HEX(result)
 
 
 def parse_hsv(*args) -> spaces.HSV:
