@@ -112,6 +112,11 @@ def test_hls_to_rgb():
     assert convert.hls_to_rgb(HLS_GREEN) == RGB_GREEN
     assert convert.hls_to_rgb(HLS_BLUE) == RGB_BLUE
 
+    assert convert.hls_to_rgb(*HLS_WHITE) == RGB_WHITE
+    assert convert.hls_to_rgb(0, 1, 0) == RGB_WHITE
+    assert convert.hls_to_rgb((0, 1, 0)) == RGB_WHITE
+    assert convert.hls_to_rgb([0, 1, 0]) == RGB_WHITE
+
 
 # HSV
 HSV_WHITE = spaces.HSV(0, 0, 1)
