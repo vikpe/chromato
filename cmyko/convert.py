@@ -5,7 +5,8 @@ from .parse import parse_hex, parse
 from .spaces import RGB, HLS, HSV, CMYK, HEX
 
 
-def rgb_to_hls(rgb) -> HLS:
+def rgb_to_hls(*args) -> HLS:
+    rgb = parse(*args)
     return HLS(*colorsys.rgb_to_hls(*[v / RGB_MAX for v in rgb]))
 
 
@@ -13,7 +14,8 @@ def hls_to_rgb(hls) -> RGB:
     return RGB(*[RGB_MAX * v for v in colorsys.hls_to_rgb(*hls)])
 
 
-def rgb_to_hsv(rgb) -> HSV:
+def rgb_to_hsv(*args) -> HSV:
+    rgb = parse(*args)
     return HSV(*colorsys.rgb_to_hsv(*[v / RGB_MAX for v in rgb]))
 
 
@@ -21,8 +23,8 @@ def hsv_to_rgb(hsv) -> RGB:
     return RGB(*[RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)])
 
 
-def rgb_to_cmyk(rgb) -> CMYK:
-    r, g, b = rgb
+def rgb_to_cmyk(*args) -> CMYK:
+    r, g, b = parse(*args)
 
     if (r, g, b) == (RGB_MIN, RGB_MIN, RGB_MIN):
         return CMYK(CMYK_MIN, CMYK_MIN, CMYK_MIN, CMYK_MAX)  # black
@@ -68,5 +70,5 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)

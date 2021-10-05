@@ -56,6 +56,11 @@ def test_rgb_to_cmyk():
     assert convert.rgb_to_cmyk(RGB_GREEN) == CMYK_GREEN
     assert convert.rgb_to_cmyk(RGB_BLUE) == CMYK_BLUE
 
+    assert convert.rgb_to_cmyk(*RGB_WHITE) == CMYK_WHITE
+    assert convert.rgb_to_cmyk(255, 255, 255) == CMYK_WHITE
+    assert convert.rgb_to_cmyk((255, 255, 255)) == CMYK_WHITE
+    assert convert.rgb_to_cmyk([255, 255, 255]) == CMYK_WHITE
+
 
 def test_cmyk_to_rgb():
     assert convert.cmyk_to_rgb(CMYK_WHITE) == RGB_WHITE
@@ -83,6 +88,11 @@ def test_rgb_to_hls():
     assert convert.rgb_to_hls(RGB_GREEN) == HLS_GREEN
     assert convert.rgb_to_hls(RGB_BLUE) == HLS_BLUE
 
+    assert convert.rgb_to_hls(*RGB_WHITE) == HLS_WHITE
+    assert convert.rgb_to_hls(255, 255, 255) == HLS_WHITE
+    assert convert.rgb_to_hls((255, 255, 255)) == HLS_WHITE
+    assert convert.rgb_to_hls([255, 255, 255]) == HLS_WHITE
+
 
 def test_hls_to_rgb():
     assert convert.hls_to_rgb(HLS_WHITE) == RGB_WHITE
@@ -109,6 +119,11 @@ def test_rgb_to_hsv():
     assert convert.rgb_to_hsv(RGB_RED) == HSV_RED
     assert convert.rgb_to_hsv(RGB_GREEN) == HSV_GREEN
     assert convert.rgb_to_hsv(RGB_BLUE) == HSV_BLUE
+
+    assert convert.rgb_to_hsv(*RGB_WHITE) == HSV_WHITE
+    assert convert.rgb_to_hsv(255, 255, 255) == HSV_WHITE
+    assert convert.rgb_to_hsv((255, 255, 255)) == HSV_WHITE
+    assert convert.rgb_to_hsv([255, 255, 255]) == HSV_WHITE
 
 
 def test_hsv_to_rgb():
