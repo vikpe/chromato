@@ -49,15 +49,15 @@ def complement(color: classes.Color) -> classes.Color:
     return classes.Color(spaces.RGB(*[k - v for v in color.rgb]))
 
 
-def add(a: classes.Color, b: classes.Color) -> classes.Color:
-    r_sum = min(constants.RGB_MAX, a.rgb.r + b.rgb.r)
-    g_sum = min(constants.RGB_MAX, a.rgb.g + b.rgb.g)
-    b_sum = min(constants.RGB_MAX, a.rgb.b + b.rgb.b)
-    return classes.Color(spaces.RGB(r_sum, g_sum, b_sum))
+def add(color1: classes.Color, color2: classes.Color) -> classes.Color:
+    r = min(constants.RGB_MAX, color1.rgb.r + color2.rgb.r)
+    g = min(constants.RGB_MAX, color1.rgb.g + color2.rgb.g)
+    b = min(constants.RGB_MAX, color1.rgb.b + color2.rgb.b)
+    return classes.Color(spaces.RGB(r, g, b))
 
 
 def subtract(a: classes.Color, b: classes.Color) -> classes.Color:
-    r_sum = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
-    g_sum = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
-    b_sum = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
-    return classes.Color(spaces.RGB(r_sum, g_sum, b_sum))
+    r = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
+    g = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
+    b = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
+    return classes.Color(spaces.RGB(r, g, b))
