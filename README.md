@@ -45,23 +45,13 @@ subtract()
 
 ## Conversion
 
-from/to |RGB|CMYK|HLS|HSV
----|---|---|---|---
-RGB| |`rgb_to_cmyk`|`rgb_to_hls`|`rgb_to_hsv`
-CMYK|`cmyk_to_rgb`| |`cmyk_to_hls`|`cmyk_to_hsv`
-HLS|`hls_to_rgb`|`hls_to_cmyk`| |`hls_to_hsv`
-HSV|`hsv_to_rgb`|`hsv_to_cmyk`|`hsv_to_hls`|
-
-```python
-cmyk_to_rgb()
-hex_to_rgb()
-hls_to_rgb()
-hsv_to_rgb()
-rgb_to_cmyk()
-rgb_to_hex()
-rgb_to_hls()
-rgb_to_hsv()
-```
+🔀 | RGB | HEX | CMYK | HLS | HSV
+---|---|---|---|---|---
+RGB  | <!-- null --> | `hex_to_rgb`  | `cmyk_to_rgb` | `hls_to_rgb`  | `hsv_to_rgb`
+HEX  | `rgb_to_hex`  | <!-- null --> | `cmyk_to_hex` | `hls_to_hex`  | `hsv_to_hex`
+CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_cmyk`
+HLS  | `rgb_to_hls`  | `hex_to_hls`  | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
+HSV  | `rgb_to_hsv`  | `hex_to_hsv`  | `cmyk_to_hsv` | `hls_to_hsv`  | <!-- null -->
 
 ## Parse
 
