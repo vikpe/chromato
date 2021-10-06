@@ -134,19 +134,19 @@ def parse_value(*args) -> RGB:
                 r = arg
 
             elif isinstance(arg, RGB):
-                r, g, b = arg
+                return arg
 
             elif isinstance(arg, CMYK):
-                r, g, b = convert.cmyk_to_rgb(arg)
+                return convert.cmyk_to_rgb(arg)
 
             elif isinstance(arg, HSV):
-                r, g, b = convert.hsv_to_rgb(arg)
+                return convert.hsv_to_rgb(arg)
 
             elif isinstance(arg, HLS):
-                r, g, b = convert.hls_to_rgb(arg)
+                return convert.hls_to_rgb(arg)
 
             elif isinstance(arg, HEX):
-                r, g, b = convert.hex_to_rgb(arg)
+                return convert.hex_to_rgb(arg)
 
             elif isinstance(arg, tuple) and 3 == len(arg):
                 r, g, b = arg
@@ -164,7 +164,9 @@ def parse_value(*args) -> RGB:
         elif 3 == num_args:
             return parse_value(args)
 
+        rgb = RGB(r, g, b)
+
     except BaseException:
         raise ValueError("Unable to parse value", args)
 
-    return RGB(r, g, b)
+    return rgb
