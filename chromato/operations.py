@@ -1,4 +1,4 @@
-from . import classes, constants, math, spaces
+from . import base_colors, classes, constants, math, spaces
 
 
 def blend(
@@ -12,24 +12,15 @@ def blend(
 
 
 def shade(color: classes.Color, factor: float) -> classes.Color:
-    black = classes.Color(
-        spaces.RGB(constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN)
-    )
-    return blend(color, black, factor=factor)
+    return blend(color, base_colors.black, factor=factor)
 
 
 def tone(color: classes.Color, factor: float) -> classes.Color:
-    gray = classes.Color(
-        spaces.RGB(constants.RGB_MAX / 2, constants.RGB_MAX / 2, constants.RGB_MAX / 2)
-    )
-    return blend(color, gray, factor=factor)
+    return blend(color, base_colors.gray, factor=factor)
 
 
 def tint(color: classes.Color, factor: float) -> classes.Color:
-    white = classes.Color(
-        spaces.RGB(constants.RGB_MAX, constants.RGB_MAX, constants.RGB_MAX)
-    )
-    return blend(color, white, factor=factor)
+    return blend(color, base_colors.white, factor=factor)
 
 
 def grayscale(color: classes.Color) -> classes.Color:
