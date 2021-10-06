@@ -1,11 +1,13 @@
-from . import classes
+from . import classes, constants
 
-white = classes.Color(255, 255, 255)
-gray = classes.Color(255 / 2, 255 / 2, 255 / 2)
-black = classes.Color(0, 0, 0)
-red = classes.Color(255, 0, 0)
-green = classes.Color(0, 255, 0)
-blue = classes.Color(0, 0, 255)
-cyan = classes.Color(0, 255, 255)
-magenta = classes.Color(255, 0, 255)
-yellow = classes.Color(255, 255, 0)
+white = classes.Color(constants.RGB_MAX, constants.RGB_MAX, constants.RGB_MAX)
+gray = classes.Color(
+    constants.RGB_MAX / 2, constants.RGB_MAX / 2, constants.RGB_MAX / 2
+)
+black = classes.Color(constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN)
+red = classes.Color(constants.RGB_MAX, constants.RGB_MIN, constants.RGB_MIN)
+green = classes.Color(constants.RGB_MIN, constants.RGB_MAX, constants.RGB_MIN)
+blue = classes.Color(constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MAX)
+cyan = classes.Color(constants.RGB_MIN, constants.RGB_MAX, constants.RGB_MAX)
+magenta = classes.Color(constants.RGB_MAX, constants.RGB_MIN, constants.RGB_MAX)
+yellow = classes.Color(constants.RGB_MAX, constants.RGB_MAX, constants.RGB_MIN)
