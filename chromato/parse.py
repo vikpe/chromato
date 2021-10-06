@@ -2,6 +2,9 @@ from . import convert, constants, spaces, validation
 
 
 def parse_hex(_hex) -> spaces.HEX:
+    if isinstance(_hex, spaces.HEX):
+        return _hex
+
     try:
         if not validation.is_valid_hex(_hex):
             raise
@@ -31,6 +34,7 @@ def parse_hsv(*args) -> spaces.HSV:
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hsv(*arg)
+
             else:
                 h = arg
 
@@ -62,6 +66,7 @@ def parse_hls(*args) -> spaces.HLS:
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hls(*arg)
+
             else:
                 h = arg
 
@@ -93,6 +98,7 @@ def parse_cmyk(*args) -> spaces.CMYK:
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_cmyk(*arg)
+
             else:
                 c = arg
 
