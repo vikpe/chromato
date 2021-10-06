@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "chromato"
 version = "0.1.0"
-description = "Python color utilities."
+description = "🍅 Fresh color utilities."
 authors = ["Viktor Persson <viktor.persson@arcsin.se>"]
 
 [tool.poetry.dependencies]
