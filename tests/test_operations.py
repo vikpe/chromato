@@ -62,3 +62,12 @@ def test_complement():
     assert operations.complement(classes.Color("ff6699")) == classes.Color(
         (102, 255, 204)
     )
+
+
+def test_add():
+    assert operations.add(
+        classes.Color(255, 0, 0), classes.Color(0, 0, 255)
+    ) == classes.Color(255, 0, 255)
+    assert operations.add(
+        classes.Color(255, 0, 255), classes.Color(0, 0, 255)
+    ) == classes.Color(255, 0, 255)

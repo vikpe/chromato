@@ -47,3 +47,10 @@ def invert(color: classes.Color) -> classes.Color:
 def complement(color: classes.Color) -> classes.Color:
     k = sum([max(*color.rgb), min(*color.rgb)])
     return classes.Color(spaces.RGB(*[k - v for v in color.rgb]))
+
+
+def add(a: classes.Color, b: classes.Color) -> classes.Color:
+    r_sum = min(constants.RGB_MAX, a.rgb.r + b.rgb.r)
+    g_sum = min(constants.RGB_MAX, a.rgb.g + b.rgb.g)
+    b_sum = min(constants.RGB_MAX, a.rgb.b + b.rgb.b)
+    return classes.Color(spaces.RGB(r_sum, g_sum, b_sum))
