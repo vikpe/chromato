@@ -1,8 +1,10 @@
-from . import convert, parse, spaces
+from . import convert, parse
+
+from .spaces import CMYK, HEX, HLS, HSV, RGB
 
 
 class Color:
-    __rgb: spaces.RGB
+    __rgb: RGB
 
     def __init__(self, *args):
         self.__rgb = parse.parse(*args)
@@ -14,21 +16,21 @@ class Color:
             return False
 
     @property
-    def rgb(self) -> spaces.RGB:
+    def rgb(self) -> RGB:
         return self.__rgb
 
     @property
-    def hex(self) -> spaces.HEX:
+    def hex(self) -> HEX:
         return convert.rgb_to_hex(self.rgb)
 
     @property
-    def cmyk(self) -> spaces.CMYK:
+    def cmyk(self) -> CMYK:
         return convert.rgb_to_cmyk(self.rgb)
 
     @property
-    def hls(self) -> spaces.HLS:
+    def hls(self) -> HLS:
         return convert.rgb_to_hls(self.rgb)
 
     @property
-    def hsv(self) -> spaces.HSV:
+    def hsv(self) -> HSV:
         return convert.rgb_to_hsv(self.rgb)

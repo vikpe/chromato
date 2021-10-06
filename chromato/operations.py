@@ -1,54 +1,52 @@
-from . import base_colors, classes, constants, math, spaces
+from . import base_colors, constants, math
+from .classes import Color
+from .spaces import RGB
 
 
-def blend(
-    color1: classes.Color, color2: classes.Color, factor: float = 0.5
-) -> classes.Color:
+def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
     r = math.lerp(color1.rgb.r, color2.rgb.r, factor)
     g = math.lerp(color1.rgb.g, color2.rgb.g, factor)
     b = math.lerp(color1.rgb.b, color2.rgb.b, factor)
 
-    return classes.Color(spaces.RGB(r, g, b))
+    return Color(RGB(r, g, b))
 
 
-def shade(color: classes.Color, factor: float) -> classes.Color:
+def shade(color: Color, factor: float) -> Color:
     return blend(color, base_colors.black, factor=factor)
 
 
-def tone(color: classes.Color, factor: float) -> classes.Color:
+def tone(color: Color, factor: float) -> Color:
     return blend(color, base_colors.gray, factor=factor)
 
 
-def tint(color: classes.Color, factor: float) -> classes.Color:
+def tint(color: Color, factor: float) -> Color:
     return blend(color, base_colors.white, factor=factor)
 
 
-def grayscale(color: classes.Color) -> classes.Color:
+def grayscale(color: Color) -> Color:
     r, g, b = color.rgb
     weighted_average = 0.299 * r + 0.587 * g + 0.114 * b
-    return classes.Color(
-        spaces.RGB(weighted_average, weighted_average, weighted_average)
-    )
+    return Color(RGB(weighted_average, weighted_average, weighted_average))
 
 
-def invert(color: classes.Color) -> classes.Color:
-    return classes.Color(spaces.RGB(*[constants.RGB_MAX - v for v in color.rgb]))
+def invert(color: Color) -> Color:
+    return Color(RGB(*[constants.RGB_MAX - v for v in color.rgb]))
 
 
-def complement(color: classes.Color) -> classes.Color:
+def complement(color: Color) -> Color:
     k = sum([max(*color.rgb), min(*color.rgb)])
-    return classes.Color(spaces.RGB(*[k - v for v in color.rgb]))
+    return Color(RGB(*[k - v for v in color.rgb]))
 
 
-def add(color1: classes.Color, color2: classes.Color) -> classes.Color:
+def add(color1: Color, color2: Color) -> Color:
     r = min(constants.RGB_MAX, color1.rgb.r + color2.rgb.r)
     g = min(constants.RGB_MAX, color1.rgb.g + color2.rgb.g)
     b = min(constants.RGB_MAX, color1.rgb.b + color2.rgb.b)
-    return classes.Color(spaces.RGB(r, g, b))
+    return Color(RGB(r, g, b))
 
 
-def subtract(a: classes.Color, b: classes.Color) -> classes.Color:
+def subtract(a: Color, b: Color) -> Color:
     r = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
     g = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
     b = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
-    return classes.Color(spaces.RGB(r, g, b))
+    return Color(RGB(r, g, b))

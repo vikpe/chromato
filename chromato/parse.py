@@ -1,8 +1,10 @@
-from . import convert, constants, spaces, validation
+from . import convert, validation
+
+from .spaces import CMYK, HLS, HEX, HSV, RGB
 
 
-def parse_hex(_hex) -> spaces.HEX:
-    if isinstance(_hex, spaces.HEX):
+def parse_hex(_hex) -> HEX:
+    if isinstance(_hex, HEX):
         return _hex
 
     try:
@@ -17,11 +19,11 @@ def parse_hex(_hex) -> spaces.HEX:
     except BaseException:
         raise ValueError("Unable to parse value as HEX", _hex)
 
-    return spaces.HEX(parsed_hex)
+    return HEX(parsed_hex)
 
 
-def parse_hsv(*args) -> spaces.HSV:
-    h, s, v = spaces.HSV()
+def parse_hsv(*args) -> HSV:
+    h, s, v = HSV()
 
     try:
         num_args = len(args)
@@ -29,7 +31,7 @@ def parse_hsv(*args) -> spaces.HSV:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, spaces.HSV):
+            if isinstance(arg, HSV):
                 return arg
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
@@ -44,7 +46,7 @@ def parse_hsv(*args) -> spaces.HSV:
         elif 3 == num_args:
             h, s, v = args
 
-        hsv = spaces.HSV(h, s, v)
+        hsv = HSV(h, s, v)
 
     except BaseException:
         raise ValueError("Unable to parse value as HSV", args)
@@ -52,8 +54,8 @@ def parse_hsv(*args) -> spaces.HSV:
     return hsv
 
 
-def parse_hls(*args) -> spaces.HLS:
-    h, l, s = spaces.HLS()
+def parse_hls(*args) -> HLS:
+    h, l, s = HLS()
 
     try:
         num_args = len(args)
@@ -61,7 +63,7 @@ def parse_hls(*args) -> spaces.HLS:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, spaces.HLS):
+            if isinstance(arg, HLS):
                 return arg
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
@@ -76,7 +78,7 @@ def parse_hls(*args) -> spaces.HLS:
         elif 3 == num_args:
             h, l, s = args
 
-        hls = spaces.HLS(h, l, s)
+        hls = HLS(h, l, s)
 
     except BaseException:
         raise ValueError("Unable to parse value as HLS", args)
@@ -84,8 +86,8 @@ def parse_hls(*args) -> spaces.HLS:
     return hls
 
 
-def parse_cmyk(*args) -> spaces.CMYK:
-    c, m, y, k = spaces.CMYK()
+def parse_cmyk(*args) -> CMYK:
+    c, m, y, k = CMYK()
 
     try:
         num_args = len(args)
@@ -93,7 +95,7 @@ def parse_cmyk(*args) -> spaces.CMYK:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, spaces.CMYK):
+            if isinstance(arg, CMYK):
                 return arg
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
@@ -111,7 +113,7 @@ def parse_cmyk(*args) -> spaces.CMYK:
         elif 4 == num_args:
             c, m, y, k = args
 
-        cmyk = spaces.CMYK(c, m, y, k)
+        cmyk = CMYK(c, m, y, k)
 
     except BaseException:
         raise ValueError("Unable to parse value as CMYK", args)
@@ -119,8 +121,8 @@ def parse_cmyk(*args) -> spaces.CMYK:
     return cmyk
 
 
-def parse(*args) -> spaces.RGB:
-    r, g, b = (constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN)
+def parse(*args) -> RGB:
+    r, g, b = (0, 0, 0)
 
     try:
         num_args = len(args)
@@ -131,19 +133,19 @@ def parse(*args) -> spaces.RGB:
             if isinstance(arg, int):
                 r = arg
 
-            elif isinstance(arg, spaces.RGB):
+            elif isinstance(arg, RGB):
                 r, g, b = arg
 
-            elif isinstance(arg, spaces.CMYK):
+            elif isinstance(arg, CMYK):
                 r, g, b = convert.cmyk_to_rgb(arg)
 
-            elif isinstance(arg, spaces.HSV):
+            elif isinstance(arg, HSV):
                 r, g, b = convert.hsv_to_rgb(arg)
 
-            elif isinstance(arg, spaces.HLS):
+            elif isinstance(arg, HLS):
                 r, g, b = convert.hls_to_rgb(arg)
 
-            elif isinstance(arg, spaces.HEX):
+            elif isinstance(arg, HEX):
                 r, g, b = convert.hex_to_rgb(arg)
 
             elif isinstance(arg, tuple) and 3 == len(arg):
@@ -165,4 +167,4 @@ def parse(*args) -> spaces.RGB:
     except BaseException:
         raise ValueError("Unable to parse value", args)
 
-    return spaces.RGB(r, g, b)
+    return RGB(r, g, b)
