@@ -54,6 +54,21 @@ def cmyk_to_rgb(*args) -> RGB:
     return RGB(r, g, b)
 
 
+def cmyk_to_hex(*args) -> HEX:
+    rgb = cmyk_to_rgb(*args)
+    return rgb_to_hex(rgb)
+
+
+def cmyk_to_hls(*args) -> HLS:
+    rgb = cmyk_to_rgb(*args)
+    return rgb_to_hls(rgb)
+
+
+def cmyk_to_hsv(*args) -> HSV:
+    rgb = cmyk_to_rgb(*args)
+    return rgb_to_hsv(rgb)
+
+
 def float_to_hex(_float: float) -> str:
     template = "{:02x}" if _float < 16 else "{:x}"
     return template.format(int(_float))
@@ -72,5 +87,5 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)

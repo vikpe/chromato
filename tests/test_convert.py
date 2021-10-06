@@ -55,6 +55,48 @@ def test_cmyk_to_rgb():
     assert convert.cmyk_to_rgb([0, 0, 0, 0]) == RGB_WHITE
 
 
+def test_cmyk_to_hex():
+    assert convert.cmyk_to_hex(CMYK_WHITE) == HEX_WHITE
+    assert convert.cmyk_to_hex(CMYK_GRAY) == HEX_GRAY
+    assert convert.cmyk_to_hex(CMYK_BLACK) == HEX_BLACK
+    assert convert.cmyk_to_hex(CMYK_RED) == HEX_RED
+    assert convert.cmyk_to_hex(CMYK_GREEN) == HEX_GREEN
+    assert convert.cmyk_to_hex(CMYK_BLUE) == HEX_BLUE
+
+    assert convert.cmyk_to_hex(*CMYK_WHITE) == HEX_WHITE
+    assert convert.cmyk_to_hex(0, 0, 0, 0) == HEX_WHITE
+    assert convert.cmyk_to_hex((0, 0, 0, 0)) == HEX_WHITE
+    assert convert.cmyk_to_hex([0, 0, 0, 0]) == HEX_WHITE
+
+
+def test_cmyk_to_hls():
+    assert convert.cmyk_to_hls(CMYK_WHITE) == HLS_WHITE
+    assert convert.cmyk_to_hls(CMYK_GRAY) == HLS_GRAY
+    assert convert.cmyk_to_hls(CMYK_BLACK) == HLS_BLACK
+    assert convert.cmyk_to_hls(CMYK_RED) == HLS_RED
+    assert convert.cmyk_to_hls(CMYK_GREEN) == HLS_GREEN
+    assert convert.cmyk_to_hls(CMYK_BLUE) == HLS_BLUE
+
+    assert convert.cmyk_to_hls(*CMYK_WHITE) == HLS_WHITE
+    assert convert.cmyk_to_hls(0, 0, 0, 0) == HLS_WHITE
+    assert convert.cmyk_to_hls((0, 0, 0, 0)) == HLS_WHITE
+    assert convert.cmyk_to_hls([0, 0, 0, 0]) == HLS_WHITE
+
+
+def test_cmyk_to_hsv():
+    assert convert.cmyk_to_hsv(CMYK_WHITE) == HSV_WHITE
+    assert convert.cmyk_to_hsv(CMYK_GRAY) == HSV_GRAY
+    assert convert.cmyk_to_hsv(CMYK_BLACK) == HSV_BLACK
+    assert convert.cmyk_to_hsv(CMYK_RED) == HSV_RED
+    assert convert.cmyk_to_hsv(CMYK_GREEN) == HSV_GREEN
+    assert convert.cmyk_to_hsv(CMYK_BLUE) == HSV_BLUE
+
+    assert convert.cmyk_to_hsv(*CMYK_WHITE) == HSV_WHITE
+    assert convert.cmyk_to_hsv(0, 0, 0, 0) == HSV_WHITE
+    assert convert.cmyk_to_hsv((0, 0, 0, 0)) == HSV_WHITE
+    assert convert.cmyk_to_hsv([0, 0, 0, 0]) == HSV_WHITE
+
+
 def test_hex_to_rgb():
     assert convert.hex_to_rgb(HEX_WHITE) == RGB_WHITE
     assert convert.hex_to_rgb(HEX_GRAY) == spaces.RGB(127, 127, 127)
