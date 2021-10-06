@@ -167,6 +167,48 @@ def test_hls_to_rgb():
     assert convert.hls_to_rgb([0, 1, 0]) == RGB_WHITE
 
 
+def test_hls_to_cmyk():
+    assert convert.hls_to_cmyk(HLS_WHITE) == CMYK_WHITE
+    assert convert.hls_to_cmyk(HLS_GRAY) == CMYK_GRAY
+    assert convert.hls_to_cmyk(HLS_BLACK) == CMYK_BLACK
+    assert convert.hls_to_cmyk(HLS_RED) == CMYK_RED
+    assert convert.hls_to_cmyk(HLS_GREEN) == CMYK_GREEN
+    assert convert.hls_to_cmyk(HLS_BLUE) == CMYK_BLUE
+
+    assert convert.hls_to_cmyk(*HLS_WHITE) == CMYK_WHITE
+    assert convert.hls_to_cmyk(0, 1, 0) == CMYK_WHITE
+    assert convert.hls_to_cmyk((0, 1, 0)) == CMYK_WHITE
+    assert convert.hls_to_cmyk([0, 1, 0]) == CMYK_WHITE
+
+
+def test_hls_to_hex():
+    assert convert.hls_to_hex(HLS_WHITE) == HEX_WHITE
+    assert convert.hls_to_hex(HLS_GRAY) == HEX_GRAY
+    assert convert.hls_to_hex(HLS_BLACK) == HEX_BLACK
+    assert convert.hls_to_hex(HLS_RED) == HEX_RED
+    assert convert.hls_to_hex(HLS_GREEN) == HEX_GREEN
+    assert convert.hls_to_hex(HLS_BLUE) == HEX_BLUE
+
+    assert convert.hls_to_hex(*HLS_WHITE) == HEX_WHITE
+    assert convert.hls_to_hex(0, 1, 0) == HEX_WHITE
+    assert convert.hls_to_hex((0, 1, 0)) == HEX_WHITE
+    assert convert.hls_to_hex([0, 1, 0]) == HEX_WHITE
+
+
+def test_hls_to_hsv():
+    assert convert.hls_to_hsv(HLS_WHITE) == HSV_WHITE
+    assert convert.hls_to_hsv(HLS_GRAY) == HSV_GRAY
+    assert convert.hls_to_hsv(HLS_BLACK) == HSV_BLACK
+    assert convert.hls_to_hsv(HLS_RED) == HSV_RED
+    assert convert.hls_to_hsv(HLS_GREEN) == HSV_GREEN
+    assert convert.hls_to_hsv(HLS_BLUE) == HSV_BLUE
+
+    assert convert.hls_to_hsv(*HLS_WHITE) == HSV_WHITE
+    assert convert.hls_to_hsv(0, 1, 0) == HSV_WHITE
+    assert convert.hls_to_hsv((0, 1, 0)) == HSV_WHITE
+    assert convert.hls_to_hsv([0, 1, 0]) == HSV_WHITE
+
+
 def test_hsv_to_rgb():
     assert convert.hsv_to_rgb(HSV_WHITE) == RGB_WHITE
     assert convert.hsv_to_rgb(HSV_GRAY) == RGB_GRAY
