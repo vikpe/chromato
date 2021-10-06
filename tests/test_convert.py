@@ -1,6 +1,6 @@
 from chromato import convert, spaces
 
-# CMYK
+# Constants
 CMYK_WHITE = spaces.CMYK(0, 0, 0, 0)
 CMYK_GRAY = spaces.CMYK(0, 0, 0, 100 * 2 / 3)
 CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
@@ -8,7 +8,6 @@ CMYK_RED = spaces.CMYK(0, 100, 100, 0)
 CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
 CMYK_BLUE = spaces.CMYK(100, 100, 0, 0)
 
-# HEX
 HEX_WHITE = spaces.HEX("ffffff")
 HEX_GRAY = spaces.HEX("555555")
 HEX_BLACK = spaces.HEX("000000")
@@ -16,7 +15,6 @@ HEX_RED = spaces.HEX("ff0000")
 HEX_GREEN = spaces.HEX("00ff00")
 HEX_BLUE = spaces.HEX("0000ff")
 
-# HLS
 HLS_WHITE = spaces.HLS(0, 1, 0)
 HLS_GRAY = spaces.HLS(0, 1 / 3, 0)
 HLS_BLACK = spaces.HLS(0, 0, 0)
@@ -24,7 +22,6 @@ HLS_RED = spaces.HLS(0, 0.5, 1)
 HLS_GREEN = spaces.HLS(1 / 3, 0.5, 1)
 HLS_BLUE = spaces.HLS(2 / 3, 0.5, 1)
 
-# HSV
 HSV_WHITE = spaces.HSV(0, 0, 1)
 HSV_GRAY = spaces.HSV(0, 0, 1 / 3)
 HSV_BLACK = spaces.HSV(0, 0, 0)
@@ -32,7 +29,6 @@ HSV_RED = spaces.HSV(0, 1, 1)
 HSV_GREEN = spaces.HSV(1 / 3, 1, 1)
 HSV_BLUE = spaces.HSV(2 / 3, 1, 1)
 
-# RGB
 RGB_WHITE = spaces.RGB(255, 255, 255)
 RGB_GRAY = spaces.RGB(85, 85, 85)
 RGB_BLACK = spaces.RGB(0, 0, 0)
@@ -41,6 +37,7 @@ RGB_GREEN = spaces.RGB(0, 255, 0)
 RGB_BLUE = spaces.RGB(0, 0, 255)
 
 
+# CMYK conversion
 def test_cmyk_to_rgb():
     assert convert.cmyk_to_rgb(CMYK_WHITE) == RGB_WHITE
     assert convert.cmyk_to_rgb(CMYK_GRAY) == RGB_GRAY
@@ -97,6 +94,7 @@ def test_cmyk_to_hsv():
     assert convert.cmyk_to_hsv([0, 0, 0, 0]) == HSV_WHITE
 
 
+# HEX conversion
 def test_hex_to_cmyk():
     assert convert.hex_to_cmyk(HEX_WHITE) == CMYK_WHITE
     assert convert.hex_to_cmyk(HEX_GRAY) == CMYK_GRAY
@@ -153,6 +151,7 @@ def test_hex_to_rgb():
     assert convert.hex_to_rgb("#ffffff") == RGB_WHITE
 
 
+# HLS conversion
 def test_hls_to_rgb():
     assert convert.hls_to_rgb(HLS_WHITE) == RGB_WHITE
     assert convert.hls_to_rgb(HLS_GRAY) == RGB_GRAY
@@ -209,6 +208,7 @@ def test_hls_to_hsv():
     assert convert.hls_to_hsv([0, 1, 0]) == HSV_WHITE
 
 
+# HSV conversion
 def test_hsv_to_cmyk():
     assert convert.hsv_to_cmyk(HSV_WHITE) == CMYK_WHITE
     assert convert.hsv_to_cmyk(HSV_GRAY) == CMYK_GRAY
@@ -265,6 +265,7 @@ def test_hsv_to_rgb():
     assert convert.hsv_to_rgb([0, 0, 1]) == RGB_WHITE
 
 
+# RGB conversion
 def test_rgb_to_cmyk():
     assert convert.rgb_to_cmyk(RGB_WHITE) == CMYK_WHITE
     assert convert.rgb_to_cmyk(RGB_GRAY) == CMYK_GRAY
