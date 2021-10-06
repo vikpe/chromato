@@ -2,7 +2,7 @@ from chromato import convert, spaces
 
 # CMYK
 CMYK_WHITE = spaces.CMYK(0, 0, 0, 0)
-CMYK_GRAY = spaces.CMYK(0, 0, 0, 100*2/3)
+CMYK_GRAY = spaces.CMYK(0, 0, 0, 100 * 2 / 3)
 CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
 CMYK_RED = spaces.CMYK(0, 100, 100, 0)
 CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
@@ -18,7 +18,7 @@ HEX_BLUE = spaces.HEX("0000ff")
 
 # HLS
 HLS_WHITE = spaces.HLS(0, 1, 0)
-HLS_GRAY = spaces.HLS(0, 1/3, 0)
+HLS_GRAY = spaces.HLS(0, 1 / 3, 0)
 HLS_BLACK = spaces.HLS(0, 0, 0)
 HLS_RED = spaces.HLS(0, 0.5, 1)
 HLS_GREEN = spaces.HLS(1 / 3, 0.5, 1)
@@ -26,7 +26,7 @@ HLS_BLUE = spaces.HLS(2 / 3, 0.5, 1)
 
 # HSV
 HSV_WHITE = spaces.HSV(0, 0, 1)
-HSV_GRAY = spaces.HSV(0, 0, 1/3)
+HSV_GRAY = spaces.HSV(0, 0, 1 / 3)
 HSV_BLACK = spaces.HSV(0, 0, 0)
 HSV_RED = spaces.HSV(0, 1, 1)
 HSV_GREEN = spaces.HSV(1 / 3, 1, 1)
