@@ -107,9 +107,9 @@ def rgb_to_cmyk(*args) -> CMYK:
         return CMYK(CMYK_MIN, CMYK_MIN, CMYK_MIN, CMYK_MAX)  # black
 
     # rgb [0,255] -> cmy [0,1]
-    c = 1 - r / RGB_MAX
-    m = 1 - g / RGB_MAX
-    y = 1 - b / RGB_MAX
+    c = 1 - (r / RGB_MAX)
+    m = 1 - (g / RGB_MAX)
+    y = 1 - (b / RGB_MAX)
 
     # extract out k [0,1]
     k = min(c, m, y)
