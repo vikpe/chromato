@@ -83,9 +83,24 @@ def rgb_to_hex(*args) -> HEX:
     return HEX("".join(map(float_to_hex, parsed_rgb)))
 
 
+def hex_to_cmyk(_hex) -> CMYK:
+    rgb = hex_to_rgb(_hex)
+    return rgb_to_cmyk(rgb)
+
+
+def hex_to_hls(_hex) -> HLS:
+    rgb = hex_to_rgb(_hex)
+    return rgb_to_hls(rgb)
+
+
+def hex_to_hsv(_hex) -> HSV:
+    rgb = hex_to_rgb(_hex)
+    return rgb_to_hsv(rgb)
+
+
 def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)

@@ -97,9 +97,51 @@ def test_cmyk_to_hsv():
     assert convert.cmyk_to_hsv([0, 0, 0, 0]) == HSV_WHITE
 
 
+def test_hex_to_cmyk():
+    assert convert.hex_to_cmyk(HEX_WHITE) == CMYK_WHITE
+    assert convert.hex_to_cmyk(HEX_GRAY) == CMYK_GRAY
+    assert convert.hex_to_cmyk(HEX_BLACK) == CMYK_BLACK
+    assert convert.hex_to_cmyk(HEX_RED) == CMYK_RED
+    assert convert.hex_to_cmyk(HEX_GREEN) == CMYK_GREEN
+    assert convert.hex_to_cmyk(HEX_BLUE) == CMYK_BLUE
+
+    assert convert.hex_to_cmyk("fff") == CMYK_WHITE
+    assert convert.hex_to_cmyk("#fff") == CMYK_WHITE
+    assert convert.hex_to_cmyk("ffffff") == CMYK_WHITE
+    assert convert.hex_to_cmyk("#ffffff") == CMYK_WHITE
+
+
+def test_hex_to_hls():
+    assert convert.hex_to_hls(HEX_WHITE) == HLS_WHITE
+    assert convert.hex_to_hls(HEX_GRAY) == HLS_GRAY
+    assert convert.hex_to_hls(HEX_BLACK) == HLS_BLACK
+    assert convert.hex_to_hls(HEX_RED) == HLS_RED
+    assert convert.hex_to_hls(HEX_GREEN) == HLS_GREEN
+    assert convert.hex_to_hls(HEX_BLUE) == HLS_BLUE
+
+    assert convert.hex_to_hls("fff") == HLS_WHITE
+    assert convert.hex_to_hls("#fff") == HLS_WHITE
+    assert convert.hex_to_hls("ffffff") == HLS_WHITE
+    assert convert.hex_to_hls("#ffffff") == HLS_WHITE
+
+
+def test_hex_to_hsv():
+    assert convert.hex_to_hsv(HEX_WHITE) == HSV_WHITE
+    assert convert.hex_to_hsv(HEX_GRAY) == HSV_GRAY
+    assert convert.hex_to_hsv(HEX_BLACK) == HSV_BLACK
+    assert convert.hex_to_hsv(HEX_RED) == HSV_RED
+    assert convert.hex_to_hsv(HEX_GREEN) == HSV_GREEN
+    assert convert.hex_to_hsv(HEX_BLUE) == HSV_BLUE
+
+    assert convert.hex_to_hsv("fff") == HSV_WHITE
+    assert convert.hex_to_hsv("#fff") == HSV_WHITE
+    assert convert.hex_to_hsv("ffffff") == HSV_WHITE
+    assert convert.hex_to_hsv("#ffffff") == HSV_WHITE
+
+
 def test_hex_to_rgb():
     assert convert.hex_to_rgb(HEX_WHITE) == RGB_WHITE
-    assert convert.hex_to_rgb(HEX_GRAY) == spaces.RGB(127, 127, 127)
+    assert convert.hex_to_rgb(HEX_GRAY) == RGB_GRAY
     assert convert.hex_to_rgb(HEX_BLACK) == RGB_BLACK
     assert convert.hex_to_rgb(HEX_RED) == RGB_RED
     assert convert.hex_to_rgb(HEX_GREEN) == RGB_GREEN
