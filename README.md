@@ -1,2 +1,2 @@
 # chromato
-> Fresh color utilities for Python 🍅
+> 🍅 Fresh color utilities for Python

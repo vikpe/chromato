@@ -1,4 +1,4 @@
-from cmyko import classes, operations
+from chromato import classes, operations
 
 COLOR_WHITE = classes.Color(255, 255, 255)
 COLOR_GRAY = classes.Color(127.5, 127.5, 127.5)

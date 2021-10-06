@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cmyko"
+name = "chromato"
 version = "0.1.0"
 description = "Python color utilities."
 authors = ["Viktor Persson <viktor.persson@arcsin.se>"]

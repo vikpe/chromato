@@ -1,4 +1,4 @@
-from cmyko import classes, spaces
+from chromato import classes, spaces
 
 
 def test_color():

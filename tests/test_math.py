@@ -1,4 +1,4 @@
-from cmyko import math
+from chromato import math
 
 
 def test_lerp():

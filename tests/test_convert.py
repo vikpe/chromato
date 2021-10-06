@@ -1,4 +1,4 @@
-from cmyko import convert, spaces
+from chromato import convert, spaces
 
 RGB_WHITE = spaces.RGB(255, 255, 255)
 RGB_GRAY = spaces.RGB(127.5, 127.5, 127.5)
