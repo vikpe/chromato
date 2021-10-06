@@ -45,6 +45,13 @@ subtract()
 
 ## Conversion
 
+from/to |RGB|CMYK|HLS|HSV
+---|---|---|---|---
+RGB| |`rgb_to_cmyk`|`rgb_to_hls`|`rgb_to_hsv`
+CMYK|`cmyk_to_rgb`| |`cmyk_to_hls`|`cmyk_to_hsv`
+HLS|`hls_to_rgb`|`hls_to_cmyk`| |`hls_to_hsv`
+HSV|`hsv_to_rgb`|`hsv_to_cmyk`|`hsv_to_hls`|
+
 ```python
 cmyk_to_rgb()
 hex_to_rgb()
