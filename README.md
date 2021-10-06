@@ -11,7 +11,11 @@
 
 # Features
 
-TODO
+* Classes
+* Operations
+* Convert
+* Parse
+* Validation
 
 # Install
 
@@ -24,5 +28,36 @@ pip install chromato
 TODO
 
 # API
+
+## Operations
+
+```python
+blend()
+shade()
+tone()
+tint()
+grayscale()
+invert()
+complement()
+```
+
+## Conversion
+
+```python
+cmyk_to_rgb()
+hex_to_rgb()
+hls_to_rgb()
+hsv_to_rgb()
+rgb_to_cmyk()
+rgb_to_hex()
+rgb_to_hls()
+rgb_to_hsv()
+```
+
+## Parse
+
+TODO
+
+## Validation
 
 TODO
