@@ -9,10 +9,6 @@ class ColorSpace(object):
             yield val
 
 
-class HEX(str):
-    pass
-
-
 def parse_rgb_value(value) -> float:
     if not value:
         return constants.RGB_MIN
@@ -21,10 +17,15 @@ def parse_rgb_value(value) -> float:
 
 
 @attr.s
-class RGB(ColorSpace):
-    r = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
-    g = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
-    b = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
+class CMYK(ColorSpace):
+    c = attr.ib(default=constants.CMYK_MIN, converter=float)
+    m = attr.ib(default=constants.CMYK_MIN, converter=float)
+    y = attr.ib(default=constants.CMYK_MIN, converter=float)
+    k = attr.ib(default=constants.CMYK_MAX, converter=float)
+
+
+class HEX(str):
+    pass
 
 
 @attr.s
@@ -42,8 +43,7 @@ class HSV(ColorSpace):
 
 
 @attr.s
-class CMYK(ColorSpace):
-    c = attr.ib(default=constants.CMYK_MIN, converter=float)
-    m = attr.ib(default=constants.CMYK_MIN, converter=float)
-    y = attr.ib(default=constants.CMYK_MIN, converter=float)
-    k = attr.ib(default=constants.CMYK_MAX, converter=float)
+class RGB(ColorSpace):
+    r = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
+    g = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
+    b = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
