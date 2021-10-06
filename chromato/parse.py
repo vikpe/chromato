@@ -121,7 +121,7 @@ def parse_cmyk(*args) -> CMYK:
     return cmyk
 
 
-def parse(*args) -> RGB:
+def parse_value(*args) -> RGB:
     r, g, b = (0, 0, 0)
 
     try:
@@ -162,7 +162,7 @@ def parse(*args) -> RGB:
             g = args[1]
 
         elif 3 == num_args:
-            return parse(args)
+            return parse_value(args)
 
     except BaseException:
         raise ValueError("Unable to parse value", args)

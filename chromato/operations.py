@@ -1,6 +1,5 @@
 from . import constants, math
-from .classes import Color
-from .spaces import RGB
+from .spaces import Color, RGB
 
 
 def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:

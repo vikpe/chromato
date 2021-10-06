@@ -100,7 +100,7 @@ def hsv_to_rgb(*args) -> RGB:
 
 
 def rgb_to_cmyk(*args) -> CMYK:
-    r, g, b = parse.parse(*args)
+    r, g, b = parse.parse_value(*args)
 
     if (r, g, b) == (constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN):
         return CMYK(
@@ -126,15 +126,15 @@ def rgb_to_cmyk(*args) -> CMYK:
 
 
 def rgb_to_hex(*args) -> HEX:
-    parsed_rgb = parse.parse(*args)
+    parsed_rgb = parse.parse_value(*args)
     return HEX("".join(map(float_to_hex, parsed_rgb)))
 
 
 def rgb_to_hls(*args) -> HLS:
-    rgb = parse.parse(*args)
+    rgb = parse.parse_value(*args)
     return HLS(*colorsys.rgb_to_hls(*[v / constants.RGB_MAX for v in rgb]))
 
 
 def rgb_to_hsv(*args) -> HSV:
-    rgb = parse.parse(*args)
+    rgb = parse.parse_value(*args)
     return HSV(*colorsys.rgb_to_hsv(*[v / constants.RGB_MAX for v in rgb]))

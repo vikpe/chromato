@@ -1,5 +1,5 @@
 from chromato import operations
-from chromato.classes import Color
+from chromato.spaces import Color
 
 COLOR_WHITE = Color(255, 255, 255)
 COLOR_GRAY = Color(127.5, 127.5, 127.5)

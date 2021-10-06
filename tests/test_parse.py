@@ -1,5 +1,6 @@
-from chromato import parse, spaces
 import pytest
+
+from chromato import parse, spaces
 
 
 def test_parse_hex():
@@ -87,32 +88,32 @@ def test_parse():
     rgb_black = spaces.RGB()
 
     # valid
-    assert parse.parse() == rgb_black
-    assert parse.parse(None) == rgb_black
-    assert parse.parse("") == rgb_black
-    assert parse.parse(255) == rgb_red
-    assert parse.parse(255, 50) == spaces.RGB(255, 50, 0)
-    assert parse.parse(255, 50, 100) == spaces.RGB(255, 50, 100)
-    assert parse.parse((255, 0, 0)) == rgb_red
-    assert parse.parse([255, 0, 0]) == rgb_red
-    assert parse.parse((0, 0, 0)) == rgb_black
-    assert parse.parse((None, None, None)) == rgb_black
-    assert parse.parse(("", "", "")) == rgb_black
-    assert parse.parse(("255", "50", "100")) == spaces.RGB(255, 50, 100)
-    assert parse.parse(["255", "50", "100"]) == spaces.RGB(255, 50, 100)
-    assert parse.parse(spaces.RGB(255, 50, 100)) == spaces.RGB(255, 50, 100)
-    assert parse.parse(spaces.CMYK(100, 0, 0, 0)) == spaces.RGB(0, 255, 255)
-    assert parse.parse(spaces.HSV(0, 1, 1)) == rgb_red
-    assert parse.parse(spaces.HLS(0, 0.5, 1)) == rgb_red
-    assert parse.parse(spaces.HEX("ff0000")) == rgb_red
-    assert parse.parse("ff0000") == rgb_red
-    assert parse.parse("#ff0000") == rgb_red
-    assert parse.parse("#f00") == rgb_red
-    assert parse.parse("f00") == rgb_red
+    assert parse.parse_value() == rgb_black
+    assert parse.parse_value(None) == rgb_black
+    assert parse.parse_value("") == rgb_black
+    assert parse.parse_value(255) == rgb_red
+    assert parse.parse_value(255, 50) == spaces.RGB(255, 50, 0)
+    assert parse.parse_value(255, 50, 100) == spaces.RGB(255, 50, 100)
+    assert parse.parse_value((255, 0, 0)) == rgb_red
+    assert parse.parse_value([255, 0, 0]) == rgb_red
+    assert parse.parse_value((0, 0, 0)) == rgb_black
+    assert parse.parse_value((None, None, None)) == rgb_black
+    assert parse.parse_value(("", "", "")) == rgb_black
+    assert parse.parse_value(("255", "50", "100")) == spaces.RGB(255, 50, 100)
+    assert parse.parse_value(["255", "50", "100"]) == spaces.RGB(255, 50, 100)
+    assert parse.parse_value(spaces.RGB(255, 50, 100)) == spaces.RGB(255, 50, 100)
+    assert parse.parse_value(spaces.CMYK(100, 0, 0, 0)) == spaces.RGB(0, 255, 255)
+    assert parse.parse_value(spaces.HSV(0, 1, 1)) == rgb_red
+    assert parse.parse_value(spaces.HLS(0, 0.5, 1)) == rgb_red
+    assert parse.parse_value(spaces.HEX("ff0000")) == rgb_red
+    assert parse.parse_value("ff0000") == rgb_red
+    assert parse.parse_value("#ff0000") == rgb_red
+    assert parse.parse_value("#f00") == rgb_red
+    assert parse.parse_value("f00") == rgb_red
 
     # invalid
     invalid_values = ["x", "f00f", "_"]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
-            parse.parse(value)
+            parse.parse_value(value)
