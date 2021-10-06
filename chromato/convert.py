@@ -35,6 +35,21 @@ def rgb_to_hsv(*args) -> HSV:
     return HSV(*colorsys.rgb_to_hsv(*[v / RGB_MAX for v in rgb]))
 
 
+def hsv_to_cmyk(*args) -> CMYK:
+    rgb = hsv_to_rgb(*args)
+    return rgb_to_cmyk(rgb)
+
+
+def hsv_to_hex(*args) -> HEX:
+    rgb = hsv_to_rgb(*args)
+    return rgb_to_hex(rgb)
+
+
+def hsv_to_hls(*args) -> HLS:
+    rgb = hsv_to_rgb(*args)
+    return rgb_to_hls(rgb)
+
+
 def hsv_to_rgb(*args) -> RGB:
     hsv = parse_hsv(*args)
     return RGB(*[RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)])
@@ -117,5 +132,5 @@ def hex_to_rgb(_hex) -> RGB:
     result = parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
-    r, g, b = [hex_to_int(result[i: i + pairs]) for i in range(0, hlen, pairs)]
+    r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
     return RGB(r, g, b)

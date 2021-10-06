@@ -209,6 +209,48 @@ def test_hls_to_hsv():
     assert convert.hls_to_hsv([0, 1, 0]) == HSV_WHITE
 
 
+def test_hsv_to_cmyk():
+    assert convert.hsv_to_cmyk(HSV_WHITE) == CMYK_WHITE
+    assert convert.hsv_to_cmyk(HSV_GRAY) == CMYK_GRAY
+    assert convert.hsv_to_cmyk(HSV_BLACK) == CMYK_BLACK
+    assert convert.hsv_to_cmyk(HSV_RED) == CMYK_RED
+    assert convert.hsv_to_cmyk(HSV_GREEN) == CMYK_GREEN
+    assert convert.hsv_to_cmyk(HSV_BLUE) == CMYK_BLUE
+
+    assert convert.hsv_to_cmyk(*HSV_WHITE) == CMYK_WHITE
+    assert convert.hsv_to_cmyk(0, 0, 1) == CMYK_WHITE
+    assert convert.hsv_to_cmyk((0, 0, 1)) == CMYK_WHITE
+    assert convert.hsv_to_cmyk([0, 0, 1]) == CMYK_WHITE
+
+
+def test_hsv_to_hex():
+    assert convert.hsv_to_hex(HSV_WHITE) == HEX_WHITE
+    assert convert.hsv_to_hex(HSV_GRAY) == HEX_GRAY
+    assert convert.hsv_to_hex(HSV_BLACK) == HEX_BLACK
+    assert convert.hsv_to_hex(HSV_RED) == HEX_RED
+    assert convert.hsv_to_hex(HSV_GREEN) == HEX_GREEN
+    assert convert.hsv_to_hex(HSV_BLUE) == HEX_BLUE
+
+    assert convert.hsv_to_hex(*HSV_WHITE) == HEX_WHITE
+    assert convert.hsv_to_hex(0, 0, 1) == HEX_WHITE
+    assert convert.hsv_to_hex((0, 0, 1)) == HEX_WHITE
+    assert convert.hsv_to_hex([0, 0, 1]) == HEX_WHITE
+
+
+def test_hsv_to_hls():
+    assert convert.hsv_to_hls(HSV_WHITE) == HLS_WHITE
+    assert convert.hsv_to_hls(HSV_GRAY) == HLS_GRAY
+    assert convert.hsv_to_hls(HSV_BLACK) == HLS_BLACK
+    assert convert.hsv_to_hls(HSV_RED) == HLS_RED
+    assert convert.hsv_to_hls(HSV_GREEN) == HLS_GREEN
+    assert convert.hsv_to_hls(HSV_BLUE) == HLS_BLUE
+
+    assert convert.hsv_to_hls(*HSV_WHITE) == HLS_WHITE
+    assert convert.hsv_to_hls(0, 0, 1) == HLS_WHITE
+    assert convert.hsv_to_hls((0, 0, 1)) == HLS_WHITE
+    assert convert.hsv_to_hls([0, 0, 1]) == HLS_WHITE
+
+
 def test_hsv_to_rgb():
     assert convert.hsv_to_rgb(HSV_WHITE) == RGB_WHITE
     assert convert.hsv_to_rgb(HSV_GRAY) == RGB_GRAY
