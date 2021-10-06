@@ -9,8 +9,6 @@
 
 </div>
 
----
-
 # Features
 
 TODO
