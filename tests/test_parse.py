@@ -92,6 +92,7 @@ def test_parse():
     assert parse.parse_value(None) == rgb_black
     assert parse.parse_value("") == rgb_black
     assert parse.parse_value(255) == rgb_red
+    assert parse.parse_value(255.0) == rgb_red
     assert parse.parse_value(255, 50) == spaces.RGB(255, 50, 0)
     assert parse.parse_value(255, 50, 100) == spaces.RGB(255, 50, 100)
     assert parse.parse_value((255, 0, 0)) == rgb_red

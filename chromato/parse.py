@@ -130,7 +130,7 @@ def parse_value(*args) -> RGB:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, int):
+            if isinstance(arg, int) or isinstance(arg, float):
                 r = arg
 
             elif isinstance(arg, RGB):
