@@ -54,3 +54,10 @@ def add(a: classes.Color, b: classes.Color) -> classes.Color:
     g_sum = min(constants.RGB_MAX, a.rgb.g + b.rgb.g)
     b_sum = min(constants.RGB_MAX, a.rgb.b + b.rgb.b)
     return classes.Color(spaces.RGB(r_sum, g_sum, b_sum))
+
+
+def subtract(a: classes.Color, b: classes.Color) -> classes.Color:
+    r_sum = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
+    g_sum = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
+    b_sum = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
+    return classes.Color(spaces.RGB(r_sum, g_sum, b_sum))

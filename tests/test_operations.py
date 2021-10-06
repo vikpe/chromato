@@ -66,3 +66,8 @@ def test_complement():
 def test_add():
     assert operations.add(Color(255, 0, 0), Color(0, 0, 255)) == Color(255, 0, 255)
     assert operations.add(Color(255, 0, 255), Color(0, 0, 255)) == Color(255, 0, 255)
+
+
+def test_subtract():
+    assert operations.subtract(Color(255, 0, 0), Color(0, 0, 255)) == Color(255, 0, 0)
+    assert operations.subtract(Color(255, 0, 255), Color(0, 0, 255)) == Color(255, 0, 0)

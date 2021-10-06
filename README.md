@@ -39,6 +39,8 @@ tint()
 grayscale()
 invert()
 complement()
+add()
+subtract()
 ```
 
 ## Conversion
