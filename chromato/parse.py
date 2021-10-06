@@ -1,6 +1,6 @@
 from . import convert, validation
 
-from .spaces import CMYK, HLS, HEX, HSV, RGB
+from .spaces import CMYK, HEX, HLS, HSV, RGB
 
 
 def parse_hex(_hex) -> HEX:
