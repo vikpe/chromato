@@ -34,6 +34,15 @@ def test_is_valid_rgb_value():
     assert validation.is_valid_rgb_value(-0.1) is False
     assert validation.is_valid_rgb_value(256) is False
     assert validation.is_valid_rgb_value("a") is False
+    assert validation.is_valid_rgb_value(False) is False
     assert validation.is_valid_rgb_value(None) is False
     assert validation.is_valid_rgb_value([]) is False
     assert validation.is_valid_rgb_value(()) is False
+
+
+def test_is_valid_rgb():
+    assert validation.is_valid_rgb(0, 0, 0) is True
+    assert validation.is_valid_rgb("255", 0, 0.5) is True
+
+    assert validation.is_valid_rgb("a", 0, 0) is False
+    assert validation.is_valid_rgb(255, -0.1, 0) is False
