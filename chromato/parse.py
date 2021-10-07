@@ -12,8 +12,7 @@ def parse_hex(_hex) -> HEX:
 
         if 1 == len(parsed_hex):
             parsed_hex = 6 * parsed_hex
-
-        if 3 == len(parsed_hex):
+        elif 3 == len(parsed_hex):
             parsed_hex = "".join(char * 2 for char in parsed_hex)
 
         if not validation.is_hex(parsed_hex):
