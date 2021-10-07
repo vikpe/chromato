@@ -1,46 +1,38 @@
 from chromato import validation
 
-NON_VALUES = [
-    False, None, "", [], (), {}
-]
+# constants
+NON_VALUES = [False, None, "", [], (), {}]
+
+
+# helpers
+def assert_all(func: callable, values: list, expected_result) -> None:
+    for v in values:
+        assert func(v) is expected_result
+
+
+def assert_all_true(func: callable, values: list) -> None:
+    assert_all(func, values, True)
+
+
+def assert_all_false(func: callable, values: list) -> None:
+    for v in values:
+        assert func(v) is False
 
 
 def test_is_valid_hex():
-    # valid
-    assert validation.is_valid_hex("ff00ff") is True
-    assert validation.is_valid_hex("#ff00ff") is True
-    assert validation.is_valid_hex(111) is True
-    assert validation.is_valid_hex(112233) is True
-    assert validation.is_valid_hex("#f0f") is True
-    assert validation.is_valid_hex("f0f") is True
+    valid = ["ff00ff", "#ff00ff", 111, 112233, "#f0ff0f"]
+    assert_all_true(validation.is_valid_hex, valid)
 
-    # invalid
-    assert validation.is_valid_hex("") is False
-    assert validation.is_valid_hex("f0x") is False
-    assert validation.is_valid_hex("a") is False
-    assert validation.is_valid_hex("ab") is False
-    assert validation.is_valid_hex("abcd") is False
-    assert validation.is_valid_hex("abcde") is False
-
-    for v in NON_VALUES:
-        assert validation.is_valid_rgb_value(v) is False
+    invalid = ["f0x", "a", "ab", "abcd", "abcde"]
+    assert_all_false(validation.is_valid_hex, invalid)
 
 
 def test_is_valid_rgb_value():
-    # valid
-    assert validation.is_valid_rgb_value(0) is True
-    assert validation.is_valid_rgb_value(127.5) is True
-    assert validation.is_valid_rgb_value(255) is True
-    assert validation.is_valid_rgb_value("255") is True
-    assert validation.is_valid_rgb_value("255.0") is True
+    valid = [0, 127.5, 255, "255", "255.0"]
+    assert_all_true(validation.is_valid_rgb_value, valid)
 
-    # invalid
-    assert validation.is_valid_rgb_value(-0.1) is False
-    assert validation.is_valid_rgb_value(255.1) is False
-    assert validation.is_valid_rgb_value("a") is False
-
-    for v in NON_VALUES:
-        assert validation.is_valid_rgb_value(v) is False
+    invalid = [-0.1, 255.1, "a"] + NON_VALUES
+    assert_all_false(validation.is_valid_rgb_value, invalid)
 
 
 def test_is_valid_rgb():
@@ -52,20 +44,11 @@ def test_is_valid_rgb():
 
 
 def test_is_valid_cmyk_value():
-    # valid
-    assert validation.is_valid_cmyk_value(0) is True
-    assert validation.is_valid_cmyk_value(50.1) is True
-    assert validation.is_valid_cmyk_value(100) is True
-    assert validation.is_valid_cmyk_value("100") is True
-    assert validation.is_valid_cmyk_value("100.0") is True
+    valid = [0, 50.1, 100, "100", "100.0"]
+    assert_all_true(validation.is_valid_cmyk_value, valid)
 
-    # invalid
-    assert validation.is_valid_cmyk_value(-0.1) is False
-    assert validation.is_valid_cmyk_value(100.5) is False
-    assert validation.is_valid_cmyk_value("a") is False
-
-    for v in NON_VALUES:
-        assert validation.is_valid_cmyk_value(v) is False
+    invalid = [-0.1, 100.1, "a"] + NON_VALUES
+    assert_all_false(validation.is_valid_cmyk_value, invalid)
 
 
 def test_is_valid_cmyk():
@@ -77,20 +60,11 @@ def test_is_valid_cmyk():
 
 
 def test_is_valid_hls_value():
-    # valid
-    assert validation.is_valid_hls_value(0) is True
-    assert validation.is_valid_hls_value(0.5) is True
-    assert validation.is_valid_hls_value(1) is True
-    assert validation.is_valid_hls_value("1") is True
-    assert validation.is_valid_hls_value("1.0") is True
+    valid = [0, 0.5, 1, "1", "1.0"]
+    assert_all_true(validation.is_valid_hls_value, valid)
 
-    # invalid
-    assert validation.is_valid_hls_value(-0.1) is False
-    assert validation.is_valid_hls_value(1.1) is False
-    assert validation.is_valid_hls_value("a") is False
-
-    for v in NON_VALUES:
-        assert validation.is_valid_hls_value(v) is False
+    invalid = [-0.1, 1.1, "a"] + NON_VALUES
+    assert_all_false(validation.is_valid_hls_value, invalid)
 
 
 def test_is_valid_hls():
@@ -102,20 +76,11 @@ def test_is_valid_hls():
 
 
 def test_is_valid_hsv_value():
-    # valid
-    assert validation.is_valid_hsv_value(0) is True
-    assert validation.is_valid_hsv_value(0.5) is True
-    assert validation.is_valid_hsv_value(1) is True
-    assert validation.is_valid_hsv_value("1") is True
-    assert validation.is_valid_hsv_value("1.0") is True
+    valid = [0, 0.5, 1, "1", "1.0"]
+    assert_all_true(validation.is_valid_hsv_value, valid)
 
-    # invalid
-    assert validation.is_valid_hsv_value(-0.1) is False
-    assert validation.is_valid_hsv_value(1.1) is False
-    assert validation.is_valid_hsv_value("a") is False
-
-    for v in NON_VALUES:
-        assert validation.is_valid_hsv_value(v) is False
+    invalid = [-0.1, 1.1, "a"] + NON_VALUES
+    assert_all_false(validation.is_valid_hsv_value, invalid)
 
 
 def test_is_valid_hsv():
