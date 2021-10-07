@@ -1,55 +1,55 @@
-from chromato import convert, spaces
+from chromato import convert
 
 # Constants
-CMYK_WHITE = spaces.CMYK(0, 0, 0, 0)
-CMYK_GRAY = spaces.CMYK(0, 0, 0, 100 * 2 / 3)
-CMYK_BLACK = spaces.CMYK(0, 0, 0, 100)
-CMYK_RED = spaces.CMYK(0, 100, 100, 0)
-CMYK_GREEN = spaces.CMYK(100, 0, 100, 0)
-CMYK_BLUE = spaces.CMYK(100, 100, 0, 0)
-CMYK_CYAN = spaces.CMYK(100, 0, 0, 0)
-CMYK_MAGENTA = spaces.CMYK(0, 100, 0, 0)
-CMYK_YELLOW = spaces.CMYK(0, 0, 100, 0)
+CMYK_WHITE = (0, 0, 0, 0)
+CMYK_GRAY = (0, 0, 0, 50)
+CMYK_BLACK = (0, 0, 0, 100)
+CMYK_RED = (0, 100, 100, 0)
+CMYK_GREEN = (100, 0, 100, 0)
+CMYK_BLUE = (100, 100, 0, 0)
+CMYK_CYAN = (100, 0, 0, 0)
+CMYK_MAGENTA = (0, 100, 0, 0)
+CMYK_YELLOW = (0, 0, 100, 0)
 
-HEX_WHITE = spaces.HEX("ffffff")
-HEX_GRAY = spaces.HEX("555555")
-HEX_BLACK = spaces.HEX("000000")
-HEX_RED = spaces.HEX("ff0000")
-HEX_GREEN = spaces.HEX("00ff00")
-HEX_BLUE = spaces.HEX("0000ff")
-HEX_CYAN = spaces.HEX("00ffff")
-HEX_MAGENTA = spaces.HEX("ff00ff")
-HEX_YELLOW = spaces.HEX("ffff00")
+HEX_WHITE = "ffffff"
+HEX_GRAY = "7f7f7f"
+HEX_BLACK = "000000"
+HEX_RED = "ff0000"
+HEX_GREEN = "00ff00"
+HEX_BLUE = "0000ff"
+HEX_CYAN = "00ffff"
+HEX_MAGENTA = "ff00ff"
+HEX_YELLOW = "ffff00"
 
-HLS_WHITE = spaces.HLS(0, 1, 0)
-HLS_GRAY = spaces.HLS(0, 1 / 3, 0)
-HLS_BLACK = spaces.HLS(0, 0, 0)
-HLS_RED = spaces.HLS(0, 0.5, 1)
-HLS_GREEN = spaces.HLS(1 / 3, 0.5, 1)
-HLS_BLUE = spaces.HLS(2 / 3, 0.5, 1)
-HLS_CYAN = spaces.HLS(1 / 2, 0.5, 1)
-HLS_MAGENTA = spaces.HLS(5 / 6, 0.5, 1)
-HLS_YELLOW = spaces.HLS(1 / 6, 0.5, 1)
+HLS_WHITE = (0, 1, 0)
+HLS_GRAY = (0, 0.5, 0)
+HLS_BLACK = (0, 0, 0)
+HLS_RED = (0, 0.5, 1)
+HLS_GREEN = (1 / 3, 0.5, 1)
+HLS_BLUE = (2 / 3, 0.5, 1)
+HLS_CYAN = (1 / 2, 0.5, 1)
+HLS_MAGENTA = (5 / 6, 0.5, 1)
+HLS_YELLOW = (1 / 6, 0.5, 1)
 
-HSV_WHITE = spaces.HSV(0, 0, 1)
-HSV_GRAY = spaces.HSV(0, 0, 1 / 3)
-HSV_BLACK = spaces.HSV(0, 0, 0)
-HSV_RED = spaces.HSV(0, 1, 1)
-HSV_GREEN = spaces.HSV(1 / 3, 1, 1)
-HSV_BLUE = spaces.HSV(2 / 3, 1, 1)
-HSV_CYAN = spaces.HSV(1 / 2, 1, 1)
-HSV_MAGENTA = spaces.HSV(5 / 6, 1, 1)
-HSV_YELLOW = spaces.HSV(1 / 6, 1, 1)
+HSV_WHITE = (0, 0, 1)
+HSV_GRAY = (0, 0, 0.5)
+HSV_BLACK = (0, 0, 0)
+HSV_RED = (0, 1, 1)
+HSV_GREEN = (1 / 3, 1, 1)
+HSV_BLUE = (2 / 3, 1, 1)
+HSV_CYAN = (1 / 2, 1, 1)
+HSV_MAGENTA = (5 / 6, 1, 1)
+HSV_YELLOW = (1 / 6, 1, 1)
 
-RGB_WHITE = spaces.RGB(255, 255, 255)
-RGB_GRAY = spaces.RGB(85, 85, 85)
-RGB_BLACK = spaces.RGB(0, 0, 0)
-RGB_RED = spaces.RGB(255, 0, 0)
-RGB_GREEN = spaces.RGB(0, 255, 0)
-RGB_BLUE = spaces.RGB(0, 0, 255)
-RGB_CYAN = spaces.RGB(0, 255, 255)
-RGB_MAGENTA = spaces.RGB(255, 0, 255)
-RGB_YELLOW = spaces.RGB(255, 255, 0)
+RGB_WHITE = (255, 255, 255)
+RGB_GRAY = (255 / 2, 255 / 2, 255 / 2)
+RGB_BLACK = (0, 0, 0)
+RGB_RED = (255, 0, 0)
+RGB_GREEN = (0, 255, 0)
+RGB_BLUE = (0, 0, 255)
+RGB_CYAN = (0, 255, 255)
+RGB_MAGENTA = (255, 0, 255)
+RGB_YELLOW = (255, 255, 0)
 
 
 # CMYK conversion

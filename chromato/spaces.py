@@ -9,19 +9,19 @@ class ColorSpace(object):
             yield val
 
 
-def parse_rgb_value(value) -> float:
+def parse_float_value(value) -> float:
     if not value:
-        return constants.RGB_MIN
+        return 0
     else:
-        return round(float(value), constants.RGB_PRECISION)
+        return float(value)
 
 
 @attr.s
 class CMYK(ColorSpace):
-    c = attr.ib(default=constants.CMYK_MIN, converter=float)
-    m = attr.ib(default=constants.CMYK_MIN, converter=float)
-    y = attr.ib(default=constants.CMYK_MIN, converter=float)
-    k = attr.ib(default=constants.CMYK_MAX, converter=float)
+    c = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
+    m = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
+    y = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
+    k = attr.ib(default=constants.CMYK_MAX, converter=parse_float_value)
 
 
 class HEX(str):
@@ -30,27 +30,27 @@ class HEX(str):
 
 @attr.s
 class HLS(ColorSpace):
-    h = attr.ib(default=constants.HLS_MIN, converter=float)
-    l = attr.ib(default=constants.HLS_MIN, converter=float)
-    s = attr.ib(default=constants.HLS_MIN, converter=float)
+    h = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
+    l = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
+    s = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
 
 
 @attr.s
 class HSV(ColorSpace):
-    h = attr.ib(default=constants.HSV_MIN, converter=float)
-    s = attr.ib(default=constants.HSV_MIN, converter=float)
-    v = attr.ib(default=constants.HSV_MIN, converter=float)
+    h = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
+    s = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
+    v = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
 
 
 @attr.s
 class RGB(ColorSpace):
-    r = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
-    g = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
-    b = attr.ib(default=constants.RGB_MIN, converter=parse_rgb_value)
+    r = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
+    g = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
+    b = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
 
 
 class Color:
-    __rgb: RGB
+    __rgb: tuple
 
     def __init__(self, *args):
         self.__rgb = parse.parse_value(*args)
@@ -66,20 +66,20 @@ class Color:
 
     @property
     def rgb(self) -> RGB:
-        return self.__rgb
+        return RGB(*self.__rgb)
 
     @property
     def hex(self) -> HEX:
-        return convert.rgb_to_hex(self.rgb)
+        return HEX(convert.rgb_to_hex(self.rgb))
 
     @property
     def cmyk(self) -> CMYK:
-        return convert.rgb_to_cmyk(self.rgb)
+        return CMYK(*convert.rgb_to_cmyk(self.rgb))
 
     @property
     def hls(self) -> HLS:
-        return convert.rgb_to_hls(self.rgb)
+        return HLS(*convert.rgb_to_hls(self.rgb))
 
     @property
     def hsv(self) -> HSV:
-        return convert.rgb_to_hsv(self.rgb)
+        return HSV(*convert.rgb_to_hsv(self.rgb))
