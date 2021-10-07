@@ -43,3 +43,29 @@ def is_valid_cmyk_value(value) -> bool:
 
 def is_valid_cmyk(c, m, y, k) -> bool:
     return all(is_valid_cmyk_value(v) for v in (c, m, y, k))
+
+
+def is_valid_hls_value(value) -> bool:
+    return _is_in_range(
+        value,
+        constants.HLS_MIN,
+        constants.HLS_MAX,
+        constants.HLS_PRECISION,
+    )
+
+
+def is_valid_hls(h, l, s) -> bool:
+    return all(is_valid_hls_value(v) for v in (h, l, s))
+
+
+def is_valid_hsv_value(value) -> bool:
+    return _is_in_range(
+        value,
+        constants.HSV_MIN,
+        constants.HSV_MAX,
+        constants.HSV_PRECISION,
+    )
+
+
+def is_valid_hsv(h, s, v) -> bool:
+    return all(is_valid_hsv_value(v) for v in (h, s, v))
