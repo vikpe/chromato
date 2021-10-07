@@ -8,13 +8,16 @@ def parse_hex(_hex) -> HEX:
         return _hex
 
     try:
-        if not validation.is_valid_hex(_hex):
-            raise
-
         parsed_hex = _hex.lstrip("#")
+
+        if 1 == len(parsed_hex):
+            parsed_hex = 6 * parsed_hex
 
         if 3 == len(parsed_hex):
             parsed_hex = "".join(char * 2 for char in parsed_hex)
+
+        if not validation.is_valid_hex(parsed_hex):
+            raise
 
     except BaseException:
         raise ValueError("Unable to parse value as HEX", _hex)

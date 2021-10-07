@@ -1,43 +1,45 @@
 import string
+import numbers
 
 from . import constants
 
 
-def is_valid_hex(value) -> bool:
-    _hex = str(value).lstrip("#")
+def is_valid_number(value) -> bool:
+    return not isinstance(value, bool) and isinstance(value, numbers.Number)
 
-    return len(_hex) in (3, 6) and all(c in string.hexdigits for c in _hex)
+
+def is_valid_hex(value) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 6
+        and all(c in string.hexdigits for c in value)
+    )
 
 
 def is_valid_rgb(r, g, b) -> bool:
     return all(is_valid_rgb_value(v) for v in (r, g, b))
 
 
-def _is_in_range(value, range_from, range_to, precision):
-    if value is None or value is False:
+def is_in_range(value, range_from, range_to):
+    if not is_valid_number(value):
         return False
-
-    try:
-        return range_from <= round(float(value), precision) <= range_to
-    except:
-        return False
+    else:
+        return range_from <= value <= range_to
 
 
 def is_valid_rgb_value(value) -> bool:
-    return _is_in_range(
+    return is_in_range(
         value,
         constants.RGB_MIN,
         constants.RGB_MAX,
-        constants.RGB_PRECISION,
     )
 
 
 def is_valid_cmyk_value(value) -> bool:
-    return _is_in_range(
+    return is_in_range(
         value,
         constants.CMYK_MIN,
         constants.CMYK_MAX,
-        constants.CMYK_PRECISION,
     )
 
 
@@ -46,11 +48,10 @@ def is_valid_cmyk(c, m, y, k) -> bool:
 
 
 def is_valid_hls_value(value) -> bool:
-    return _is_in_range(
+    return is_in_range(
         value,
         constants.HLS_MIN,
         constants.HLS_MAX,
-        constants.HLS_PRECISION,
     )
 
 
@@ -59,11 +60,10 @@ def is_valid_hls(h, l, s) -> bool:
 
 
 def is_valid_hsv_value(value) -> bool:
-    return _is_in_range(
+    return is_in_range(
         value,
         constants.HSV_MIN,
         constants.HSV_MAX,
-        constants.HSV_PRECISION,
     )
 
 
