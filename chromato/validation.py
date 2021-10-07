@@ -13,9 +13,23 @@ def is_valid_rgb(r, g, b) -> bool:
     return all(is_valid_rgb_value(v) for v in (r, g, b))
 
 
-def is_valid_rgb_value(value) -> bool:
+def _is_in_range(value, precision, range_from, range_to):
     if value is None or value is False:
         return False
+
+    try:
+        return range_from <= round(float(value), precision) <= range_to
+    except:
+        return False
+
+
+def is_valid_rgb_value(value) -> bool:
+    return _is_in_range(
+        value,
+        constants.RGB_PRECISION,
+        constants.RGB_MIN,
+        constants.RGB_MAX
+    )
 
     try:
         return (
