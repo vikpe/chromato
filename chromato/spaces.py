@@ -61,6 +61,9 @@ class Color:
         else:
             return False
 
+    def __repr__(self):
+        return f"Color({self.rgb.r}, {self.rgb.g}, {self.rgb.b})"
+
     @property
     def rgb(self) -> RGB:
         return self.__rgb
