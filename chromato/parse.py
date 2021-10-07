@@ -132,10 +132,7 @@ def parse_value(*args) -> RGB:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, int) or isinstance(arg, float):
-                r = arg
-
-            elif isinstance(arg, RGB):
+            if isinstance(arg, RGB):
                 return arg
 
             elif isinstance(arg, CMYK):
@@ -158,6 +155,9 @@ def parse_value(*args) -> RGB:
 
             elif isinstance(arg, str) and len(arg) > 0:
                 r, g, b = convert.hex_to_rgb(parse_hex(arg))
+
+            else:
+                r = arg
 
         elif 2 == num_args:
             r = args[0]
