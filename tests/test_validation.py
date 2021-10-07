@@ -64,3 +64,11 @@ def test_is_valid_cmyk_value():
     assert validation.is_valid_cmyk_value(None) is False
     assert validation.is_valid_cmyk_value([]) is False
     assert validation.is_valid_cmyk_value(()) is False
+
+
+def test_is_valid_cmyk():
+    assert validation.is_valid_cmyk(0, 0, 0, 0) is True
+    assert validation.is_valid_cmyk("100", 0, 0.5, 0) is True
+
+    assert validation.is_valid_cmyk(0, 0, 0, "a") is False
+    assert validation.is_valid_cmyk(0, 0, -0.1, 0) is False

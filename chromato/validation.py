@@ -39,3 +39,7 @@ def is_valid_cmyk_value(value) -> bool:
         constants.CMYK_MIN,
         constants.CMYK_MAX
     )
+
+
+def is_valid_cmyk(c, m, y, k) -> bool:
+    return all(is_valid_cmyk_value(v) for v in (c, m, y, k))
