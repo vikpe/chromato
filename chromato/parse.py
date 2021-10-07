@@ -16,7 +16,7 @@ def parse_hex(_hex) -> HEX:
         if 3 == len(parsed_hex):
             parsed_hex = "".join(char * 2 for char in parsed_hex)
 
-        if not validation.is_valid_hex(parsed_hex):
+        if not validation.is_hex(parsed_hex):
             raise
 
     except BaseException:
