@@ -46,3 +46,21 @@ def test_is_valid_rgb():
 
     assert validation.is_valid_rgb("a", 0, 0) is False
     assert validation.is_valid_rgb(255, -0.1, 0) is False
+
+
+def test_is_valid_cmyk_value():
+    # valid
+    assert validation.is_valid_cmyk_value(0) is True
+    assert validation.is_valid_cmyk_value(50.1) is True
+    assert validation.is_valid_cmyk_value(100) is True
+    assert validation.is_valid_cmyk_value("100") is True
+    assert validation.is_valid_cmyk_value("100.0") is True
+
+    # invalid
+    assert validation.is_valid_cmyk_value(-0.1) is False
+    assert validation.is_valid_cmyk_value(100.5) is False
+    assert validation.is_valid_cmyk_value("a") is False
+    assert validation.is_valid_cmyk_value(False) is False
+    assert validation.is_valid_cmyk_value(None) is False
+    assert validation.is_valid_cmyk_value([]) is False
+    assert validation.is_valid_cmyk_value(()) is False

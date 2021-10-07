@@ -31,11 +31,11 @@ def is_valid_rgb_value(value) -> bool:
         constants.RGB_MAX
     )
 
-    try:
-        return (
-            constants.RGB_MIN
-            <= round(float(value), constants.RGB_PRECISION)
-            <= constants.RGB_MAX
-        )
-    except:
-        return False
+
+def is_valid_cmyk_value(value) -> bool:
+    return _is_in_range(
+        value,
+        constants.CMYK_PRECISION,
+        constants.CMYK_MIN,
+        constants.CMYK_MAX
+    )
