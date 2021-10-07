@@ -45,7 +45,9 @@ def test_grayscale():
     assert op.grayscale(WHITE) == WHITE
     assert op.grayscale(GRAY) == GRAY
     assert op.grayscale(BLACK) == BLACK
-    assert op.grayscale(RED) == Color(76.24499999999999, 76.24499999999999, 76.24499999999999)
+    assert op.grayscale(RED) == Color(
+        76.24499999999999, 76.24499999999999, 76.24499999999999
+    )
     assert op.grayscale(GREEN) == Color(149.685, 149.685, 149.685)
     assert op.grayscale(BLUE) == Color(29.07, 29.07, 29.07)
     assert op.grayscale(CYAN) == Color(178.755, 178.755, 178.755)
