@@ -1,73 +1,91 @@
-from chromato import operations
+from chromato import operations as op
 from chromato.spaces import Color
 
-COLOR_WHITE = Color(255, 255, 255)
-COLOR_GRAY = Color(127.5, 127.5, 127.5)
-COLOR_BLACK = Color(0, 0, 0)
-COLOR_RED = Color(255, 0, 0)
-COLOR_BLUE = Color(0, 0, 255)
+WHITE = Color(255, 255, 255)
+GRAY = Color(127.5, 127.5, 127.5)
+BLACK = Color(0, 0, 0)
+RED = Color(255, 0, 0)
+BLUE = Color(0, 0, 255)
+GREEN = Color(0, 255, 0)
+CYAN = Color(0, 255, 255)
+MAGENTA = Color(255, 0, 255)
+YELLOW = Color(255, 255, 0)
 
 
 def test_blend():
-    assert operations.blend(COLOR_WHITE, COLOR_BLACK, 0) == COLOR_WHITE
-    assert operations.blend(COLOR_WHITE, COLOR_BLACK, 0.5) == COLOR_GRAY
-    assert operations.blend(COLOR_WHITE, COLOR_BLACK, 1) == COLOR_BLACK
-    assert operations.blend(COLOR_RED, COLOR_BLACK, 0.5) == Color(127.5, 0, 0)
-    assert operations.blend(COLOR_RED, COLOR_BLUE) == Color(127.5, 0, 127.5)
+    assert op.blend(WHITE, BLACK, 0) == WHITE
+    assert op.blend(WHITE, BLACK, 0.5) == GRAY
+    assert op.blend(WHITE, BLACK, 1) == BLACK
+    assert op.blend(RED, BLACK, 0.5) == Color(127.5, 0, 0)
+    assert op.blend(RED, BLUE) == Color(127.5, 0, 127.5)
 
 
 def test_shade():
-    assert operations.shade(COLOR_WHITE, 0.5) == COLOR_GRAY
-    assert operations.shade(COLOR_RED, 0.5) == Color(127.5, 0, 0)
-    assert operations.shade(COLOR_RED, 1) == COLOR_BLACK
+    assert op.shade(WHITE, 0.5) == GRAY
+    assert op.shade(RED, 0.5) == Color(127.5, 0, 0)
+    assert op.shade(RED, 1) == BLACK
 
 
 def test_tint():
-    assert operations.tint(COLOR_BLACK, 0.5) == COLOR_GRAY
-    assert operations.tint(COLOR_RED, 0.5) == Color(255, 127.5, 127.5)
-    assert operations.tint(COLOR_RED, 1) == COLOR_WHITE
+    assert op.tint(BLACK, 0.5) == GRAY
+    assert op.tint(RED, 0.5) == Color(255, 127.5, 127.5)
+    assert op.tint(RED, 1) == WHITE
 
 
 def test_tone():
-    assert operations.tone(COLOR_RED, 1) == COLOR_GRAY
-    assert operations.tone(COLOR_RED, 0.5) == Color(191.25, 63.75, 63.75)
-    assert operations.tone(COLOR_WHITE, 1) == COLOR_GRAY
-    assert operations.tone(COLOR_WHITE, 0.5) == Color(191.25, 191.25, 191.25)
-    assert operations.tone(COLOR_BLACK, 0.5) == Color(63.75, 63.75, 63.75)
-    assert operations.tone(COLOR_BLACK, 1) == COLOR_GRAY
+    assert op.tone(RED, 1) == GRAY
+    assert op.tone(RED, 0.5) == Color(191.25, 63.75, 63.75)
+    assert op.tone(WHITE, 1) == GRAY
+    assert op.tone(WHITE, 0.5) == Color(191.25, 191.25, 191.25)
+    assert op.tone(BLACK, 0.5) == Color(63.75, 63.75, 63.75)
+    assert op.tone(BLACK, 1) == GRAY
 
 
 def test_grayscale():
-    assert operations.grayscale(COLOR_WHITE) == COLOR_WHITE
-    assert operations.grayscale(COLOR_GRAY) == COLOR_GRAY
-    assert operations.grayscale(COLOR_BLACK) == COLOR_BLACK
-    assert operations.grayscale(COLOR_RED) == Color(76.245, 76.245, 76.245)
-    assert operations.grayscale(COLOR_BLUE) == Color(29.07, 29.07, 29.07)
+    assert op.grayscale(WHITE) == WHITE
+    assert op.grayscale(GRAY) == GRAY
+    assert op.grayscale(BLACK) == BLACK
+    assert op.grayscale(RED) == Color(76.245, 76.245, 76.245)
+    assert op.grayscale(GREEN) == Color(149.685, 149.685, 149.685)
+    assert op.grayscale(BLUE) == Color(29.07, 29.07, 29.07)
+    assert op.grayscale(CYAN) == Color(178.755, 178.755, 178.755)
+    assert op.grayscale(MAGENTA) == Color(105.315, 105.315, 105.315)
+    assert op.grayscale(YELLOW) == Color(225.93, 225.93, 225.93)
 
 
 def test_invert():
-    assert operations.invert(COLOR_WHITE) == COLOR_BLACK
-    assert operations.invert(COLOR_GRAY) == COLOR_GRAY
-    assert operations.invert(COLOR_BLACK) == COLOR_WHITE
-    assert operations.invert(COLOR_RED) == Color(0, 255, 255)
-    assert operations.invert(COLOR_BLUE) == Color(255, 255, 0)
-    assert operations.invert(Color("ff6699")) == Color(0, 153, 102)
+    assert op.invert(Color("ff6699")) == Color(0, 153, 102)
+
+    assert op.invert(WHITE) == BLACK
+    assert op.invert(GRAY) == GRAY
+    assert op.invert(BLACK) == WHITE
+    assert op.invert(RED) == CYAN
+    assert op.invert(BLUE) == YELLOW
+    assert op.invert(GREEN) == MAGENTA
+    assert op.invert(CYAN) == RED
+    assert op.invert(YELLOW) == BLUE
+    assert op.invert(MAGENTA) == GREEN
 
 
 def test_complement():
-    assert operations.complement(COLOR_WHITE) == COLOR_WHITE
-    assert operations.complement(COLOR_GRAY) == COLOR_GRAY
-    assert operations.complement(COLOR_BLACK) == COLOR_BLACK
-    assert operations.complement(COLOR_RED) == Color(0, 255, 255)
-    assert operations.complement(COLOR_BLUE) == Color(255, 255, 0)
-    assert operations.complement(Color("ff6699")) == Color((102, 255, 204))
+    assert op.complement(Color("ff6699")) == Color((102, 255, 204))
+
+    assert op.complement(WHITE) == WHITE
+    assert op.complement(GRAY) == GRAY
+    assert op.complement(BLACK) == BLACK
+    assert op.complement(RED) == CYAN
+    assert op.complement(BLUE) == YELLOW
+    assert op.complement(GREEN) == MAGENTA
+    assert op.complement(CYAN) == RED
+    assert op.complement(YELLOW) == BLUE
+    assert op.complement(MAGENTA) == GREEN
 
 
 def test_add():
-    assert operations.add(Color(255, 0, 0), Color(0, 0, 255)) == Color(255, 0, 255)
-    assert operations.add(Color(255, 0, 255), Color(0, 0, 255)) == Color(255, 0, 255)
+    assert op.add(RED, BLUE) == MAGENTA
+    assert op.add(MAGENTA, BLUE) == MAGENTA
 
 
 def test_subtract():
-    assert operations.subtract(Color(255, 0, 0), Color(0, 0, 255)) == Color(255, 0, 0)
-    assert operations.subtract(Color(255, 0, 255), Color(0, 0, 255)) == Color(255, 0, 0)
+    assert op.subtract(RED, BLUE) == RED
+    assert op.subtract(MAGENTA, BLUE) == RED
