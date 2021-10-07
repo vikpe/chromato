@@ -32,7 +32,7 @@ def test_is_valid_rgb_value():
 
     # invalid
     assert validation.is_valid_rgb_value(-0.1) is False
-    assert validation.is_valid_rgb_value(256) is False
+    assert validation.is_valid_rgb_value(255.1) is False
     assert validation.is_valid_rgb_value("a") is False
     assert validation.is_valid_rgb_value(False) is False
     assert validation.is_valid_rgb_value(None) is False
