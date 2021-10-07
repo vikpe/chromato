@@ -1,5 +1,9 @@
 from chromato import validation
 
+NON_VALUES = [
+    False, None, "", [], (), {}
+]
+
 
 def test_is_valid_hex():
     # valid
@@ -17,9 +21,9 @@ def test_is_valid_hex():
     assert validation.is_valid_hex("ab") is False
     assert validation.is_valid_hex("abcd") is False
     assert validation.is_valid_hex("abcde") is False
-    assert validation.is_valid_hex(None) is False
-    assert validation.is_valid_hex([]) is False
-    assert validation.is_valid_hex(()) is False
+
+    for v in NON_VALUES:
+        assert validation.is_valid_rgb_value(v) is False
 
 
 def test_is_valid_rgb_value():
@@ -34,10 +38,9 @@ def test_is_valid_rgb_value():
     assert validation.is_valid_rgb_value(-0.1) is False
     assert validation.is_valid_rgb_value(255.1) is False
     assert validation.is_valid_rgb_value("a") is False
-    assert validation.is_valid_rgb_value(False) is False
-    assert validation.is_valid_rgb_value(None) is False
-    assert validation.is_valid_rgb_value([]) is False
-    assert validation.is_valid_rgb_value(()) is False
+
+    for v in NON_VALUES:
+        assert validation.is_valid_rgb_value(v) is False
 
 
 def test_is_valid_rgb():
@@ -60,10 +63,9 @@ def test_is_valid_cmyk_value():
     assert validation.is_valid_cmyk_value(-0.1) is False
     assert validation.is_valid_cmyk_value(100.5) is False
     assert validation.is_valid_cmyk_value("a") is False
-    assert validation.is_valid_cmyk_value(False) is False
-    assert validation.is_valid_cmyk_value(None) is False
-    assert validation.is_valid_cmyk_value([]) is False
-    assert validation.is_valid_cmyk_value(()) is False
+
+    for v in NON_VALUES:
+        assert validation.is_valid_rgb_value(v) is False
 
 
 def test_is_valid_cmyk():
