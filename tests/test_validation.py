@@ -1,22 +1,7 @@
 from chromato import validation
+from helpers import assert_all_true, assert_all_false
 
-# constants
 NON_VALUES = [False, None, "", [], (), {}]
-
-
-# helpers
-def assert_all(func: callable, values: list, expected_result) -> None:
-    for v in values:
-        assert func(v) is expected_result
-
-
-def assert_all_true(func: callable, values: list) -> None:
-    assert_all(func, values, True)
-
-
-def assert_all_false(func: callable, values: list) -> None:
-    for v in values:
-        assert func(v) is False
 
 
 def test_is_valid_hex():
