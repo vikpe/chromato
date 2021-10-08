@@ -1,7 +1,7 @@
 from chromato import spaces
 
 
-def test_color_methods():
+def test_color_class_methods():
     c_hex = spaces.Color.from_hex("f00")
     c_cmyk = spaces.Color.from_cmyk(0, 100, 100, 0)
     c_hls = spaces.Color.from_hls(0, 0.5, 1)
