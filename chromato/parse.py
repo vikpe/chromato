@@ -4,7 +4,7 @@ from .spaces import CMYK, HEX, HLS, HSV, RGB
 
 
 def parse_rgb_value(value) -> int:
-    return 0 if not value else int(math.ceil(float(value)))
+    return math.ceil(parse_float_value(value))
 
 
 def parse_rgb_values(*args) -> tuple:
