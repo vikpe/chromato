@@ -21,9 +21,9 @@ class CMYK(ColorSpace):
         self.__attrs_init__(c, m, y, k)
 
 
-class HEX(ColorSpace, str):
+class HEX(ColorSpace):
     def __new__(cls, value, *args, **kwargs):
-        return str.__new__(str, parse.parse_hex(value))
+        return parse.parse_hex(value)
 
 
 @attr.s(init=False)
