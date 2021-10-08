@@ -1,15 +1,15 @@
 from chromato import operations as op
-from chromato.spaces import Color
+from chromato.spaces import Color, RGB
 
-WHITE = Color(255, 255, 255)
-GRAY = Color(127.5, 127.5, 127.5)
-BLACK = Color(0, 0, 0)
-RED = Color(255, 0, 0)
-BLUE = Color(0, 0, 255)
-GREEN = Color(0, 255, 0)
-CYAN = Color(0, 255, 255)
-MAGENTA = Color(255, 0, 255)
-YELLOW = Color(255, 255, 0)
+WHITE = Color(RGB(255, 255, 255))
+GRAY = Color(RGB(127.5, 127.5, 127.5))
+BLACK = Color(RGB(0, 0, 0))
+RED = Color(RGB(255, 0, 0))
+BLUE = Color(RGB(0, 0, 255))
+GREEN = Color(RGB(0, 255, 0))
+CYAN = Color(RGB(0, 255, 255))
+MAGENTA = Color(RGB(255, 0, 255))
+YELLOW = Color(RGB(255, 255, 0))
 
 
 def test_blend():

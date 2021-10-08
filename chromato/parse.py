@@ -189,16 +189,16 @@ def parse_value(*args) -> tuple:
                 return tuple(arg)
 
             elif isinstance(arg, CMYK):
-                return convert.cmyk_to_rgb(arg)
+                return tuple(convert.cmyk_to_rgb(arg))
 
             elif isinstance(arg, HSV):
-                return convert.hsv_to_rgb(arg)
+                return tuple(convert.hsv_to_rgb(arg))
 
             elif isinstance(arg, HLS):
-                return convert.hls_to_rgb(arg)
+                return tuple(convert.hls_to_rgb(arg))
 
             elif isinstance(arg, HEX):
-                return convert.hex_to_rgb(arg)
+                return tuple(convert.hex_to_rgb(arg))
 
             elif isinstance(arg, tuple) and 3 == len(arg):
                 r, g, b = arg

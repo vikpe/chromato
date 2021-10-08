@@ -1,29 +1,29 @@
 import colorsys
 
-from . import constants, parse
+from . import constants, parse, spaces
 
 
-def cmyk_to_hex(*args) -> str:
+def cmyk_to_hex(*args) -> spaces.HEX:
     rgb = cmyk_to_rgb(*args)
     return rgb_to_hex(rgb)
 
 
-def cmyk_to_hls(*args) -> tuple:
+def cmyk_to_hls(*args) -> spaces.HLS:
     rgb = cmyk_to_rgb(*args)
     return rgb_to_hls(rgb)
 
 
-def cmyk_to_hsv(*args) -> tuple:
+def cmyk_to_hsv(*args) -> spaces.HSV:
     rgb = cmyk_to_rgb(*args)
     return rgb_to_hsv(rgb)
 
 
-def cmyk_to_rgb(*args) -> tuple:
+def cmyk_to_rgb(*args) -> spaces.RGB:
     c, m, y, k = parse.parse_cmyk(*args)
     r = constants.RGB_MAX * (1.0 - (c + k) / constants.CMYK_MAX)
     g = constants.RGB_MAX * (1.0 - (m + k) / constants.CMYK_MAX)
     b = constants.RGB_MAX * (1.0 - (y + k) / constants.CMYK_MAX)
-    return r, g, b
+    return spaces.RGB(r, g, b)
 
 
 def float_to_hex(_float: float) -> str:
@@ -35,74 +35,76 @@ def hex_to_int(_hex: str) -> int:
     return int(_hex, 16)
 
 
-def hex_to_cmyk(_hex) -> tuple:
+def hex_to_cmyk(_hex) -> spaces.CMYK:
     rgb = hex_to_rgb(_hex)
     return rgb_to_cmyk(rgb)
 
 
-def hex_to_hls(_hex) -> tuple:
+def hex_to_hls(_hex) -> spaces.HLS:
     rgb = hex_to_rgb(_hex)
     return rgb_to_hls(rgb)
 
 
-def hex_to_hsv(_hex) -> tuple:
+def hex_to_hsv(_hex) -> spaces.HSV:
     rgb = hex_to_rgb(_hex)
     return rgb_to_hsv(rgb)
 
 
-def hex_to_rgb(_hex) -> tuple:
+def hex_to_rgb(_hex) -> spaces.RGB:
     result = parse.parse_hex(_hex)
     hlen = len(result)
     pairs = hlen // 3
     r, g, b = [hex_to_int(result[i : i + pairs]) for i in range(0, hlen, pairs)]
-    return r, g, b
+    return spaces.RGB(r, g, b)
 
 
-def hls_to_cmyk(*args) -> tuple:
+def hls_to_cmyk(*args) -> spaces.CMYK:
     rgb = hls_to_rgb(*args)
     return rgb_to_cmyk(rgb)
 
 
-def hls_to_hex(*args) -> str:
+def hls_to_hex(*args) -> spaces.HEX:
     rgb = hls_to_rgb(*args)
     return rgb_to_hex(rgb)
 
 
-def hls_to_hsv(*args) -> tuple:
+def hls_to_hsv(*args) -> spaces.HSV:
     rgb = hls_to_rgb(*args)
     return rgb_to_hsv(rgb)
 
 
-def hls_to_rgb(*args) -> tuple:
+def hls_to_rgb(*args) -> spaces.RGB:
     hls = parse.parse_hls(*args)
-    return tuple([constants.RGB_MAX * v for v in colorsys.hls_to_rgb(*hls)])
+    r, g, b = [constants.RGB_MAX * v for v in colorsys.hls_to_rgb(*hls)]
+    return spaces.RGB(r, g, b)
 
 
-def hsv_to_cmyk(*args) -> tuple:
+def hsv_to_cmyk(*args) -> spaces.CMYK:
     rgb = hsv_to_rgb(*args)
     return rgb_to_cmyk(rgb)
 
 
-def hsv_to_hex(*args) -> str:
+def hsv_to_hex(*args) -> spaces.HEX:
     rgb = hsv_to_rgb(*args)
     return rgb_to_hex(rgb)
 
 
-def hsv_to_hls(*args) -> tuple:
+def hsv_to_hls(*args) -> spaces.HLS:
     rgb = hsv_to_rgb(*args)
     return rgb_to_hls(rgb)
 
 
-def hsv_to_rgb(*args) -> tuple:
+def hsv_to_rgb(*args) -> spaces.RGB:
     hsv = parse.parse_hsv(*args)
-    return tuple([constants.RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)])
+    r, g, b = [constants.RGB_MAX * v for v in colorsys.hsv_to_rgb(*hsv)]
+    return spaces.RGB(r, g, b)
 
 
-def rgb_to_cmyk(*args) -> tuple:
-    r, g, b = parse.parse_value(*args)
+def rgb_to_cmyk(*args) -> spaces.CMYK:
+    r, g, b = parse.parse_rgb(*args)
 
     if (r, g, b) == (constants.RGB_MIN, constants.RGB_MIN, constants.RGB_MIN):
-        return (
+        return spaces.CMYK(
             constants.CMYK_MIN,
             constants.CMYK_MIN,
             constants.CMYK_MIN,
@@ -121,19 +123,23 @@ def rgb_to_cmyk(*args) -> tuple:
     y = y - k
 
     # rescale to the range [0,100]
-    return tuple([v * constants.CMYK_MAX for v in (c, m, y, k)])
+    c, m, y, k = [v * constants.CMYK_MAX for v in (c, m, y, k)]
+    return spaces.CMYK(c, m, y, k)
 
 
-def rgb_to_hex(*args) -> str:
-    parsed_rgb = parse.parse_value(*args)
-    return "".join(map(float_to_hex, parsed_rgb))
+def rgb_to_hex(*args) -> spaces.HEX:
+    parsed_rgb = parse.parse_rgb(*args)
+    _hex = "".join(map(float_to_hex, parsed_rgb))
+    return spaces.HEX(_hex)
 
 
-def rgb_to_hls(*args) -> tuple:
-    rgb = parse.parse_value(*args)
-    return tuple(colorsys.rgb_to_hls(*[v / constants.RGB_MAX for v in rgb]))
+def rgb_to_hls(*args) -> spaces.HLS:
+    rgb = parse.parse_rgb(*args)
+    h, l, s = colorsys.rgb_to_hls(*[v / constants.RGB_MAX for v in rgb])
+    return spaces.HLS(h, l, s)
 
 
-def rgb_to_hsv(*args) -> tuple:
-    rgb = parse.parse_value(*args)
-    return tuple(colorsys.rgb_to_hsv(*[v / constants.RGB_MAX for v in rgb]))
+def rgb_to_hsv(*args) -> spaces.HSV:
+    rgb = parse.parse_rgb(*args)
+    h, s, v = colorsys.rgb_to_hsv(*[v / constants.RGB_MAX for v in rgb])
+    return spaces.HSV(h, s, v)

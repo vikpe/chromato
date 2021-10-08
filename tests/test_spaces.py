@@ -1,6 +1,10 @@
 from chromato import spaces
 
 
+def test_hex():
+    assert "ff0000" == spaces.HEX("f00") == spaces.HEX(spaces.HEX("f00"))
+
+
 def test_color_class_methods():
     c_hex = spaces.Color.from_hex("f00")
     c_cmyk = spaces.Color.from_cmyk(0, 100, 100, 0)

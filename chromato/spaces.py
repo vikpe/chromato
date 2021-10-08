@@ -1,6 +1,6 @@
 import attr
 
-from . import constants, convert, parse
+from . import convert, parse
 
 
 class ColorSpace(object):
@@ -9,51 +9,61 @@ class ColorSpace(object):
             yield val
 
 
-def parse_float_value(value) -> float:
-    if not value:
-        return 0
-    else:
-        return float(value)
-
-
-@attr.s
+@attr.s(init=False)
 class CMYK(ColorSpace):
-    c = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
-    m = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
-    y = attr.ib(default=constants.CMYK_MIN, converter=parse_float_value)
-    k = attr.ib(default=constants.CMYK_MAX, converter=parse_float_value)
+    c = attr.ib()
+    m = attr.ib()
+    y = attr.ib()
+    k = attr.ib()
+
+    def __init__(self, *args):
+        c, m, y, k = parse.parse_cmyk(*args)
+        self.__attrs_init__(c, m, y, k)
 
 
-class HEX(str):
-    pass
+class HEX(ColorSpace, str):
+    def __new__(cls, value, *args, **kwargs):
+        return str.__new__(str, parse.parse_hex(value))
 
 
-@attr.s
+@attr.s(init=False)
 class HLS(ColorSpace):
-    h = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
-    l = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
-    s = attr.ib(default=constants.HLS_MIN, converter=parse_float_value)
+    h = attr.ib()
+    l = attr.ib()
+    s = attr.ib()
+
+    def __init__(self, *args):
+        h, l, s = parse.parse_hls(*args)
+        self.__attrs_init__(h, l, s)
 
 
-@attr.s
+@attr.s(init=False)
 class HSV(ColorSpace):
-    h = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
-    s = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
-    v = attr.ib(default=constants.HSV_MIN, converter=parse_float_value)
+    h = attr.ib()
+    s = attr.ib()
+    v = attr.ib()
+
+    def __init__(self, *args):
+        h, s, v = parse.parse_hsv(*args)
+        self.__attrs_init__(h, s, v)
 
 
-@attr.s
+@attr.s(init=False)
 class RGB(ColorSpace):
-    r = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
-    g = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
-    b = attr.ib(default=constants.RGB_MIN, converter=parse_float_value)
+    r = attr.ib()
+    g = attr.ib()
+    b = attr.ib()
+
+    def __init__(self, *args):
+        r, g, b = parse.parse_rgb(*args)
+        self.__attrs_init__(r, g, b)
 
 
 class Color:
-    __rgb: tuple
+    __rgb: RGB
 
     def __init__(self, *args):
-        self.__rgb = parse.parse_value(*args)
+        self.__rgb = RGB(parse.parse_value(*args))
 
     def __eq__(self, other):
         if isinstance(other, Color):
