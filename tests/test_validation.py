@@ -40,16 +40,17 @@ def test_is_hex():
 
 
 def test_is_rgb_value():
-    valid = [0, 127.5, 255]
+    valid = [0, 128, 255]
     assert_all_true(validation.is_rgb_value, valid)
 
-    invalid = ["255", "255.0", -0.1, 255.1, "a"] + NON_VALUES
+    invalid = [0.1, "255", "255.0", -0.1, 255.1, "a"] + NON_VALUES
     assert_all_false(validation.is_rgb_value, invalid)
 
 
 def test_is_rgb():
     assert validation.is_rgb(0, 50, 255) is True
 
+    assert validation.is_rgb(255.1, 0, 0) is False
     assert validation.is_rgb("255", 0, 0.5) is False
     assert validation.is_rgb("a", 0, 0) is False
     assert validation.is_rgb(255, -0.1, 0) is False

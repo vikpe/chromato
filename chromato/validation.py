@@ -4,6 +4,18 @@ import string
 from . import constants
 
 
+def is_bool(value) -> bool:
+    return isinstance(value, bool)
+
+
+def is_int(value) -> bool:
+    return not is_bool(value) and isinstance(value, int)
+
+
+def is_int_in_range(value, range_from, range_to) -> bool:
+    return is_int(value) and range_from <= value <= range_to
+
+
 def is_number(value) -> bool:
     return not isinstance(value, bool) and isinstance(value, numbers.Number)
 
@@ -57,11 +69,7 @@ def is_hsv(h, s, v) -> bool:
 
 
 def is_rgb_value(value) -> bool:
-    return is_number_in_range(
-        value,
-        constants.RGB_MIN,
-        constants.RGB_MAX,
-    )
+    return is_int_in_range(value, constants.RGB_MIN, constants.RGB_MAX)
 
 
 def is_rgb(r, g, b) -> bool:

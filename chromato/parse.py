@@ -1,6 +1,14 @@
+import math
 from . import convert, validation
-
 from .spaces import CMYK, HEX, HLS, HSV, RGB
+
+
+def parse_rgb_value(value) -> int:
+    return 0 if not value else int(math.ceil(float(value)))
+
+
+def parse_rgb_values(*args) -> tuple:
+    return tuple([parse_rgb_value(v) for v in args])
 
 
 def parse_float_value(value) -> float:
@@ -165,7 +173,7 @@ def parse_rgb(*args) -> tuple:
         elif 3 == num_args:
             r, g, b = args
 
-        r, g, b = parse_float_values(r, g, b)
+        r, g, b = parse_rgb_values(r, g, b)
 
         if not validation.is_rgb(r, g, b):
             raise
@@ -219,7 +227,7 @@ def parse_value(*args) -> tuple:
         elif 3 == num_args:
             return parse_value(args)
 
-        r, g, b = parse_float_values(r, g, b)
+        r, g, b = parse_rgb_values(r, g, b)
 
         if not validation.is_rgb(r, g, b):
             raise

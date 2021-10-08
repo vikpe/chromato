@@ -2,7 +2,7 @@ from chromato import operations as op
 from chromato.spaces import Color, RGB
 
 WHITE = Color(RGB(255, 255, 255))
-GRAY = Color(RGB(127.5, 127.5, 127.5))
+GRAY = Color(RGB(128, 128, 128))
 BLACK = Color(RGB(0, 0, 0))
 RED = Color(RGB(255, 0, 0))
 BLUE = Color(RGB(0, 0, 255))
@@ -16,19 +16,19 @@ def test_blend():
     assert op.blend(WHITE, BLACK, 0) == WHITE
     assert op.blend(WHITE, BLACK, 0.5) == GRAY
     assert op.blend(WHITE, BLACK, 1) == BLACK
-    assert op.blend(RED, BLACK, 0.5) == Color(127.5, 0, 0)
-    assert op.blend(RED, BLUE) == Color(127.5, 0, 127.5)
+    assert op.blend(RED, BLACK, 0.5) == Color(128, 0, 0)
+    assert op.blend(RED, BLUE) == Color(128, 0, 128)
 
 
 def test_shade():
     assert op.shade(WHITE, 0.5) == GRAY
-    assert op.shade(RED, 0.5) == Color(127.5, 0, 0)
+    assert op.shade(RED, 0.5) == Color(128, 0, 0)
     assert op.shade(RED, 1) == BLACK
 
 
 def test_tint():
     assert op.tint(BLACK, 0.5) == GRAY
-    assert op.tint(RED, 0.5) == Color(255, 127.5, 127.5)
+    assert op.tint(RED, 0.5) == Color(255, 128, 128)
     assert op.tint(RED, 1) == WHITE
 
 
@@ -59,7 +59,7 @@ def test_invert():
     assert op.invert(Color("ff6699")) == Color(0, 153, 102)
 
     assert op.invert(WHITE) == BLACK
-    assert op.invert(GRAY) == GRAY
+    assert op.invert(GRAY) == Color(127, 127, 127)
     assert op.invert(BLACK) == WHITE
     assert op.invert(RED) == CYAN
     assert op.invert(BLUE) == YELLOW

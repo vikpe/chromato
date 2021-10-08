@@ -2,7 +2,7 @@ from chromato import convert, spaces
 
 # Constants
 CMYK_WHITE = (0, 0, 0, 0)
-CMYK_GRAY = (0, 0, 0, 50)
+CMYK_GRAY = (0, 0, 0, 49.80392156862745)
 CMYK_BLACK = (0, 0, 0, 100)
 CMYK_RED = (0, 100, 100, 0)
 CMYK_GREEN = (100, 0, 100, 0)
@@ -12,7 +12,7 @@ CMYK_MAGENTA = (0, 100, 0, 0)
 CMYK_YELLOW = (0, 0, 100, 0)
 
 HEX_WHITE = "ffffff"
-HEX_GRAY = "7f7f7f"
+HEX_GRAY = "808080"
 HEX_BLACK = "000000"
 HEX_RED = "ff0000"
 HEX_GREEN = "00ff00"
@@ -22,7 +22,7 @@ HEX_MAGENTA = "ff00ff"
 HEX_YELLOW = "ffff00"
 
 HLS_WHITE = (0, 1, 0)
-HLS_GRAY = (0, 0.5, 0)
+HLS_GRAY = (0, 0.5019607843137255, 0)
 HLS_BLACK = (0, 0, 0)
 HLS_RED = (0, 0.5, 1)
 HLS_GREEN = (1 / 3, 0.5, 1)
@@ -32,7 +32,7 @@ HLS_MAGENTA = (5 / 6, 0.5, 1)
 HLS_YELLOW = (1 / 6, 0.5, 1)
 
 HSV_WHITE = (0, 0, 1)
-HSV_GRAY = (0, 0, 0.5)
+HSV_GRAY = (0, 0, 0.5019607843137255)
 HSV_BLACK = (0, 0, 0)
 HSV_RED = (0, 1, 1)
 HSV_GREEN = (1 / 3, 1, 1)
@@ -41,8 +41,9 @@ HSV_CYAN = (1 / 2, 1, 1)
 HSV_MAGENTA = (5 / 6, 1, 1)
 HSV_YELLOW = (1 / 6, 1, 1)
 
+
 RGB_WHITE = (255, 255, 255)
-RGB_GRAY = (255 / 2, 255 / 2, 255 / 2)
+RGB_GRAY = (128, 128, 128)
 RGB_BLACK = (0, 0, 0)
 RGB_RED = (255, 0, 0)
 RGB_GREEN = (0, 255, 0)
