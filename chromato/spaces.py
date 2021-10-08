@@ -62,7 +62,7 @@ class Color:
             return False
 
     def __repr__(self):
-        return f"Color({self.rgb.r}, {self.rgb.g}, {self.rgb.b})"
+        return f"Color(r={self.rgb.r}, g={self.rgb.g}, b={self.rgb.b})"
 
     @classmethod
     def from_cmyk(cls, *args):

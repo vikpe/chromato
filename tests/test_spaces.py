@@ -19,3 +19,4 @@ def test_color_properties():
     assert color.hsv == spaces.HSV(0, 1, 1)
     assert color == spaces.Color("ff0000")
     assert color != "255 0 0"
+    assert repr(color) == "Color(r=255.0, g=0, b=0)"
