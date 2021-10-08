@@ -29,7 +29,6 @@ def test_parse_hsv():
     assert parse.parse_hsv("1", "0.5", "0.2") == (1, 0.5, 0.2)
     assert parse.parse_hsv((1, 0.5, 0.2)) == (1, 0.5, 0.2)
     assert parse.parse_hsv([1, 0.5, 0.2]) == (1, 0.5, 0.2)
-    assert parse.parse_hsv((0, 1, 0)) == (0, 1, 0)
 
     # invalid
     invalid_values = ["a", (255, 0, 0)]
@@ -48,8 +47,6 @@ def test_parse_hls():
     assert parse.parse_hls(1, 0.5, 0.2) == (1, 0.5, 0.2)
     assert parse.parse_hls("1", "0.5", "0.2") == (1, 0.5, 0.2)
     assert parse.parse_hls((1, 0.5, 0.2)) == (1, 0.5, 0.2)
-    assert parse.parse_hls([1, 0.5, 0.2]) == (1, 0.5, 0.2)
-    assert parse.parse_hls((0, 1, 0)) == (0, 1, 0)
 
     # invalid
     invalid_values = ["a", (255, 0, 0)]
@@ -69,7 +66,6 @@ def test_parse_cmyk():
     assert parse.parse_cmyk("50", "20", "10", "5") == (50, 20, 10, 5)
     assert parse.parse_cmyk((50, 20, 10, 5)) == (50, 20, 10, 5)
     assert parse.parse_cmyk([50, 20, 10, 5]) == (50, 20, 10, 5)
-    assert parse.parse_cmyk((0, 50, 0, 50)) == (0, 50, 0, 50)
 
     # invalid
     invalid_values = ["a", (255, 0, 0)]
