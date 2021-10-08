@@ -3,20 +3,12 @@ from . import convert, validation
 from .spaces import CMYK, HEX, HLS, HSV, RGB
 
 
-def parse_rgb_value(value) -> int:
-    return math.ceil(parse_float_value(value))
-
-
 def parse_rgb_values(*args) -> tuple:
-    return tuple([parse_rgb_value(v) for v in args])
-
-
-def parse_float_value(value) -> float:
-    return 0 if not value else float(value)
+    return tuple(map(math.ceil, parse_float_values(*args)))
 
 
 def parse_float_values(*args) -> tuple:
-    return tuple([parse_float_value(v) for v in args])
+    return tuple([0 if not v else float(v) for v in args])
 
 
 def parse_hex(_hex) -> str:
