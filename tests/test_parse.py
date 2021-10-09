@@ -10,6 +10,10 @@ def test_parse_hex():
     assert parse.parse_hex("f") == "ffffff"
     assert parse.parse_hex("f0f") == "ff00ff"
     assert parse.parse_hex("#f0f") == "ff00ff"
+    assert parse.parse_hex("#f0f ") == "ff00ff"
+    assert parse.parse_hex(" f0f") == "ff00ff"
+    assert parse.parse_hex(" f0f ") == "ff00ff"
+    assert parse.parse_hex("f0f ") == "ff00ff"
 
     # invalid
     invalid_values = ["fox", (255, 0, 0)]

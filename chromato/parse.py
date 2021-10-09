@@ -16,7 +16,7 @@ def parse_hex(_hex) -> str:
         return str(_hex)
 
     try:
-        parsed_hex = _hex.lstrip("#")
+        parsed_hex = _hex.strip("# ")
 
         if 1 == len(parsed_hex):
             parsed_hex = 6 * parsed_hex
