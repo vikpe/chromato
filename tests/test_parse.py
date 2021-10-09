@@ -4,7 +4,11 @@ from chromato import parse, spaces
 
 
 def test_parse_hex():
-    assert parse.parse_hex(spaces.HEX("ff33ff")) == "ff33ff"
+    assert parse.parse_hex(spaces.CMYK(0, 100, 100, 0)) == "ff0000"
+    assert parse.parse_hex(spaces.HEX("ff0000")) == "ff0000"
+    assert parse.parse_hex(spaces.HLS(0, 0.5, 1)) == "ff0000"
+    assert parse.parse_hex(spaces.HSV(0, 1, 1)) == "ff0000"
+    assert parse.parse_hex(spaces.RGB(255, 0, 0)) == "ff0000"
     assert parse.parse_hex("ff33ff") == "ff33ff"
     assert parse.parse_hex("#ff33ff") == "ff33ff"
     assert parse.parse_hex(3) == "333333"
@@ -41,7 +45,11 @@ def test_parse_hex():
 
 
 def test_parse_hsv():
-    assert parse.parse_hsv(spaces.HSV(0, 0.5, 0)) == (0, 0.5, 0)
+    assert parse.parse_hsv(spaces.CMYK(0, 100, 100, 0)) == (0, 1, 1)
+    assert parse.parse_hsv(spaces.HEX("ff0000")) == (0, 1, 1)
+    assert parse.parse_hsv(spaces.HLS(0, 0.5, 1)) == (0, 1, 1)
+    assert parse.parse_hsv(spaces.HSV(0, 1, 1)) == (0, 1, 1)
+    assert parse.parse_hsv(spaces.RGB(255, 0, 0)) == (0, 1, 1)
     assert parse.parse_hsv(0) == (0, 0, 0)
     assert parse.parse_hsv(1) == (1, 0, 0)
     assert parse.parse_hsv(1, 0.5) == (1, 0.5, 0)
@@ -63,7 +71,11 @@ def test_parse_hsv():
 
 
 def test_parse_hls():
-    assert parse.parse_hls(spaces.HLS(0, 0.5, 0)) == (0, 0.5, 0)
+    assert parse.parse_hls(spaces.CMYK(0, 100, 100, 0)) == (0, 0.5, 1)
+    assert parse.parse_hls(spaces.HEX("ff0000")) == (0, 0.5, 1)
+    assert parse.parse_hls(spaces.HLS(0, 0.5, 1)) == (0, 0.5, 1)
+    assert parse.parse_hls(spaces.HSV(0, 1, 1)) == (0, 0.5, 1)
+    assert parse.parse_hls(spaces.RGB(255, 0, 0)) == (0, 0.5, 1)
     assert parse.parse_hls(0) == (0, 0, 0)
     assert parse.parse_hls(1) == (1, 0, 0)
     assert parse.parse_hls(1, 0.5) == (1, 0.5, 0)
@@ -84,7 +96,11 @@ def test_parse_hls():
 
 
 def test_parse_cmyk():
-    assert parse.parse_cmyk(spaces.CMYK(0, 50, 0, 0)) == (0, 50, 0, 0)
+    assert parse.parse_cmyk(spaces.CMYK(0, 100, 100, 0)) == (0, 0.5, 1)
+    assert parse.parse_cmyk(spaces.HEX("ff0000")) == (0, 0.5, 1)
+    assert parse.parse_cmyk(spaces.HLS(0, 0.5, 1)) == (0, 0.5, 1)
+    assert parse.parse_cmyk(spaces.HSV(0, 1, 1)) == (0, 0.5, 1)
+    assert parse.parse_cmyk(spaces.RGB(255, 0, 0)) == (0, 0.5, 1)
     assert parse.parse_cmyk(0) == (0, 0, 0, 100)
     assert parse.parse_cmyk(50) == (50, 0, 0, 100)
     assert parse.parse_cmyk(50, 20) == (50, 20, 0, 100)
@@ -107,7 +123,11 @@ def test_parse_cmyk():
 
 def test_parse_rgb():
     # valid
-    assert parse.parse_rgb(spaces.RGB(255, 0, 255)) == (255, 0, 255)
+    assert parse.parse_rgb(spaces.CMYK(0, 100, 100, 0)) == (255, 0, 0)
+    assert parse.parse_rgb(spaces.HEX("ff0000")) == (0, 0.5, 1)
+    assert parse.parse_rgb(spaces.HLS(0, 0.5, 1)) == (255, 0, 0)
+    assert parse.parse_rgb(spaces.HSV(0, 1, 1)) == (255, 0, 0)
+    assert parse.parse_rgb(spaces.RGB(255, 0, 0)) == (255, 0, 0)
     assert parse.parse_rgb() == (0, 0, 0)
     assert parse.parse_rgb(255) == (255, 0, 0)
     assert parse.parse_rgb(254.5) == (255, 0, 0)

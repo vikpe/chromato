@@ -12,11 +12,23 @@ def parse_float_values(*args) -> tuple:
 
 
 def parse_hex(_hex) -> str:
-    if isinstance(_hex, HEX):
+    if not _hex:
+        return "000000"
+
+    elif isinstance(_hex, HEX):
         return str(_hex)
 
-    elif not _hex:
-        return "000000"
+    elif isinstance(_hex, CMYK):
+        return str(convert.cmyk_to_hex(_hex))
+
+    elif isinstance(_hex, HLS):
+        return str(convert.hls_to_hex(_hex))
+
+    elif isinstance(_hex, HSV):
+        return str(convert.hsv_to_hex(_hex))
+
+    elif isinstance(_hex, RGB):
+        return str(convert.rgb_to_hex(_hex))
 
     try:
         parsed_hex = str(_hex).strip("# ")
@@ -47,6 +59,18 @@ def parse_hsv(*args) -> tuple:
 
             if isinstance(arg, HSV):
                 return tuple(arg)
+
+            elif isinstance(arg, HEX):
+                return tuple(convert.hex_to_hsv(arg))
+
+            elif isinstance(arg, CMYK):
+                return tuple(convert.cmyk_to_hsv(arg))
+
+            elif isinstance(arg, HLS):
+                return tuple(convert.hls_to_hsv(arg))
+
+            elif isinstance(arg, RGB):
+                return tuple(convert.rgb_to_hsv(arg))
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hsv(*arg)
@@ -83,6 +107,18 @@ def parse_hls(*args) -> tuple:
             if isinstance(arg, HLS):
                 return tuple(arg)
 
+            elif isinstance(arg, HEX):
+                return tuple(convert.hex_to_hls(arg))
+
+            elif isinstance(arg, CMYK):
+                return tuple(convert.cmyk_to_hls(arg))
+
+            elif isinstance(arg, HSV):
+                return tuple(convert.hsv_to_hls(arg))
+
+            elif isinstance(arg, RGB):
+                return tuple(convert.rgb_to_hls(arg))
+
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hls(*arg)
 
@@ -117,6 +153,18 @@ def parse_cmyk(*args) -> tuple:
 
             if isinstance(arg, CMYK):
                 return tuple(arg)
+
+            elif isinstance(arg, HEX):
+                return tuple(convert.hex_to_cmyk(arg))
+
+            elif isinstance(arg, HLS):
+                return tuple(convert.hls_to_cmyk(arg))
+
+            elif isinstance(arg, HSV):
+                return tuple(convert.hsv_to_cmyk(arg))
+
+            elif isinstance(arg, RGB):
+                return tuple(convert.rgb_to_cmyk(arg))
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_cmyk(*arg)
@@ -155,6 +203,18 @@ def parse_rgb(*args) -> tuple:
 
             if isinstance(arg, RGB):
                 return tuple(arg)
+
+            elif isinstance(arg, CMYK):
+                return tuple(convert.cmyk_to_rgb(arg))
+
+            elif isinstance(arg, HSV):
+                return tuple(convert.hsv_to_rgb(arg))
+
+            elif isinstance(arg, HLS):
+                return tuple(convert.hls_to_rgb(arg))
+
+            elif isinstance(arg, HEX):
+                return tuple(convert.hex_to_rgb(arg))
 
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_rgb(*arg)
