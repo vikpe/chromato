@@ -4,19 +4,36 @@ from chromato import parse, spaces
 
 
 def test_parse_hex():
-    assert parse.parse_hex(spaces.HEX("ff00ff")) == "ff00ff"
-    assert parse.parse_hex("ff00ff") == "ff00ff"
-    assert parse.parse_hex("#ff00ff") == "ff00ff"
+    assert parse.parse_hex(spaces.HEX("ff33ff")) == "ff33ff"
+    assert parse.parse_hex("ff33ff") == "ff33ff"
+    assert parse.parse_hex("#ff33ff") == "ff33ff"
+    assert parse.parse_hex(3) == "333333"
+    assert parse.parse_hex(333) == "333333"
+    assert parse.parse_hex(333333) == "333333"
     assert parse.parse_hex("f") == "ffffff"
-    assert parse.parse_hex("f0f") == "ff00ff"
-    assert parse.parse_hex("#f0f") == "ff00ff"
-    assert parse.parse_hex("#f0f ") == "ff00ff"
-    assert parse.parse_hex(" f0f") == "ff00ff"
-    assert parse.parse_hex(" f0f ") == "ff00ff"
-    assert parse.parse_hex("f0f ") == "ff00ff"
+    assert parse.parse_hex("#f") == "ffffff"
+    assert parse.parse_hex("f3f") == "ff33ff"
+    assert parse.parse_hex("#f3f") == "ff33ff"
+    assert parse.parse_hex(" f3f") == "ff33ff"
+    assert parse.parse_hex(" f3f ") == "ff33ff"
+    assert parse.parse_hex("f3f ") == "ff33ff"
+    assert parse.parse_hex("") == "000000"
+    assert parse.parse_hex(False) == "000000"
+    assert parse.parse_hex(None) == "000000"
 
     # invalid
-    invalid_values = ["fox", (255, 0, 0)]
+    invalid_values = [
+        "fox",
+        "ab",
+        "abcd",
+        "abcde",
+        "abcdefg",
+        12,
+        1234,
+        12345,
+        1234567,
+        (255, 0, 0),
+    ]
 
     for value in invalid_values:
         with pytest.raises(ValueError):

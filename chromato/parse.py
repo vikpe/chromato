@@ -15,8 +15,11 @@ def parse_hex(_hex) -> str:
     if isinstance(_hex, HEX):
         return str(_hex)
 
+    elif not _hex:
+        return "000000"
+
     try:
-        parsed_hex = _hex.strip("# ")
+        parsed_hex = str(_hex).strip("# ")
 
         if 1 == len(parsed_hex):
             parsed_hex = 6 * parsed_hex
