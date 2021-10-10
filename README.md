@@ -55,8 +55,24 @@ HSV  | `rgb_to_hsv`  | `hex_to_hsv`  | `cmyk_to_hsv` | `hls_to_hsv`  | <!-- null
 
 ## Parse
 
-TODO
+```python
+from chromato import parse
+
+parse.parse_cmyk()
+parse.parse_hex()
+parse.parse_hls()
+parse.parse_hsv()
+parse.parse_rgb()
+```
 
 ## Validation
 
-TODO
+```python
+from chromato import validation
+
+validation.is_cmyk()
+validation.is_hex()
+validation.is_hls()
+validation.is_hsv()
+validation.is_rgb()
+```
