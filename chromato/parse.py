@@ -79,7 +79,7 @@ def parse_hsv(*args) -> tuple:
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_hsv(arg))
 
-            elif isinstance(arg, tuple) or isinstance(arg, list):
+            elif type(arg) in [tuple, list]:
                 return parse_hsv(*arg)
 
             elif isinstance(arg, dict) and dict_has_keys(arg, "hsv"):
@@ -129,7 +129,7 @@ def parse_hls(*args) -> tuple:
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_hls(arg))
 
-            elif isinstance(arg, tuple) or isinstance(arg, list):
+            elif type(arg) in [tuple, list]:
                 return parse_hls(*arg)
 
             elif isinstance(arg, dict) and dict_has_keys(arg, "hls"):
@@ -179,7 +179,7 @@ def parse_cmyk(*args) -> tuple:
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_cmyk(arg))
 
-            elif isinstance(arg, tuple) or isinstance(arg, list):
+            elif type(arg) in [tuple, list]:
                 return parse_cmyk(*arg)
 
             elif isinstance(arg, dict) and dict_has_keys(arg, "cmyk"):
@@ -232,7 +232,7 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, HEX):
                 return tuple(convert.hex_to_rgb(arg))
 
-            elif isinstance(arg, tuple) or isinstance(arg, list):
+            elif type(arg) in [tuple, list]:
                 return parse_rgb(*arg)
 
             elif isinstance(arg, dict) and dict_has_keys(arg, "rgb"):
