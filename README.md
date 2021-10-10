@@ -87,29 +87,43 @@ blend(Color A, Color B) -> Color
 blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 ```
 
+---
+
 ### Tint
 
 > increases lightness(blend with white)
+
+---
 
 ### Shade
 
 > increases darkness(blend with black)
 
+---
+
 ### Tone
 
 > reduce colorfullness / chroma(blend with gray)
+
+---
 
 ### Invert
 
 > Invert color
 
+---
+
 ### Complement
 
 > Complementary color
 
+---
+
 ### Add
 
 > Add color
+
+---
 
 ### Subtract
 
