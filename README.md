@@ -102,10 +102,9 @@ tint(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-
+tint(RGB(255, 0, 0), 0.5).rgb
 ```
 
-tint(RGB(255, 0, 0), 0.5).rgb
 ---
 
 ### Shade
