@@ -143,7 +143,7 @@ def test_parse_rgb():
     assert parse.parse_rgb(None) == (0, 0, 0)
 
     # invalid
-    invalid_values = ["x", "f00f", "_"]
+    invalid_values = ["x", "f00f", "_", (255.1, 0, 0)]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
@@ -176,7 +176,7 @@ def test_parse():
     assert parse.parse_value(None) == (0, 0, 0)
 
     # invalid
-    invalid_values = ["x", "f00f", "_"]
+    invalid_values = ["x", "f00f", "_", (255.1, 0, 0)]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
