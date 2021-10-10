@@ -32,6 +32,7 @@ TODO
 ## Color spaces
 
 ### Overview
+
 Name | Scale
 ---|---
 CMYK | (c,m,y,k) 0 - 100
@@ -72,7 +73,31 @@ red.rgb  # RGB(255, 0, 0)
 
 ### Blend
 
-> Mix colors
+> Blend/mix colors
+
+**Synopsis**
+
+```python
+blend(Color A, Color B) -> Color
+```
+
+**Example**
+
+```python
+blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
+```
+
+### Tint
+
+> increases lightness(blend with white)
+
+### Shade
+
+> increases darkness(blend with black)
+
+### Tone
+
+> reduce colorfullness / chroma(blend with gray)
 
 ### Invert
 
@@ -81,18 +106,6 @@ red.rgb  # RGB(255, 0, 0)
 ### Complement
 
 > Complementary color
-
-### Tint
-
-> Mix color with white (increases lightness)
-
-### Shade
-
-> Mix color with black (increases darkness)
-
-### Tone
-
-> Mix color with gray (reduce colorfullness/chroma)
 
 ### Add
 
@@ -105,12 +118,12 @@ red.rgb  # RGB(255, 0, 0)
 ## Conversion
 
 🔀 | RGB | HEX | CMYK | HLS | HSV
----|---|---|---|---|---
-RGB  | <!-- null --> | `hex_to_rgb`  | `cmyk_to_rgb` | `hls_to_rgb`  | `hsv_to_rgb`
-HEX  | `rgb_to_hex`  | <!-- null --> | `cmyk_to_hex` | `hls_to_hex`  | `hsv_to_hex`
+--- | --- | --- | --- | --- | ---
+RGB | <!-- null --> | `hex_to_rgb` | `cmyk_to_rgb` | `hls_to_rgb` | `hsv_to_rgb`
+HEX | `rgb_to_hex` | <!-- null --> | `cmyk_to_hex` | `hls_to_hex` | `hsv_to_hex`
 CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_cmyk`
-HLS  | `rgb_to_hls`  | `hex_to_hls`  | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
-HSV  | `rgb_to_hsv`  | `hex_to_hsv`  | `cmyk_to_hsv` | `hls_to_hsv`  | <!-- null -->
+HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
+HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 
 ## Parse
 
