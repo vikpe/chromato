@@ -78,7 +78,7 @@ red.rgb  # RGB(255, 0, 0)
 **Synopsis**
 
 ```python
-blend(a: Color, b: Color) -> Color
+blend(color1: Color, color2: Color, factor: float = 0.5) -> Color
 ```
 
 **Example**
@@ -91,12 +91,12 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 
 ### Tint
 
-> increases lightness(blend with white)
+> Increase lightness (blend with white)
 
 **Synopsis**
 
 ```python
-tint(c: Color, factor: float) -> Color
+tint(color: Color, factor: float) -> Color
 ```
 
 **Example**
@@ -105,11 +105,12 @@ tint(c: Color, factor: float) -> Color
 
 ```
 
+tint(RGB(255, 0, 0), 0.5).rgb
 ---
 
 ### Shade
 
-> increases darkness(blend with black)
+> Increase darkness (blend with black)
 
 **Synopsis**
 
@@ -120,13 +121,14 @@ shade(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-
+shade(RGB(255, 0, 0), 0.5).rgb
 ```
+
 ---
 
 ### Tone
 
-> reduce colorfullness / chroma(blend with gray)
+> Reduce colorfullness (blend with gray)
 
 **Synopsis**
 
@@ -137,8 +139,9 @@ tone(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-
+tone(RGB(255, 0, 0), 0.5).rgb
 ```
+
 ---
 
 ### Invert
@@ -154,8 +157,9 @@ invert(color: Color) -> Color
 **Example**
 
 ```python
-
+invert(RGB(255, 0, 0)).rgb  # (0, 255, 255) 
 ```
+
 ---
 
 ### Complement
@@ -173,11 +177,12 @@ complementary(c: Color) -> Color
 ```python
 
 ```
+
 ---
 
 ### Add
 
-> Add color
+> Add colors
 
 **Synopsis**
 
@@ -188,13 +193,14 @@ add(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-
+add(RGB(255, 0, 0), RGB(0, 0, 255)).rgb  # (255, 0, 255) 
 ```
+
 ---
 
 ### Subtract
 
-> Subtract color
+> Subtract colors
 
 **Synopsis**
 
@@ -205,7 +211,7 @@ subtract(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-
+add(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (255, 0, 0)
 ```
 
 ## Conversion
