@@ -57,11 +57,17 @@ red.rgb  # RGB(255, 0, 0)
 
 ## Operations
 
+### Tint
+> Mix color with white (increases lightness)
+
+### Shade
+> Mix color with black (increases darkness)
+
+### Tone
+> Mix color with gray (reduce colorfullness/chroma)
+
 ```python
 blend()
-shade()
-tone()
-tint()
 grayscale()
 invert()
 complement()
