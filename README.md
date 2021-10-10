@@ -93,41 +93,120 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 
 > increases lightness(blend with white)
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
+
 ---
 
 ### Shade
 
 > increases darkness(blend with black)
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 ---
 
 ### Tone
 
 > reduce colorfullness / chroma(blend with gray)
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 ---
 
 ### Invert
 
 > Invert color
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 ---
 
 ### Complement
 
 > Complementary color
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 ---
 
 ### Add
 
 > Add color
 
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 ---
 
 ### Subtract
 
 > Subtract color
+
+**Synopsis**
+
+```python
+
+```
+
+**Example**
+
+```python
+
+```
 
 ## Conversion
 
