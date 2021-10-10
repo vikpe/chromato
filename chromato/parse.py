@@ -3,7 +3,7 @@ from . import convert, validation
 from .spaces import CMYK, HEX, HLS, HSV, RGB
 
 
-def dict_has_keys(_dict: dict, keys: list) -> bool:
+def dict_has_keys(_dict: dict, keys: iter) -> bool:
     return all(k in _dict for k in keys)
 
 
@@ -33,6 +33,9 @@ def parse_hex(_hex) -> str:
 
     elif isinstance(_hex, RGB):
         return str(convert.rgb_to_hex(_hex))
+
+    elif isinstance(_hex, dict) and "hex" in _hex:
+        return parse_hex(_hex["hex"])
 
     try:
         parsed_hex = str(_hex).strip("# ")
@@ -79,8 +82,8 @@ def parse_hsv(*args) -> tuple:
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hsv(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, ["h", "s", "v"]):
-                return arg["h"], arg["s"], arg["v"]
+            elif isinstance(arg, dict) and dict_has_keys(arg, "hsv"):
+                h, s, v = arg["h"], arg["s"], arg["v"]
 
             else:
                 h = arg
@@ -129,8 +132,8 @@ def parse_hls(*args) -> tuple:
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_hls(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, ["h", "l", "s"]):
-                return arg["h"], arg["l"], arg["s"]
+            elif isinstance(arg, dict) and dict_has_keys(arg, "hls"):
+                h, l, s = arg["h"], arg["l"], arg["s"]
 
             else:
                 h = arg
@@ -179,8 +182,8 @@ def parse_cmyk(*args) -> tuple:
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_cmyk(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, ["c", "m", "y", "k"]):
-                return arg["c"], arg["m"], arg["y"], arg["k"]
+            elif isinstance(arg, dict) and dict_has_keys(arg, "cmyk"):
+                c, m, y, k = arg["c"], arg["m"], arg["y"], arg["k"]
 
             else:
                 c = arg
@@ -232,8 +235,8 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, tuple) or isinstance(arg, list):
                 return parse_rgb(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, ["r", "g", "b"]):
-                return arg["r"], arg["g"], arg["b"]
+            elif isinstance(arg, dict) and dict_has_keys(arg, "rgb"):
+                r, g, b = arg["r"], arg["g"], arg["b"]
 
             else:
                 r = arg
@@ -283,7 +286,7 @@ def parse_value(*args) -> tuple:
                 r, g, b = arg
 
             elif isinstance(arg, dict) and dict_has_keys(arg, ["r", "g", "b"]):
-                return arg["r"], arg["g"], arg["b"]
+                r, g, b = arg["r"], arg["g"], arg["b"]
 
             elif isinstance(arg, str) and len(arg) > 0:
                 r, g, b = convert.hex_to_rgb(parse_hex(arg))

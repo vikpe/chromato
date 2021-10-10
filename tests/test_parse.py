@@ -9,6 +9,7 @@ def test_parse_hex():
     assert parse.parse_hex(spaces.HLS(0, 0.5, 1)) == "ff0000"
     assert parse.parse_hex(spaces.HSV(0, 1, 1)) == "ff0000"
     assert parse.parse_hex(spaces.RGB(255, 0, 0)) == "ff0000"
+    assert parse.parse_hex({"hex": "ff0000"}) == "ff0000"
     assert parse.parse_hex("ff33ff") == "ff33ff"
     assert parse.parse_hex("#ff33ff") == "ff33ff"
     assert parse.parse_hex(3) == "333333"
