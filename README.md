@@ -29,6 +29,32 @@ TODO
 
 # API
 
+## Color spaces
+
+```python
+from chromato import spaces
+
+spaces.CMYK()
+spaces.HEX()
+spaces.HLS()
+spaces.HSV()
+spaces.RGB()
+```
+
+## Color
+
+```python
+from chromato import spaces
+
+red = spaces.Color(255, 0, 0)
+
+red.cmyk  # CMYK(0, 100, 100, 0)
+red.hex  # HEX(ff0000)
+red.hls  # HLS((0, 0.5, 1)
+red.hsv  # HSV(0, 1, 1)
+red.rgb  # RGB(255, 0, 0)
+```
+
 ## Operations
 
 ```python
