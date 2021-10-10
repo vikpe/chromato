@@ -11,15 +11,18 @@ def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
 
 
 def shade(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(0, 0, 0)), factor=factor)
+    black = Color(RGB(0, 0, 0))
+    return blend(color, black, factor=factor)
 
 
 def tone(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(128, 128, 128)), factor=factor)
+    gray = Color(RGB(128, 128, 128))
+    return blend(color, gray, factor=factor)
 
 
 def tint(color: Color, factor: float) -> Color:
-    return blend(color, Color(RGB(255, 255, 255)), factor=factor)
+    white = Color(RGB(255, 255, 255))
+    return blend(color, white, factor=factor)
 
 
 def grayscale(color: Color) -> Color:
