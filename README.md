@@ -11,7 +11,7 @@
 
 # Features
 
-* Classes
+* Color spaces
 * Operations
 * Convert
 * Parse
