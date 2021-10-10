@@ -31,6 +31,19 @@ TODO
 
 ## Color spaces
 
+### Overview
+Name | Scale
+---|---
+CMYK | (c,m,y,k) 0 - 100
+HEX | 000000 - ffffff
+HLS | (h,l,s) 0 - 1
+HSV | (h,s,v) 0 - 1
+RGB | (r,g,b) 0 - 255
+
+### CMYK
+
+> c [0-100] m [0-100] y [0-100] k [0-100]
+
 ```python
 from chromato import spaces
 
@@ -57,23 +70,37 @@ red.rgb  # RGB(255, 0, 0)
 
 ## Operations
 
+### Blend
+
+> Mix colors
+
+### Invert
+
+> Invert color
+
+### Complement
+
+> Complementary color
+
 ### Tint
+
 > Mix color with white (increases lightness)
 
 ### Shade
+
 > Mix color with black (increases darkness)
 
 ### Tone
+
 > Mix color with gray (reduce colorfullness/chroma)
 
-```python
-blend()
-grayscale()
-invert()
-complement()
-add()
-subtract()
-```
+### Add
+
+> Add color
+
+### Subtract
+
+> Subtract color
 
 ## Conversion
 
