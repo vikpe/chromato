@@ -78,7 +78,7 @@ red.rgb  # RGB(255, 0, 0)
 **Synopsis**
 
 ```python
-blend(Color A, Color B) -> Color
+blend(a: Color, b: Color) -> Color
 ```
 
 **Example**
@@ -96,7 +96,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+tint(c: Color, factor: float) -> Color
 ```
 
 **Example**
@@ -114,7 +114,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+shade(color: Color, factor: float) -> Color
 ```
 
 **Example**
@@ -131,7 +131,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+tone(color: Color, factor: float) -> Color
 ```
 
 **Example**
@@ -148,7 +148,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+invert(color: Color) -> Color
 ```
 
 **Example**
@@ -165,7 +165,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+complementary(c: Color) -> Color
 ```
 
 **Example**
@@ -182,7 +182,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+add(c1: Color, c2: Color) -> Color
 ```
 
 **Example**
@@ -199,7 +199,7 @@ blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
 **Synopsis**
 
 ```python
-
+subtract(c1: Color, c2: Color) -> Color
 ```
 
 **Example**
