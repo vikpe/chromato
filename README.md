@@ -10,12 +10,12 @@
 
 # Features
 
-* **Color spaces** (CMYK, HEX, RGB, HLS, HSV)
-* **Operations** (blend, tint, shade, invert)
-* **Conversion** - any color space to any color space
-* **Parsing**
-* **Validation**
-* zero dependecies!
+* **Color spaces**: CMYK, HEX, RGB, HLS, HSV
+* **Operations**: shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
+* **Conversion**: any color space to any color space
+* Parsing 
+* Validation
+* Zero dependecies!
 
 # Install
 
@@ -60,7 +60,6 @@ from chromato import parse
 from chromato.spaces import HEX, RGB
 
 parse.parse_hex("f")               # HEX(ffffff)
-parse.parse_hex("f60")             # HEX(ff6600)
 parse.parse_hex("f60")             # HEX(ff6600)
 parse.parse_hex("ff6600")          # HEX(ff6600)
 parse.parse_hex(" #ff6600 ")       # HEX(ff6600)
