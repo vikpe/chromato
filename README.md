@@ -11,6 +11,7 @@
 </div>
 
 * [**Color spaces**](#color-spaces): CMYK, HEX, RGB, HLS, HSV
+* [**Color class**](#color-class): Convenience class for color manipulation
 * [**Operations**](#operations): shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
 * [**Conversion**](#conversion): any color space to any color space
 * [Parsing](#parsing) 
@@ -72,42 +73,50 @@ parse.parse_hex(RGB(255, 102, 0))  # HEX(ff6600)
 
 ## Color spaces
 
-### Overview
+Name | Properties | Range
+---|---|---
+CMYK | c, m, y, k | 0-100, 0-100, 0-100, 0-100
+HEX | (none) | 000000-ffffff
+HLS | h, l, s |  0-1, 0-1, 0-1
+HSV | h, s, v |  0-1, 0-1, 0-1
+RGB | r, g, b | 0-255, 0-255, 0-255
 
-Name | Scale
----|---
-CMYK | (c,m,y,k) 0 - 100
-HEX | 000000 - ffffff
-HLS | (h,l,s) 0 - 1
-HSV | (h,s,v) 0 - 1
-RGB | (r,g,b) 0 - 255
-
-### CMYK
-
-> c [0-100] m [0-100] y [0-100] k [0-100]
 
 ```python
-from chromato import spaces
+from chromato.spaces import CMYK, HEX, HLS, HSV, RGB
 
-spaces.CMYK()
-spaces.HEX()
-spaces.HLS()
-spaces.HSV()
-spaces.RGB()
+red_cmyk = CMYK(0, 100, 100, 0)
+red_hex  = HEX("ff0000")
+red_hls  = HLS(0, 0.5, 1)
+red_hsv  = HSV(0, 1, 1)
+red_rgb  = RGB(255, 0, 0)
 ```
 
-## Color
+## Color class
 
 ```python
-from chromato import spaces
+from chromato.spaces import Color
 
-red = spaces.Color(255, 0, 0)
+red = Color(255, 0, 0)
 
 red.cmyk  # CMYK(0, 100, 100, 0)
-red.hex  # HEX(ff0000)
-red.hls  # HLS((0, 0.5, 1)
-red.hsv  # HSV(0, 1, 1)
-red.rgb  # RGB(255, 0, 0)
+red.hex   # HEX(ff0000)
+red.hls   # HLS(0, 0.5, 1)
+red.hsv   # HSV(0, 1, 1)
+red.rgb   # RGB(255, 0, 0)
+
+# construct (examples below are equal)
+Color(255, 0, 0)
+Color((255, 0, 0))
+Color([255, 0, 0])
+Color({"r": 255, "g": 0, "b": 0})
+Color("ff0000")
+Color("ff0")
+Color(RGB(255, 0, 0))
+Color(HEX("ff0"))
+Color(HSV(0, 1, 1))
+Color(HLS(0, 0.5, 1))
+Color(CMYK(0, 100, 100, 0))
 ```
 
 ## Operations
@@ -287,11 +296,11 @@ HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 ```python
 from chromato import parse
 
-parse.parse_cmyk()
-parse.parse_hex()
-parse.parse_hls()
-parse.parse_hsv()
-parse.parse_rgb()
+parse.parse_cmyk(value)
+parse.parse_hex(value)
+parse.parse_hls(value)
+parse.parse_hsv(value)
+parse.parse_rgb(value)
 ```
 
 ## Validation
@@ -299,11 +308,11 @@ parse.parse_rgb()
 ```python
 from chromato import validation
 
-validation.is_cmyk()
-validation.is_hex()
-validation.is_hls()
-validation.is_hsv()
-validation.is_rgb()
+validation.is_cmyk(c, m, y, k)
+validation.is_hex(hex)
+validation.is_hls(h, l, s)
+validation.is_hsv(h, s, v)
+validation.is_rgb(r, g, b)
 ```
 
 # Development
