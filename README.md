@@ -5,6 +5,8 @@
     </p>
 
 <!--![test](https://github.com/vikpe/chromato/workflows/test/badge.svg?branch=master) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/master/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)-->
+    
+<br><br>
 
 </div>
 
@@ -13,7 +15,7 @@
 * [**Conversion**](#conversion): any color space to any color space
 * [Parsing](#parsing) 
 * [Validation](#validation)
-* Zero dependecies!
+* (zero dependecies!)
 
 # Install
 
