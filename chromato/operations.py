@@ -32,23 +32,25 @@ def grayscale(color: Color) -> Color:
 
 
 def invert(color: Color) -> Color:
-    return Color(RGB(*[constants.RGB_MAX - v for v in color.rgb]))
+    invert_r, invert_g, invert_b = [constants.RGB_MAX - v for v in color.rgb]
+    return Color(RGB(invert_r, invert_g, invert_b))
 
 
 def complement(color: Color) -> Color:
     k = sum([max(*color.rgb), min(*color.rgb)])
-    return Color(RGB(*[k - v for v in color.rgb]))
+    comp_r, comp_g, comp_b = [k - v for v in color.rgb]
+    return Color(RGB(comp_r, comp_g, comp_b))
 
 
 def add(color1: Color, color2: Color) -> Color:
-    r = min(constants.RGB_MAX, color1.rgb.r + color2.rgb.r)
-    g = min(constants.RGB_MAX, color1.rgb.g + color2.rgb.g)
-    b = min(constants.RGB_MAX, color1.rgb.b + color2.rgb.b)
-    return Color(RGB(r, g, b))
+    r_sum = min(constants.RGB_MAX, color1.rgb.r + color2.rgb.r)
+    g_sum = min(constants.RGB_MAX, color1.rgb.g + color2.rgb.g)
+    b_sum = min(constants.RGB_MAX, color1.rgb.b + color2.rgb.b)
+    return Color(RGB(r_sum, g_sum, b_sum))
 
 
 def subtract(a: Color, b: Color) -> Color:
-    r = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
-    g = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
-    b = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
-    return Color(RGB(r, g, b))
+    r_diff = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
+    g_diff = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
+    b_diff = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
+    return Color(RGB(r_diff, g_diff, b_diff))
