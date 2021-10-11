@@ -101,6 +101,7 @@ red_rgb  = RGB(255, 0, 0)
 
 ## Color class
 
+**Properties**
 ```python
 from chromato.spaces import Color
 
@@ -111,8 +112,12 @@ red.hex   # HEX(ff0000)
 red.hls   # HLS(0, 0.5, 1)
 red.hsv   # HSV(0, 1, 1)
 red.rgb   # RGB(255, 0, 0)
+```
 
-# construct (examples below are equal)
+**Construct**
+
+```python
+# examples below are equal
 Color(255, 0, 0)
 Color((255, 0, 0))
 Color([255, 0, 0])
@@ -268,7 +273,7 @@ multiply(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-multiply(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (0, 0, 255)
+multiply(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # Color(r=0, g=0, b=255)
 ```
 
 ## Conversion
@@ -280,6 +285,16 @@ HEX | `rgb_to_hex` | <!-- null --> | `cmyk_to_hex` | `hls_to_hex` | `hsv_to_hex`
 CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_cmyk`
 HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
 HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
+
+```python
+from chromato import convert
+
+convert.rgb_to_hex(255, 255, 0)   # HEX(ff0000)
+convert.rgb_to_cmyk(255, 255, 0)  # CMYK(0, 100, 100, 0)
+convert.rgb_to_hex(255, 255, 0)   # HEX(ff0000)
+convert.rgb_to_hls(255, 255, 0)   # HLS(0, 0.5, 1)
+convert.rgb_to_hsv(255, 255, 0)   # HSV(0, 1, 1)
+```
 
 ## Parsing
 Each parse function takes any kind of value and tries to parse it.
