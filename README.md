@@ -136,7 +136,7 @@ Color(CMYK(0, 100, 100, 0))
 
 ### Blend
 
-> Blend/mix colors
+Blend/mix colors
 
 ```python
 blend(color1: Color, color2: Color, factor: float = 0.5) -> Color
@@ -157,7 +157,7 @@ blend(white, black, 0.8).rgb  # Color(r=51, g=51, b=51)
 
 ### Tint
 
-> Increase lightness (blend with white)
+Increase lightness (blend with white)
 
 ```python
 tint(color: Color, factor: float) -> Color
@@ -173,7 +173,7 @@ tint(Color(255, 0, 0), 0.5).rgb  # Color(r=255, g=128, b=128)
 
 ### Shade
 
-> Increase darkness (blend with black)
+Increase darkness (blend with black)
 
 ```python
 shade(color: Color, factor: float) -> Color
@@ -189,7 +189,7 @@ shade(Color(255, 0, 0), 0.5).rgb  # Color(r=128, g=0, b=0)
 
 ### Tone
 
-> Reduce colorfullness (blend with gray)
+Reduce colorfullness (blend with gray)
 
 ```python
 tone(color: Color, factor: float) -> Color
@@ -205,7 +205,7 @@ tone(Color(255, 0, 0), 0.5).rgb  # Color(r=192, g=64, b=64)
 
 ### Invert
 
-> Invert color
+Invert color
 
 ```python
 invert(color: Color) -> Color
@@ -221,7 +221,7 @@ invert(Color(255, 0, 0)).rgb  # Color(r=0, g=255, b=255)
 
 ### Complement
 
-> Complementary color
+Complementary color
 
 ```python
 complementary(c: Color) -> Color
@@ -237,7 +237,7 @@ complement(Color(255, 0, 0))  # Color(r=0, g=255, b=255)
 
 ### Add
 
-> Add colors
+Add colors
 
 ```python
 add(c1: Color, c2: Color) -> Color
@@ -253,7 +253,7 @@ add(Color(255, 0, 0), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=255)
 
 ### Subtract
 
-> Subtract colors
+Subtract colors
 
 ```python
 subtract(c1: Color, c2: Color) -> Color
@@ -269,7 +269,7 @@ subtract(Color(255, 0, 255), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=0)
 
 ### Multiply
 
-> Multiply colors
+Multiply colors
 
 ```python
 multiply(c1: Color, c2: Color) -> Color
