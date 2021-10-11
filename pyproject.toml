@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "🍅 Fresh color utilities."
 authors = ["Viktor Persson <viktor.persson@arcsin.se>"]
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/vikpe/exex"
 keywords = ["colors", "hex", "rgb", "cmyk", "hls", "hsv"]
 classifiers = [
     "Development Status :: 4 - Beta",
