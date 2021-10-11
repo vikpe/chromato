@@ -142,10 +142,15 @@ Color(CMYK(0, 100, 100, 0))
 blend(color1: Color, color2: Color, factor: float = 0.5) -> Color
 ```
 
-**Example**
+**Examples**
 
 ```python
-blend(Color(255, 255, 255), Color(0, 0, 0)).rgb  # Color(r=128, g=128, b=128)
+white = Color(255, 255, 255)
+black = Color(0, 0, 0)
+
+blend(white, black).rgb       # Color(r=128, g=128, b=128)
+blend(white, black, 0.2).rgb  # Color(r=204, g=204, b=204)
+blend(white, black, 0.8).rgb  # Color(r=51, g=51, b=51)
 ```
 
 ---
