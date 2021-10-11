@@ -16,6 +16,7 @@
 * Convert
 * Parse
 * Validation
+* Zero dependecies
 
 # Install
 
