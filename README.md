@@ -6,7 +6,7 @@
 
 <!--![test](https://github.com/vikpe/chromato/workflows/test/badge.svg?branch=master) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/master/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)-->
     
-<br><br>
+<br>
 
 </div>
 
@@ -292,18 +292,20 @@ HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
 HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 
 ## Parsing
+Each parse function takes any kind of value and tries to parse it.
 
 ```python
 from chromato import parse
 
-parse.parse_cmyk(value)
-parse.parse_hex(value)
-parse.parse_hls(value)
-parse.parse_hsv(value)
-parse.parse_rgb(value)
+parse.parse_cmyk(value)  # (c, m, y, k)
+parse.parse_hex(value)   # "hex"
+parse.parse_hls(value)   # (h, l, s)
+parse.parse_hsv(value)   # (h, s, v)
+parse.parse_rgb(value)   # (r, g, b)
 ```
 
 ## Validation
+Each validation function applies strict validation on type and range. Returns `True`/`False`.
 
 ```python
 from chromato import validation
