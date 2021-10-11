@@ -1,6 +1,6 @@
 import math
-from . import convert, validation, utils
-from .spaces import CMYK, HEX, HLS, HSV, RGB
+from chromato import convert, validation, utils
+from chromato.spaces import CMYK, HEX, HLS, HSV, RGB
 
 
 def parse_rgb_values(*args) -> tuple:
