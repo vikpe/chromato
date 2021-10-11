@@ -277,6 +277,9 @@ CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_c
 HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
 HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 
+
+**Example**
+
 ```python
 from chromato import convert
 
@@ -299,6 +302,7 @@ parse_rgb(value)   # (r, g, b)
 ```
 
 **Example**
+
 ```python
 from chromato import parse
 from chromato.spaces import Color, HEX, RGB
