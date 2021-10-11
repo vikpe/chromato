@@ -10,12 +10,12 @@
 
 # Features
 
-* Color spaces
-* Operations
-* Convert
-* Parse
-* Validation
-* Zero dependecies
+* **Color spaces** (CMYK, HEX, RGB, HLS, HSV)
+* **Operations** (blend, tint, shade, invert)
+* **Conversion** - any color space to any color space
+* **Parsing**
+* **Validation**
+* zero dependecies!
 
 # Install
 
@@ -23,9 +23,51 @@
 pip install chromato
 ```
 
-# Usage
+# Example usage
 
-TODO
+```python
+# color spaces
+from chromato.spaces import Color
+
+red = Color(255, 0, 0)
+blue = Color(0, 0, 255)
+
+red.cmyk  # CMYK(c=0, m=100, y=100, k=0)
+red.hex   # HEX(ff0000)
+red.rgb   # RGB(r=255, g=0, b=0)
+red.hls   # HLS(h=0, l=0.5, s=1)
+red.hsv   # HSV(h=0, s=1, v=1)
+
+
+# operations
+from chromato import operations
+
+operations.invert(red).rgb         # RGB(r=0, g=255, b=255)
+operations.blend(red, blue).rgb    # RGB(r=128, g=0, b=128)
+operations.tint(red, 0.1).rgb      # Color(r=255, g=128, b=128)
+
+
+# conversion
+from chromato import convert
+
+convert.rgb_to_hex(255, 0, 0)      # HEX(ff0000)
+convert.hex_to_rgb("ff0000")       # RGB(r=255, g=0, b=0)
+convert.hex_to_cmyk("f0f")         # CMYK(c=0, m=100.0, y=0, k=0)
+
+
+# parsing
+from chromato import parse
+from chromato.spaces import HEX, RGB
+
+parse.parse_hex("f")               # HEX(ffffff)
+parse.parse_hex("f60")             # HEX(ff6600)
+parse.parse_hex("f60")             # HEX(ff6600)
+parse.parse_hex("ff6600")          # HEX(ff6600)
+parse.parse_hex(" #ff6600 ")       # HEX(ff6600)
+parse.parse_hex(333)               # HEX(333333)
+parse.parse_hex(HEX("ff6600"))     # HEX(ff6600)
+parse.parse_hex(RGB(255, 102, 0))  # HEX(ff6600)
+```
 
 # API
 
