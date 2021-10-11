@@ -210,7 +210,25 @@ subtract(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-add(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (255, 0, 0)
+subtract(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (255, 0, 0)
+```
+
+---
+
+### Multiply
+
+> Multiply colors
+
+**Synopsis**
+
+```python
+multiply(c1: Color, c2: Color) -> Color
+```
+
+**Example**
+
+```python
+multiply(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (0, 0, 255)
 ```
 
 ## Conversion
