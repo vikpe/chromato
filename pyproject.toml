@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "🍅 Fresh color utilities."
 authors = ["Viktor Persson <viktor.persson@arcsin.se>"]
 license = "MIT"
-keywords = ["colors", "rgb", "cmyk", "hls", "hsv"]
+keywords = ["colors", "hex", "rgb", "cmyk", "hls", "hsv"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Topic :: Utilities",
