@@ -5,7 +5,6 @@
     </p>
 
 <!--![test](https://github.com/vikpe/chromato/workflows/test/badge.svg?branch=master) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/master/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)-->
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 </div>
 
@@ -264,4 +263,27 @@ validation.is_hex()
 validation.is_hls()
 validation.is_hsv()
 validation.is_rgb()
+```
+
+# Development
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+## Setup
+
+1. Install [poetry](https://github.com/python-poetry/poetry)
+2. `poetry install`
+
+## Tests
+
+Run tests on changes in source code or tests.
+
+```shell
+poetry run ptw --clear --runner "poetry run pytest --cov -vv" 
+```
+
+## Code formatting (black)
+
+```shell
+poetry run black . 
 ```
