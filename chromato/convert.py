@@ -1,6 +1,6 @@
 import colorsys
 
-from . import constants, parse, spaces
+from chromato import constants, parse, spaces
 
 
 def cmyk_to_hex(*args) -> spaces.HEX:

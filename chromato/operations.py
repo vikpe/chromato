@@ -1,11 +1,11 @@
-from . import constants, math
-from .spaces import Color, RGB
+from chromato import constants, utils
+from chromato.spaces import Color, RGB
 
 
 def blend(color1: Color, color2: Color, factor: float = 0.5) -> Color:
-    r = math.lerp(color1.rgb.r, color2.rgb.r, factor)
-    g = math.lerp(color1.rgb.g, color2.rgb.g, factor)
-    b = math.lerp(color1.rgb.b, color2.rgb.b, factor)
+    r = utils.lerp(color1.rgb.r, color2.rgb.r, factor)
+    g = utils.lerp(color1.rgb.g, color2.rgb.g, factor)
+    b = utils.lerp(color1.rgb.b, color2.rgb.b, factor)
 
     return Color(RGB(r, g, b))
 

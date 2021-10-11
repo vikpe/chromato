@@ -1,7 +1,7 @@
 import numbers
 import string
 
-from . import constants
+from chromato import constants
 
 
 def is_bool(value) -> bool:

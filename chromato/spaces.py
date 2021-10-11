@@ -2,7 +2,7 @@ from collections import UserString
 
 import attr
 
-from . import convert, parse
+from chromato import convert, parse
 
 
 class ColorSpace(object):

@@ -1,10 +1,6 @@
 import math
-from . import convert, validation
+from . import convert, validation, utils
 from .spaces import CMYK, HEX, HLS, HSV, RGB
-
-
-def dict_has_keys(_dict: dict, keys: iter) -> bool:
-    return all(k in _dict for k in keys)
 
 
 def parse_rgb_values(*args) -> tuple:
@@ -82,7 +78,7 @@ def parse_hsv(*args) -> tuple:
             elif type(arg) in [tuple, list]:
                 return parse_hsv(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, "hsv"):
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hsv"):
                 h, s, v = arg["h"], arg["s"], arg["v"]
 
             else:
@@ -132,7 +128,7 @@ def parse_hls(*args) -> tuple:
             elif type(arg) in [tuple, list]:
                 return parse_hls(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, "hls"):
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hls"):
                 h, l, s = arg["h"], arg["l"], arg["s"]
 
             else:
@@ -182,7 +178,7 @@ def parse_cmyk(*args) -> tuple:
             elif type(arg) in [tuple, list]:
                 return parse_cmyk(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, "cmyk"):
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "cmyk"):
                 c, m, y, k = arg["c"], arg["m"], arg["y"], arg["k"]
 
             else:
@@ -235,7 +231,7 @@ def parse_rgb(*args) -> tuple:
             elif type(arg) in [tuple, list]:
                 return parse_rgb(*arg)
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, "rgb"):
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "rgb"):
                 r, g, b = arg["r"], arg["g"], arg["b"]
 
             else:
@@ -285,7 +281,7 @@ def parse_value(*args) -> tuple:
             elif (isinstance(arg, tuple) or isinstance(arg, list)) and 3 == len(arg):
                 r, g, b = arg
 
-            elif isinstance(arg, dict) and dict_has_keys(arg, ["r", "g", "b"]):
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, ["r", "g", "b"]):
                 r, g, b = arg["r"], arg["g"], arg["b"]
 
             elif isinstance(arg, str) and len(arg) > 0:
