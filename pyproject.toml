@@ -3,6 +3,17 @@ name = "chromato"
 version = "0.1.0"
 description = "🍅 Fresh color utilities."
 authors = ["Viktor Persson <viktor.persson@arcsin.se>"]
+license = "MIT"
+keywords = ["colors", "rgb", "cmyk", "hls", "hsv"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Utilities",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
