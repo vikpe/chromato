@@ -49,7 +49,7 @@ blue = Color(0, 0, 255)
 
 operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
 operations.blend(red, blue).rgb  # RGB(r=128, g=0, b=128)
-operations.tint(red, 0.1).rgb    # Color(r=255, g=128, b=128)
+operations.tint(red, 0.1).rgb    # Color(r=255, g=26, b=26)
 ```
 
 **Conversion**
@@ -140,7 +140,7 @@ blend(color1: Color, color2: Color, factor: float = 0.5) -> Color
 **Example**
 
 ```python
-blend((255, 255, 255), (0, 0, 0)).rgb  # (128, 128, 128)
+blend(Color(255, 255, 255), Color(0, 0, 0)).rgb  # Color(r=128, g=128, b=128)
 ```
 
 ---
@@ -156,7 +156,7 @@ tint(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-tint(RGB(255, 0, 0), 0.5).rgb
+tint(Color(255, 0, 0), 0.5).rgb  # Color(r=255, g=128, b=128)
 ```
 
 ---
@@ -172,7 +172,7 @@ shade(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-shade(RGB(255, 0, 0), 0.5).rgb
+shade(Color(255, 0, 0), 0.5).rgb  # Color(r=128, g=0, b=0)
 ```
 
 ---
@@ -188,7 +188,7 @@ tone(color: Color, factor: float) -> Color
 **Example**
 
 ```python
-tone(RGB(255, 0, 0), 0.5).rgb
+tone(Color(255, 0, 0), 0.5).rgb  # Color(r=192, g=64, b=64)
 ```
 
 ---
@@ -204,7 +204,7 @@ invert(color: Color) -> Color
 **Example**
 
 ```python
-invert(RGB(255, 0, 0)).rgb  # (0, 255, 255) 
+invert(Color(255, 0, 0)).rgb  # Color(r=0, g=255, b=255) 
 ```
 
 ---
@@ -220,7 +220,7 @@ complementary(c: Color) -> Color
 **Example**
 
 ```python
-
+complement(Color(255, 0, 0))  # Color(r=0, g=255, b=255)
 ```
 
 ---
@@ -236,7 +236,7 @@ add(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-add(RGB(255, 0, 0), RGB(0, 0, 255)).rgb  # (255, 0, 255) 
+add(Color(255, 0, 0), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=255) 
 ```
 
 ---
@@ -252,7 +252,7 @@ subtract(c1: Color, c2: Color) -> Color
 **Example**
 
 ```python
-subtract(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # (255, 0, 0)
+subtract(Color(255, 0, 255), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=0)
 ```
 
 ---
