@@ -13,7 +13,7 @@
 * [**Color spaces**](#color-spaces): CMYK, HEX, RGB, HLS, HSV
 * [**Color class**](#color-class): Convenience class for color manipulation
 * [**Operations**](#operations): shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
-* [**Conversion**](#conversion): any color space to any color space
+* [**Conversion**](#conversion): Convert any color space to any color space
 * [Parsing](#parsing) 
 * [Validation](#validation)
 * (zero dependecies!)
@@ -282,6 +282,7 @@ multiply(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # Color(r=0, g=0, b=255)
 ```
 
 ## Conversion
+Convert any color space to any color space.
 
 🔀 | RGB | HEX | CMYK | HLS | HSV
 --- | --- | --- | --- | --- | ---
