@@ -26,39 +26,45 @@ pip install chromato
 
 # Example usage
 
+**Color class**
 ```python
-# color spaces
 from chromato.spaces import Color
 
 red = Color(255, 0, 0)
-blue = Color(0, 0, 255)
 
 red.cmyk  # CMYK(c=0, m=100, y=100, k=0)
 red.hex   # HEX(ff0000)
 red.rgb   # RGB(r=255, g=0, b=0)
 red.hls   # HLS(h=0, l=0.5, s=1)
 red.hsv   # HSV(h=0, s=1, v=1)
+```
 
-
-# operations
+**Operations**
+```python
 from chromato import operations
+from chromato.spaces import Color
+
+red = Color(255, 0, 0)
+blue = Color(0, 0, 255)
 
 operations.invert(red).rgb         # RGB(r=0, g=255, b=255)
 operations.blend(red, blue).rgb    # RGB(r=128, g=0, b=128)
 operations.tint(red, 0.1).rgb      # Color(r=255, g=128, b=128)
+```
 
-
-# conversion
+**Conversion**
+```python
 from chromato import convert
 
 convert.rgb_to_hex(255, 0, 0)      # HEX(ff0000)
 convert.hex_to_rgb("ff0000")       # RGB(r=255, g=0, b=0)
 convert.hex_to_cmyk("f0f")         # CMYK(c=0, m=100.0, y=0, k=0)
+```
 
-
-# parsing
+**Parsing**
+```python
 from chromato import parse
-from chromato.spaces import HEX, RGB
+from chromato.spaces import Color, HEX, RGB
 
 parse.parse_hex("f")               # HEX(ffffff)
 parse.parse_hex("f60")             # HEX(ff6600)
@@ -66,6 +72,7 @@ parse.parse_hex("ff6600")          # HEX(ff6600)
 parse.parse_hex(" #ff6600 ")       # HEX(ff6600)
 parse.parse_hex(333)               # HEX(333333)
 parse.parse_hex(HEX("ff6600"))     # HEX(ff6600)
+parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
 parse.parse_hex(RGB(255, 102, 0))  # HEX(ff6600)
 ```
 
@@ -76,7 +83,7 @@ parse.parse_hex(RGB(255, 102, 0))  # HEX(ff6600)
 Name | Properties | Range
 ---|---|---
 CMYK | c, m, y, k | 0-100, 0-100, 0-100, 0-100
-HEX | (none) | 000000-ffffff
+HEX | (is a string) | 000000-ffffff
 HLS | h, l, s |  0-1, 0-1, 0-1
 HSV | h, s, v |  0-1, 0-1, 0-1
 RGB | r, g, b | 0-255, 0-255, 0-255
