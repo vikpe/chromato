@@ -295,7 +295,7 @@ parse.parse_rgb(value)   # (r, g, b)
 ```
 
 ## Validation
-Each validation function applies strict validation on type and range. Returns `True`/`False`.
+Each validation function validates type and range. Returns `True`/`False`.
 
 ```python
 from chromato import validation
