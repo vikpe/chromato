@@ -1,6 +1,6 @@
 import math
 from chromato import convert, validation, utils
-from chromato.spaces import CMYK, HEX, HLS, HSV, RGB
+from chromato.spaces import Color, CMYK, HEX, HLS, HSV, RGB
 
 
 def parse_rgb_values(*args) -> tuple:
@@ -29,6 +29,9 @@ def parse_hex(_hex) -> str:
 
     elif isinstance(_hex, RGB):
         return str(convert.rgb_to_hex(_hex))
+
+    elif isinstance(_hex, Color):
+        return str(_hex.hex)
 
     elif isinstance(_hex, dict) and "hex" in _hex:
         return parse_hex(_hex["hex"])
@@ -74,6 +77,9 @@ def parse_hsv(*args) -> tuple:
 
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_hsv(arg))
+
+            elif isinstance(arg, Color):
+                return tuple(arg.hsv)
 
             elif type(arg) in [tuple, list]:
                 return parse_hsv(*arg)
@@ -125,6 +131,9 @@ def parse_hls(*args) -> tuple:
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_hls(arg))
 
+            elif isinstance(arg, Color):
+                return tuple(arg.hls)
+
             elif type(arg) in [tuple, list]:
                 return parse_hls(*arg)
 
@@ -174,6 +183,9 @@ def parse_cmyk(*args) -> tuple:
 
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_cmyk(arg))
+
+            elif isinstance(arg, Color):
+                return tuple(arg.cmyk)
 
             elif type(arg) in [tuple, list]:
                 return parse_cmyk(*arg)
@@ -228,6 +240,9 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, HEX):
                 return tuple(convert.hex_to_rgb(arg))
 
+            elif isinstance(arg, Color):
+                return tuple(arg.rgb)
+
             elif type(arg) in [tuple, list]:
                 return parse_rgb(*arg)
 
@@ -277,6 +292,9 @@ def parse_value(*args) -> tuple:
 
             elif isinstance(arg, HEX):
                 return tuple(convert.hex_to_rgb(arg))
+
+            elif isinstance(arg, Color):
+                return tuple(arg.rgb)
 
             elif (isinstance(arg, tuple) or isinstance(arg, list)) and 3 == len(arg):
                 r, g, b = arg
