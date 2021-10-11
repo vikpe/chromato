@@ -54,3 +54,10 @@ def subtract(color1: Color, color2: Color) -> Color:
     g_diff = max(constants.RGB_MIN, color1.rgb.g - color2.rgb.g)
     b_diff = max(constants.RGB_MIN, color1.rgb.b - color2.rgb.b)
     return Color(RGB(r_diff, g_diff, b_diff))
+
+
+def multiply(color1: Color, color2: Color) -> Color:
+    r_mult = color1.rgb.r * color2.rgb.r / constants.RGB_MAX
+    g_mult = color1.rgb.g * color2.rgb.g / constants.RGB_MAX
+    b_mult = color1.rgb.b * color2.rgb.b / constants.RGB_MAX
+    return Color(RGB(r_mult, g_mult, b_mult))

@@ -91,3 +91,9 @@ def test_add():
 def test_subtract():
     assert op.subtract(RED, BLUE) == RED
     assert op.subtract(MAGENTA, BLUE) == RED
+
+
+def test_multiply():
+    assert op.multiply(RED, BLUE) == BLACK
+    assert op.multiply(MAGENTA, BLUE) == BLUE
+    assert op.multiply(Color(80, 40, 20), Color(255, 0, 127)) == Color(80, 0, 10)
