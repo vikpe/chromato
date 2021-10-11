@@ -61,21 +61,6 @@ convert.hex_to_rgb("ff0000")   # RGB(r=255, g=0, b=0)
 convert.hex_to_cmyk("f0f")     # CMYK(c=0, m=100.0, y=0, k=0)
 ```
 
-**Parsing**
-```python
-from chromato import parse
-from chromato.spaces import Color, HEX, RGB
-
-parse.parse_hex("f")                 # HEX(ffffff)
-parse.parse_hex("f60")               # HEX(ff6600)
-parse.parse_hex("ff6600")            # HEX(ff6600)
-parse.parse_hex(" #ff6600 ")         # HEX(ff6600)
-parse.parse_hex(333)                 # HEX(333333)
-parse.parse_hex(HEX("ff6600"))       # HEX(ff6600)
-parse.parse_hex(RGB(255, 102, 0))    # HEX(ff6600)
-parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
-```
-
 # API
 
 ## Color spaces
@@ -306,13 +291,26 @@ convert.rgb_to_hsv(255, 255, 0)   # HSV(0, 1, 1)
 Each parse function takes any kind of value and tries to parse it.
 
 ```python
-from chromato import parse
+parse_cmyk(value)  # (c, m, y, k)
+parse_hex(value)   # "hex"
+parse_hls(value)   # (h, l, s)
+parse_hsv(value)   # (h, s, v)
+parse_rgb(value)   # (r, g, b)
+```
 
-parse.parse_cmyk(value)  # (c, m, y, k)
-parse.parse_hex(value)   # "hex"
-parse.parse_hls(value)   # (h, l, s)
-parse.parse_hsv(value)   # (h, s, v)
-parse.parse_rgb(value)   # (r, g, b)
+**Example**
+```python
+from chromato import parse
+from chromato.spaces import Color, HEX, RGB
+
+parse.parse_hex("f")                 # HEX(ffffff)
+parse.parse_hex("f60")               # HEX(ff6600)
+parse.parse_hex("ff6600")            # HEX(ff6600)
+parse.parse_hex(" #ff6600 ")         # HEX(ff6600)
+parse.parse_hex(333)                 # HEX(333333)
+parse.parse_hex(HEX("ff6600"))       # HEX(ff6600)
+parse.parse_hex(RGB(255, 102, 0))    # HEX(ff6600)
+parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
 ```
 
 ## Validation
