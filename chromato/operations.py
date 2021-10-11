@@ -49,8 +49,8 @@ def add(color1: Color, color2: Color) -> Color:
     return Color(RGB(r_sum, g_sum, b_sum))
 
 
-def subtract(a: Color, b: Color) -> Color:
-    r_diff = max(constants.RGB_MIN, a.rgb.r - b.rgb.r)
-    g_diff = max(constants.RGB_MIN, a.rgb.g - b.rgb.g)
-    b_diff = max(constants.RGB_MIN, a.rgb.b - b.rgb.b)
+def subtract(color1: Color, color2: Color) -> Color:
+    r_diff = max(constants.RGB_MIN, color1.rgb.r - color2.rgb.r)
+    g_diff = max(constants.RGB_MIN, color1.rgb.g - color2.rgb.g)
+    b_diff = max(constants.RGB_MIN, color1.rgb.b - color2.rgb.b)
     return Color(RGB(r_diff, g_diff, b_diff))
