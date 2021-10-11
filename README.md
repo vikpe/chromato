@@ -8,13 +8,11 @@
 
 </div>
 
-# Features
-
-* **Color spaces**: CMYK, HEX, RGB, HLS, HSV
-* **Operations**: shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
-* **Conversion**: any color space to any color space
-* Parsing 
-* Validation
+* [**Color spaces**](#color-spaces): CMYK, HEX, RGB, HLS, HSV
+* [**Operations**](#operations): shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
+* [**Conversion**](#conversion): any color space to any color space
+* [Parsing](#parsing) 
+* [Validation](#validation)
 * Zero dependecies!
 
 # Install
@@ -282,7 +280,7 @@ CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_c
 HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
 HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 
-## Parse
+## Parsing
 
 ```python
 from chromato import parse
