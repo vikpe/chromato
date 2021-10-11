@@ -72,8 +72,8 @@ parse.parse_hex("ff6600")            # HEX(ff6600)
 parse.parse_hex(" #ff6600 ")         # HEX(ff6600)
 parse.parse_hex(333)                 # HEX(333333)
 parse.parse_hex(HEX("ff6600"))       # HEX(ff6600)
-parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
 parse.parse_hex(RGB(255, 102, 0))    # HEX(ff6600)
+parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
 ```
 
 # API
