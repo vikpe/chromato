@@ -76,26 +76,6 @@ class Color:
     def __repr__(self):
         return f"Color(r={self.rgb.r}, g={self.rgb.g}, b={self.rgb.b})"
 
-    @classmethod
-    def from_cmyk(cls, *args):
-        return Color(convert.cmyk_to_rgb(*args))
-
-    @classmethod
-    def from_hex(cls, *args):
-        return Color(convert.hex_to_rgb(*args))
-
-    @classmethod
-    def from_hls(cls, *args):
-        return Color(convert.hls_to_rgb(*args))
-
-    @classmethod
-    def from_hsv(cls, *args):
-        return Color(convert.hsv_to_rgb(*args))
-
-    @classmethod
-    def from_rgb(cls, *args):
-        return Color(*args)
-
     @property
     def rgb(self) -> RGB:
         return RGB(*self.__rgb)

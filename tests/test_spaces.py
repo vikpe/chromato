@@ -5,13 +5,13 @@ def test_hex():
     assert "ff0000" == HEX("f00") == HEX(HEX("f00"))
 
 
-def test_color_class_methods():
-    c_hex = Color.from_hex("f00")
-    c_cmyk = Color.from_cmyk(0, 100, 100, 0)
-    c_hls = Color.from_hls(0, 0.5, 1)
-    c_hsv = Color.from_hsv(0, 1, 1)
-    c_rgb = Color.from_rgb(255, 0, 0)
-    assert c_hex == c_cmyk == c_hls == c_hsv == c_rgb
+def test_construct():
+    red_hex = HEX("f00")
+    red_cmyk = CMYK(0, 100, 100, 0)
+    red_hls = HLS(0, 0.5, 1)
+    red_hsv = HSV(0, 1, 1)
+    red_rgb = RGB(255, 0, 0)
+    assert Color(red_hex) == Color(red_cmyk) == Color(red_hls) == Color(red_hsv) == Color(red_rgb)
 
 
 def test_color_properties():
