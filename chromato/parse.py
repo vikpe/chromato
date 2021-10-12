@@ -249,6 +249,9 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, dict) and utils.dict_has_keys(arg, "rgb"):
                 r, g, b = arg["r"], arg["g"], arg["b"]
 
+            elif isinstance(arg, str) and len(arg.strip("# ")) > 0:
+                r, g, b = convert.hex_to_rgb(parse_hex(arg))
+
             else:
                 r = arg
 
@@ -265,62 +268,5 @@ def parse_rgb(*args) -> tuple:
 
     except BaseException:
         raise ValueError("Unable to parse value as RGB", args)
-
-    return r, g, b
-
-
-def parse_value(*args) -> tuple:
-    r, g, b = (0, 0, 0)
-
-    try:
-        num_args = len(args)
-
-        if 1 == num_args:
-            arg = args[0]
-
-            if isinstance(arg, RGB):
-                return tuple(arg)
-
-            elif isinstance(arg, CMYK):
-                return tuple(convert.cmyk_to_rgb(arg))
-
-            elif isinstance(arg, HSV):
-                return tuple(convert.hsv_to_rgb(arg))
-
-            elif isinstance(arg, HLS):
-                return tuple(convert.hls_to_rgb(arg))
-
-            elif isinstance(arg, HEX):
-                return tuple(convert.hex_to_rgb(arg))
-
-            elif isinstance(arg, Color):
-                return tuple(arg.rgb)
-
-            elif (isinstance(arg, tuple) or isinstance(arg, list)) and 3 == len(arg):
-                r, g, b = arg
-
-            elif isinstance(arg, dict) and utils.dict_has_keys(arg, ["r", "g", "b"]):
-                r, g, b = arg["r"], arg["g"], arg["b"]
-
-            elif isinstance(arg, str) and len(arg) > 0:
-                r, g, b = convert.hex_to_rgb(parse_hex(arg))
-
-            else:
-                r = arg
-
-        elif 2 == num_args:
-            r = args[0]
-            g = args[1]
-
-        elif 3 == num_args:
-            return parse_value(args)
-
-        r, g, b = parse_rgb_values(r, g, b)
-
-        if not validation.is_rgb(r, g, b):
-            raise
-
-    except BaseException:
-        raise ValueError("Unable to parse value", args)
 
     return r, g, b

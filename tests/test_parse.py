@@ -149,6 +149,10 @@ def test_parse_rgb():
     assert parse.parse_rgb(("255", "50", "100")) == (255, 50, 100)
     assert parse.parse_rgb(["255", "50", "100"]) == (255, 50, 100)
     assert parse.parse_rgb({"r": 255, "g": 50, "b": 100}) == (255, 50, 100)
+    assert parse.parse_rgb("ff0000") == (255, 0, 0)
+    assert parse.parse_rgb("#ff0000") == (255, 0, 0)
+    assert parse.parse_rgb("#f00") == (255, 0, 0)
+    assert parse.parse_rgb("f00") == (255, 0, 0)
     assert parse.parse_rgb("") == (0, 0, 0)
     assert parse.parse_rgb(False) == (0, 0, 0)
     assert parse.parse_rgb(None) == (0, 0, 0)
@@ -159,38 +163,3 @@ def test_parse_rgb():
     for value in invalid_values:
         with pytest.raises(ValueError):
             parse.parse_rgb(value)
-
-
-def test_parse():
-    # valid
-    assert parse.parse_value() == (0, 0, 0)
-    assert parse.parse_value(255) == (255, 0, 0)
-    assert parse.parse_value(255.0) == (255, 0, 0)
-    assert parse.parse_value(255, 50) == (255, 50, 0)
-    assert parse.parse_value(255, 50, 100) == (255, 50, 100)
-    assert parse.parse_value((255, 0, 0)) == (255, 0, 0)
-    assert parse.parse_value([255, 0, 0]) == (255, 0, 0)
-    assert parse.parse_value((0, 0, 0)) == (0, 0, 0)
-    assert parse.parse_value(("255", "50", "100")) == (255, 50, 100)
-    assert parse.parse_value(["254.5", 50, 99.5]) == (255, 50, 100)
-    assert parse.parse_value(spaces.Color(255, 50, 100)) == (255, 50, 100)
-    assert parse.parse_value(spaces.RGB(255, 50, 100)) == (255, 50, 100)
-    assert parse.parse_value(spaces.CMYK(100, 0, 0, 0)) == (0, 255, 255)
-    assert parse.parse_value(spaces.HSV(0, 1, 1)) == (255, 0, 0)
-    assert parse.parse_value(spaces.HLS(0, 0.5, 1)) == (255, 0, 0)
-    assert parse.parse_value(spaces.HEX("ff0000")) == (255, 0, 0)
-    assert parse.parse_value({"r": 255, "g": 50, "b": 100}) == (255, 50, 100)
-    assert parse.parse_value("ff0000") == (255, 0, 0)
-    assert parse.parse_value("#ff0000") == (255, 0, 0)
-    assert parse.parse_value("#f00") == (255, 0, 0)
-    assert parse.parse_value("f00") == (255, 0, 0)
-    assert parse.parse_value("") == (0, 0, 0)
-    assert parse.parse_value(False) == (0, 0, 0)
-    assert parse.parse_value(None) == (0, 0, 0)
-
-    # invalid
-    invalid_values = ["x", "f00f", "_", (255.1, 0, 0), {"x": 1, "y": 1}]
-
-    for value in invalid_values:
-        with pytest.raises(ValueError):
-            parse.parse_value(value)

@@ -65,7 +65,7 @@ class Color:
     __rgb: RGB
 
     def __init__(self, *args):
-        self.__rgb = RGB(parse.parse_value(*args))
+        self.__rgb = RGB(parse.parse_rgb(*args))
 
     def __eq__(self, other):
         if isinstance(other, Color):
