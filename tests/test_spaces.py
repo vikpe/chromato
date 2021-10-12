@@ -11,7 +11,13 @@ def test_construct():
     red_hls = HLS(0, 0.5, 1)
     red_hsv = HSV(0, 1, 1)
     red_rgb = RGB(255, 0, 0)
-    assert Color(red_hex) == Color(red_cmyk) == Color(red_hls) == Color(red_hsv) == Color(red_rgb)
+    assert (
+        Color(red_hex)
+        == Color(red_cmyk)
+        == Color(red_hls)
+        == Color(red_hsv)
+        == Color(red_rgb)
+    )
 
 
 def test_color_properties():
