@@ -2,8 +2,11 @@ import pytest
 
 from chromato import parse, spaces
 
+NON_COLOR_VALUES = [".", "f0x", (666, 0, 0), {"x": 1, "y": 1}]
+
 
 def test_parse_hex():
+    # valid
     assert parse.parse_hex(spaces.Color(255, 0, 0)) == "ff0000"
     assert parse.parse_hex(spaces.CMYK(0, 100, 100, 0)) == "ff0000"
     assert parse.parse_hex(spaces.HEX("ff0000")) == "ff0000"
@@ -29,7 +32,6 @@ def test_parse_hex():
 
     # invalid
     invalid_values = [
-        "fox",
         "ab",
         "abcd",
         "abcde",
@@ -38,9 +40,7 @@ def test_parse_hex():
         1234,
         12345,
         1234567,
-        (255, 0, 0),
-        {"x": 1, "y": 1},
-    ]
+    ] + NON_COLOR_VALUES
 
     for value in invalid_values:
         with pytest.raises(ValueError):
@@ -48,6 +48,7 @@ def test_parse_hex():
 
 
 def test_parse_hsv():
+    # valid
     assert parse.parse_hsv(spaces.Color(255, 0, 0)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.CMYK(0, 100, 100, 0)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.HEX("ff0000")) == (0, 1, 1)
@@ -63,19 +64,22 @@ def test_parse_hsv():
     assert parse.parse_hsv((1, 0.5, 0.2)) == (1, 0.5, 0.2)
     assert parse.parse_hsv([1, 0.5, 0.2]) == (1, 0.5, 0.2)
     assert parse.parse_hsv({"h": 1, "s": 0.5, "v": 0.2}) == (1, 0.5, 0.2)
+    assert parse.parse_hsv("ff0000") == (0, 1, 1)
+    assert parse.parse_hsv("#ff0000") == (0, 1, 1)
+    assert parse.parse_hsv("#f00") == (0, 1, 1)
+    assert parse.parse_hsv("f00") == (0, 1, 1)
     assert parse.parse_hsv("") == (0, 0, 0)
     assert parse.parse_hsv(False) == (0, 0, 0)
     assert parse.parse_hsv(None) == (0, 0, 0)
 
     # invalid
-    invalid_values = ["a", (255, 0, 0), {"x": 1, "y": 1}]
-
-    for value in invalid_values:
+    for value in NON_COLOR_VALUES:
         with pytest.raises(ValueError):
             parse.parse_hsv(value)
 
 
 def test_parse_hls():
+    # valid
     assert parse.parse_hls(spaces.Color(255, 0, 0)) == (0, 0.5, 1)
     assert parse.parse_hls(spaces.CMYK(0, 100, 100, 0)) == (0, 0.5, 1)
     assert parse.parse_hls(spaces.HEX("ff0000")) == (0, 0.5, 1)
@@ -90,12 +94,16 @@ def test_parse_hls():
     assert parse.parse_hls("1", "0.5", "0.2") == (1, 0.5, 0.2)
     assert parse.parse_hls((1, 0.5, 0.2)) == (1, 0.5, 0.2)
     assert parse.parse_hls({"h": 1, "l": 0.5, "s": 0.2}) == (1, 0.5, 0.2)
+    assert parse.parse_hls("ff0000") == (0, 0.5, 1)
+    assert parse.parse_hls("#ff0000") == (0, 0.5, 1)
+    assert parse.parse_hls("#f00") == (0, 0.5, 1)
+    assert parse.parse_hls("f00") == (0, 0.5, 1)
     assert parse.parse_hls("") == (0, 0, 0)
     assert parse.parse_hls(False) == (0, 0, 0)
     assert parse.parse_hls(None) == (0, 0, 0)
 
     # invalid
-    invalid_values = ["a", (255, 0, 0), {"x": 1, "y": 1}]
+    invalid_values = ["f0x", (1.1, 0, 0), {"x": 1, "y": 1}]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
@@ -103,6 +111,7 @@ def test_parse_hls():
 
 
 def test_parse_cmyk():
+    # valid
     assert parse.parse_cmyk(spaces.Color(255, 0, 0)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.CMYK(0, 100, 100, 0)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.HEX("ff0000")) == (0, 100, 100, 0)
@@ -118,14 +127,16 @@ def test_parse_cmyk():
     assert parse.parse_cmyk((50, 20, 10, 5)) == (50, 20, 10, 5)
     assert parse.parse_cmyk([50, 20, 10, 5]) == (50, 20, 10, 5)
     assert parse.parse_cmyk({"c": 50, "m": 20, "y": 10, "k": 5}) == (50, 20, 10, 5)
+    assert parse.parse_cmyk("ff0000") == (0, 100, 100, 0)
+    assert parse.parse_cmyk("#ff0000") == (0, 100, 100, 0)
+    assert parse.parse_cmyk("#f00") == (0, 100, 100, 0)
+    assert parse.parse_cmyk("f00") == (0, 100, 100, 0)
     assert parse.parse_cmyk("") == (0, 0, 0, 100)
     assert parse.parse_cmyk(False) == (0, 0, 0, 100)
     assert parse.parse_cmyk(None) == (0, 0, 0, 100)
 
     # invalid
-    invalid_values = ["a", (255, 0, 0), {"x": 1, "y": 1}]
-
-    for value in invalid_values:
+    for value in NON_COLOR_VALUES:
         with pytest.raises(ValueError):
             parse.parse_cmyk(value)
 
@@ -158,8 +169,6 @@ def test_parse_rgb():
     assert parse.parse_rgb(None) == (0, 0, 0)
 
     # invalid
-    invalid_values = ["x", "f00f", "_", (255.1, 0, 0), {"x": 1, "y": 1}]
-
-    for value in invalid_values:
+    for value in NON_COLOR_VALUES:
         with pytest.raises(ValueError):
             parse.parse_rgb(value)

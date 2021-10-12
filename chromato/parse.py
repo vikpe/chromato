@@ -3,11 +3,15 @@ from chromato import convert, validation, utils
 from chromato.spaces import Color, CMYK, HEX, HLS, HSV, RGB
 
 
-def parse_rgb_values(*args) -> tuple:
-    return tuple(map(math.ceil, parse_float_values(*args)))
+def _is_possibly_hex(arg):
+    return isinstance(arg, str) and len(arg.strip("# ")) > 0
 
 
-def parse_float_values(*args) -> tuple:
+def _parse_rgb_values(*args) -> tuple:
+    return tuple(map(math.ceil, _parse_float_values(*args)))
+
+
+def _parse_float_values(*args) -> tuple:
     return tuple([0 if not v else float(v) for v in args])
 
 
@@ -87,6 +91,9 @@ def parse_hsv(*args) -> tuple:
             elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hsv"):
                 h, s, v = arg["h"], arg["s"], arg["v"]
 
+            elif _is_possibly_hex(arg):
+                h, s, v = convert.hex_to_hsv(parse_hex(arg))
+
             else:
                 h = arg
 
@@ -96,7 +103,7 @@ def parse_hsv(*args) -> tuple:
         elif 3 == num_args:
             h, s, v = args
 
-        h, s, v = parse_float_values(h, s, v)
+        h, s, v = _parse_float_values(h, s, v)
 
         if not validation.is_hsv(h, s, v):
             raise
@@ -140,6 +147,9 @@ def parse_hls(*args) -> tuple:
             elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hls"):
                 h, l, s = arg["h"], arg["l"], arg["s"]
 
+            elif _is_possibly_hex(arg):
+                h, l, s = convert.hex_to_hls(parse_hex(arg))
+
             else:
                 h = arg
 
@@ -149,7 +159,7 @@ def parse_hls(*args) -> tuple:
         elif 3 == num_args:
             h, l, s = args
 
-        h, l, s = parse_float_values(h, l, s)
+        h, l, s = _parse_float_values(h, l, s)
 
         if not validation.is_hls(h, l, s):
             raise
@@ -193,6 +203,9 @@ def parse_cmyk(*args) -> tuple:
             elif isinstance(arg, dict) and utils.dict_has_keys(arg, "cmyk"):
                 c, m, y, k = arg["c"], arg["m"], arg["y"], arg["k"]
 
+            elif _is_possibly_hex(arg):
+                c, m, y, k = convert.hex_to_cmyk(parse_hex(arg))
+
             else:
                 c = arg
 
@@ -205,7 +218,7 @@ def parse_cmyk(*args) -> tuple:
         elif 4 == num_args:
             c, m, y, k = args
 
-        c, m, y, k = parse_float_values(c, m, y, k)
+        c, m, y, k = _parse_float_values(c, m, y, k)
 
         if not validation.is_cmyk(c, m, y, k):
             raise
@@ -249,7 +262,7 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, dict) and utils.dict_has_keys(arg, "rgb"):
                 r, g, b = arg["r"], arg["g"], arg["b"]
 
-            elif isinstance(arg, str) and len(arg.strip("# ")) > 0:
+            elif _is_possibly_hex(arg):
                 r, g, b = convert.hex_to_rgb(parse_hex(arg))
 
             else:
@@ -261,7 +274,7 @@ def parse_rgb(*args) -> tuple:
         elif 3 == num_args:
             r, g, b = args
 
-        r, g, b = parse_rgb_values(r, g, b)
+        r, g, b = _parse_rgb_values(r, g, b)
 
         if not validation.is_rgb(r, g, b):
             raise
