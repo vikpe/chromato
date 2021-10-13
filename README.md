@@ -293,13 +293,13 @@ convert.rgb_to_hsv(255, 255, 0)   # HSV(0, 1, 1)
 ## Parsing
 Each parse function takes any kind of value and tries to parse it.
 
-```python
-parse_cmyk(value)  # (c, m, y, k)
-parse_hex(value)   # "hex"
-parse_hls(value)   # (h, l, s)
-parse_hsv(value)   # (h, s, v)
-parse_rgb(value)   # (r, g, b)
-```
+Function | Returns | Description
+--- | --- | ---
+`parse_cmyk` | `tuple(c,m,y,k)` |  Parse value as CMYK 
+`parse_hex` | `str(hex)` |  Parse value as HEX 
+`parse_hls` | `tuple(h,l,s)` |  Parse value as HLS 
+`parse_hsv` | `tuple(h,s,v)` |  Parse value as HSV 
+`parse_rgb` | `tuple(r,g,b)` |  Parse value as RGB 
 
 **Example**
 
