@@ -42,14 +42,14 @@ red.hsv   # HSV(h=0, s=1, v=1)
 **Operations**
 ```python
 from chromato import operations
-from chromato.spaces import Color
+from chromato.spaces import RGB
 
-red = Color(255, 0, 0)
-blue = Color(0, 0, 255)
+red = RGB(255, 0, 0)
+blue = RGB(0, 0, 255)
 
 operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
 operations.blend(red, blue).rgb  # RGB(r=128, g=0, b=128)
-operations.tint(red, 0.1).rgb    # Color(r=255, g=26, b=26)
+operations.tint(red, 0.1).rgb    # RGB(r=255, g=26, b=26)
 ```
 
 **Conversion**
@@ -130,8 +130,8 @@ blend(color1, color2, factor: float = 0.5) -> Color
 **Examples**
 
 ```python
-white = Color(255, 255, 255)
-black = Color(0, 0, 0)
+white = RGB(255, 255, 255)
+black = RGB(0, 0, 0)
 
 blend(white, black).rgb       # Color(r=128, g=128, b=128)
 blend(white, black, 0.2).rgb  # Color(r=204, g=204, b=204)
@@ -151,7 +151,7 @@ tint(color, factor: float) -> Color
 **Example**
 
 ```python
-tint(Color(255, 0, 0), 0.5).rgb  # Color(r=255, g=128, b=128)
+tint(RGB(255, 0, 0), 0.5).rgb  # Color(r=255, g=128, b=128)
 ```
 
 ---
@@ -167,7 +167,7 @@ shade(color, factor: float) -> Color
 **Example**
 
 ```python
-shade(Color(255, 0, 0), 0.5).rgb  # Color(r=128, g=0, b=0)
+shade(RGB(255, 0, 0), 0.5).rgb  # Color(r=128, g=0, b=0)
 ```
 
 ---
@@ -183,7 +183,7 @@ tone(color, factor: float) -> Color
 **Example**
 
 ```python
-tone(Color(255, 0, 0), 0.5).rgb  # Color(r=192, g=64, b=64)
+tone(RGB(255, 0, 0), 0.5).rgb  # Color(r=192, g=64, b=64)
 ```
 
 ---
@@ -199,7 +199,7 @@ invert(color) -> Color
 **Example**
 
 ```python
-invert(Color(255, 0, 0)).rgb  # Color(r=0, g=255, b=255) 
+invert(RGB(255, 0, 0)).rgb  # Color(r=0, g=255, b=255) 
 ```
 
 ---
@@ -215,7 +215,7 @@ complementary(color) -> Color
 **Example**
 
 ```python
-complement(Color(255, 0, 0))  # Color(r=0, g=255, b=255)
+complement(RGB(255, 0, 0))  # Color(r=0, g=255, b=255)
 ```
 
 ---
@@ -231,7 +231,7 @@ add(color1, color2) -> Color
 **Example**
 
 ```python
-add(Color(255, 0, 0), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=255) 
+add(RGB(255, 0, 0), RGB(0, 0, 255)).rgb  # Color(r=255, g=0, b=255) 
 ```
 
 ---
@@ -247,7 +247,7 @@ subtract(color1, color2) -> Color
 **Example**
 
 ```python
-subtract(Color(255, 0, 255), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=0)
+subtract(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # Color(r=255, g=0, b=0)
 ```
 
 ---
