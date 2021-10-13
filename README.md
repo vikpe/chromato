@@ -98,11 +98,11 @@ from chromato.spaces import Color
 
 red = Color(255, 0, 0)
 
-red.cmyk  # CMYK(0, 100, 100, 0)
+red.cmyk  # CMYK(c=0, m=100, y=100, k=0)
 red.hex   # HEX(ff0000)
-red.hls   # HLS(0, 0.5, 1)
-red.hsv   # HSV(0, 1, 1)
-red.rgb   # RGB(255, 0, 0)
+red.hls   # HLS(h=0, l=0.5, s=1)
+red.hsv   # HSV(h=0, s=1, v=1)
+red.rgb   # RGB(r=255, g=0, b=0)
 ```
 
 **Construct**
