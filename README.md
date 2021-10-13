@@ -170,8 +170,8 @@ HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 ```python
 from chromato import convert
 
-convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
 convert.rgb_to_cmyk(255, 0, 0)  # CMYK(0, 100, 100, 0)
+convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
 convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
 convert.rgb_to_hls(255, 0, 0)   # HLS(0, 0.5, 1)
 convert.rgb_to_hsv(255, 0, 0)   # HSV(0, 1, 1)
