@@ -5,10 +5,10 @@ from chromato.spaces import Color, RGB
 def blend(color1, color2, factor: float = 0.5) -> Color:
     r1, g1, b1 = parse.parse_rgb(color1)
     r2, g2, b2 = parse.parse_rgb(color2)
-    r = utils.lerp(r1, r2, factor)
-    g = utils.lerp(g1, g2, factor)
-    b = utils.lerp(b1, b2, factor)
-    return Color(RGB(r, g, b))
+    r_blend = utils.lerp(r1, r2, factor)
+    g_blend = utils.lerp(g1, g2, factor)
+    b_blend = utils.lerp(b1, b2, factor)
+    return Color(RGB(r_blend, g_blend, b_blend))
 
 
 def shade(color, factor: float) -> Color:
@@ -34,15 +34,15 @@ def grayscale(color) -> Color:
 
 def invert(color) -> Color:
     rgb = parse.parse_rgb(color)
-    invert_r, invert_g, invert_b = [constants.RGB_MAX - v for v in rgb]
-    return Color(RGB(invert_r, invert_g, invert_b))
+    r_inv, g_inv, b_inv = [constants.RGB_MAX - v for v in rgb]
+    return Color(RGB(r_inv, g_inv, b_inv))
 
 
 def complement(color) -> Color:
     rgb = parse.parse_rgb(color)
     k = sum([max(*rgb), min(*rgb)])
-    comp_r, comp_g, comp_b = [k - v for v in rgb]
-    return Color(RGB(comp_r, comp_g, comp_b))
+    r_comp, g_comp, b_comp = [k - v for v in rgb]
+    return Color(RGB(r_comp, g_comp, b_comp))
 
 
 def add(color1, color2) -> Color:

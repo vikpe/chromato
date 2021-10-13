@@ -42,14 +42,14 @@ red.hsv   # HSV(h=0, s=1, v=1)
 **Operations**
 ```python
 from chromato import operations
-from chromato.spaces import Color
+from chromato.spaces import RGB
 
-red = Color(255, 0, 0)
-blue = Color(0, 0, 255)
+red = RGB(255, 0, 0)
+blue = RGB(0, 0, 255)
 
 operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
 operations.blend(red, blue).rgb  # RGB(r=128, g=0, b=128)
-operations.tint(red, 0.1).rgb    # Color(r=255, g=26, b=26)
+operations.tint(red, 0.1).rgb    # RGB(r=255, g=26, b=26)
 ```
 
 **Conversion**
@@ -118,152 +118,33 @@ Color(CMYK(0, 100, 100, 0))
 ```
 
 ## Operations
+Each operation take one or several color values and returns a `Color` instance.
 
-### Blend
+Operation | Description
+--- | ---
+**`blend`**`(color1, color2, factor)` | Blend/mix colors
+**`tint`**`(color, factor)` | Increase lightness (blend with white)
+**`shade`**`(color, factor)` | Increase darkness (blend with black)
+**`tone`**`(color, factor)` | Reduce colorfullness (blend with gray)
+**`invert`**`(color)` | Invert color
+**`complement`**`(color)` | Complementary color
+**`add`**`(color1, color2)` | Add colors
+**`subtract`**`(color1, color2)` | Subtract colors
+**`multiply`**`(color1, color2)` | Multiply colors
 
-Blend/mix colors
-
-```python
-blend(color1, color2, factor: float = 0.5) -> Color
-```
-
-**Examples**
-
-```python
-white = Color(255, 255, 255)
-black = Color(0, 0, 0)
-
-blend(white, black).rgb       # Color(r=128, g=128, b=128)
-blend(white, black, 0.2).rgb  # Color(r=204, g=204, b=204)
-blend(white, black, 0.8).rgb  # Color(r=51, g=51, b=51)
-```
-
----
-
-### Tint
-
-Increase lightness (blend with white)
-
-```python
-tint(color, factor: float) -> Color
-```
+* **Arguments**: `color<any>`, `factor <float> [0-1]`
+* **Returns**: instance of `Color`
 
 **Example**
-
 ```python
-tint(Color(255, 0, 0), 0.5).rgb  # Color(r=255, g=128, b=128)
-```
+white = RGB(255, 255, 255)
+black = RGB(0, 0, 0)
 
----
+blend(white, black).rgb       # RGB(r=128, g=128, b=128)
+blend(white, black, 0.2).rgb  # RGB(r=204, g=204, b=204)
+blend(white, black, 0.8).rgb  # RGB(r=51, g=51, b=51)
 
-### Shade
-
-Increase darkness (blend with black)
-
-```python
-shade(color, factor: float) -> Color
-```
-
-**Example**
-
-```python
-shade(Color(255, 0, 0), 0.5).rgb  # Color(r=128, g=0, b=0)
-```
-
----
-
-### Tone
-
-Reduce colorfullness (blend with gray)
-
-```python
-tone(color, factor: float) -> Color
-```
-
-**Example**
-
-```python
-tone(Color(255, 0, 0), 0.5).rgb  # Color(r=192, g=64, b=64)
-```
-
----
-
-### Invert
-
-Invert color
-
-```python
-invert(color) -> Color
-```
-
-**Example**
-
-```python
-invert(Color(255, 0, 0)).rgb  # Color(r=0, g=255, b=255) 
-```
-
----
-
-### Complement
-
-Complementary color
-
-```python
-complementary(color) -> Color
-```
-
-**Example**
-
-```python
-complement(Color(255, 0, 0))  # Color(r=0, g=255, b=255)
-```
-
----
-
-### Add
-
-Add colors
-
-```python
-add(color1, color2) -> Color
-```
-
-**Example**
-
-```python
-add(Color(255, 0, 0), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=255) 
-```
-
----
-
-### Subtract
-
-Subtract colors
-
-```python
-subtract(color1, color2) -> Color
-```
-
-**Example**
-
-```python
-subtract(Color(255, 0, 255), Color(0, 0, 255)).rgb  # Color(r=255, g=0, b=0)
-```
-
----
-
-### Multiply
-
-Multiply colors
-
-```python
-multiply(color1, color2) -> Color
-```
-
-**Example**
-
-```python
-multiply(RGB(255, 0, 255), RGB(0, 0, 255)).rgb  # Color(r=0, g=0, b=255)
+invert(black).rgb             # RGB(r=255, g=255, b=255)
 ```
 
 ## Conversion
