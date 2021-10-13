@@ -143,6 +143,9 @@ Operation | Description
 
 **Example**
 ```python
+from chromato.spaces import RGB
+from chromato.operations import blend, invert
+
 white = RGB(255, 255, 255)
 black = RGB(0, 0, 0)
 
@@ -182,11 +185,11 @@ Each parse function takes any kind of value and tries to parse it.
 
 Function | Returns | Description
 --- | --- | ---
-`parse_cmyk` | `tuple(c,m,y,k)` |  Parse value as CMYK 
-`parse_hex` | `str(hex)` |  Parse value as HEX 
-`parse_hls` | `tuple(h,l,s)` |  Parse value as HLS 
-`parse_hsv` | `tuple(h,s,v)` |  Parse value as HSV 
-`parse_rgb` | `tuple(r,g,b)` |  Parse value as RGB 
+**`parse_cmyk()`** | `tuple(c,m,y,k)` |  Parse value as CMYK 
+**`parse_hex()`** | `str(hex)` |  Parse value as HEX 
+**`parse_hls()`** | `tuple(h,l,s)` |  Parse value as HLS 
+**`parse_hsv()`** | `tuple(h,s,v)` |  Parse value as HSV 
+**`parse_rgb()`** | `tuple(r,g,b)` |  Parse value as RGB 
 
 **Example**
 
