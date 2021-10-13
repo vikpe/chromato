@@ -221,12 +221,12 @@ validation.is_rgb(r, g, b)
 
 # Development [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-## Setup
+**Setup**
 
 1. Install [poetry](https://github.com/python-poetry/poetry)
 2. `poetry install`
 
-## Tests
+**Tests**
 
 Run tests on changes in source code or tests.
 
@@ -234,7 +234,7 @@ Run tests on changes in source code or tests.
 poetry run ptw --clear --runner "poetry run pytest --cov -vv" 
 ```
 
-## Code formatting (black)
+**Code formatting (black)**
 
 ```shell
 poetry run black . 
