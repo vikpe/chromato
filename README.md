@@ -4,8 +4,8 @@
         <b>Fresh color utilities for Python</b>
     </p>
 
-<!--![test](https://github.com/vikpe/chromato/workflows/test/badge.svg?branch=master) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/master/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)-->
-    
+[![test](https://github.com/vikpe/chromato/actions/workflows/test.yml/badge.svg)](https://github.com/vikpe/chromato/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/master/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)
+
 <br>
 
 </div>
