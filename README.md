@@ -18,11 +18,15 @@
 * [Validation](#validation)
 * (zero dependecies!)
 
+<br>
+
 # Install
 
 ```shell
 pip install chromato
 ```
+
+<br>
 
 # Example usage
 
@@ -60,6 +64,8 @@ convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
 convert.hex_to_rgb("ff0000")   # RGB(r=255, g=0, b=0)
 convert.hex_to_cmyk("f0f")     # CMYK(c=0, m=100.0, y=0, k=0)
 ```
+
+<br>
 
 # API
 
@@ -210,6 +216,8 @@ validation.is_hls(h, l, s)
 validation.is_hsv(h, s, v)
 validation.is_rgb(r, g, b)
 ```
+
+<br>
 
 # Development [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
