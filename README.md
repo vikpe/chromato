@@ -4,7 +4,7 @@
         <b>Fresh color utilities for Python</b>
     </p>
 
-[![PyPI version](https://badge.fury.io/py/chromato.svg)](https://badge.fury.io/py/chromato) [![test](https://github.com/vikpe/chromato/actions/workflows/test.yml/badge.svg)](https://github.com/vikpe/chromato/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/main/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)
+[![PyPI version](https://badge.fury.io/py/chromato.svg)](https://pypi.org/project/chromato/) [![test](https://github.com/vikpe/chromato/actions/workflows/test.yml/badge.svg)](https://github.com/vikpe/chromato/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/vikpe/chromato/branch/main/graph/badge.svg)](https://codecov.io/gh/vikpe/chromato)
 
 <br>
 
