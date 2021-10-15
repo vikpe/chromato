@@ -52,6 +52,7 @@ red = RGB(255, 0, 0)
 blue = RGB(0, 0, 255)
 
 operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
+operations.add(red, blue)        # RGB(r=255, g=0, b=255)
 operations.blend(red, blue).rgb  # RGB(r=128, g=0, b=128)
 operations.tint(red, 0.1).rgb    # RGB(r=255, g=26, b=26)
 ```
