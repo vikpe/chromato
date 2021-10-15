@@ -10,7 +10,7 @@ def test_parse_hex():
     assert parse.parse_hex(spaces.Color(255, 0, 0)) == "ff0000"
     assert parse.parse_hex(spaces.CMYK(0, 100, 100, 0)) == "ff0000"
     assert parse.parse_hex(spaces.HEX("ff0000")) == "ff0000"
-    assert parse.parse_hex(spaces.HLS(0, 0.5, 1)) == "ff0000"
+    assert parse.parse_hex(spaces.HSL(0, 1, 0.5)) == "ff0000"
     assert parse.parse_hex(spaces.HSV(0, 1, 1)) == "ff0000"
     assert parse.parse_hex(spaces.RGB(255, 0, 0)) == "ff0000"
     assert parse.parse_hex({"hex": "ff0000"}) == "ff0000"
@@ -52,7 +52,7 @@ def test_parse_hsv():
     assert parse.parse_hsv(spaces.Color(255, 0, 0)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.CMYK(0, 100, 100, 0)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.HEX("ff0000")) == (0, 1, 1)
-    assert parse.parse_hsv(spaces.HLS(0, 0.5, 1)) == (0, 1, 1)
+    assert parse.parse_hsv(spaces.HSL(0, 1, 0.5)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.HSV(0, 1, 1)) == (0, 1, 1)
     assert parse.parse_hsv(spaces.RGB(255, 0, 0)) == (0, 1, 1)
     assert parse.parse_hsv(0) == (0, 0, 0)
@@ -78,36 +78,36 @@ def test_parse_hsv():
             parse.parse_hsv(value)
 
 
-def test_parse_hls():
+def test_parse_hsl():
     # valid
-    assert parse.parse_hls(spaces.Color(255, 0, 0)) == (0, 0.5, 1)
-    assert parse.parse_hls(spaces.CMYK(0, 100, 100, 0)) == (0, 0.5, 1)
-    assert parse.parse_hls(spaces.HEX("ff0000")) == (0, 0.5, 1)
-    assert parse.parse_hls(spaces.HLS(0, 0.5, 1)) == (0, 0.5, 1)
-    assert parse.parse_hls(spaces.HSV(0, 1, 1)) == (0, 0.5, 1)
-    assert parse.parse_hls(spaces.RGB(255, 0, 0)) == (0, 0.5, 1)
-    assert parse.parse_hls(0) == (0, 0, 0)
-    assert parse.parse_hls(1) == (1, 0, 0)
-    assert parse.parse_hls(1, 0.5) == (1, 0.5, 0)
-    assert parse.parse_hls(1, 0.5, 0.2) == (1, 0.5, 0.2)
-    assert parse.parse_hls(1, 0.5, 0.2) == (1, 0.5, 0.2)
-    assert parse.parse_hls("1", "0.5", "0.2") == (1, 0.5, 0.2)
-    assert parse.parse_hls((1, 0.5, 0.2)) == (1, 0.5, 0.2)
-    assert parse.parse_hls({"h": 1, "l": 0.5, "s": 0.2}) == (1, 0.5, 0.2)
-    assert parse.parse_hls("ff0000") == (0, 0.5, 1)
-    assert parse.parse_hls("#ff0000") == (0, 0.5, 1)
-    assert parse.parse_hls("#f00") == (0, 0.5, 1)
-    assert parse.parse_hls("f00") == (0, 0.5, 1)
-    assert parse.parse_hls("") == (0, 0, 0)
-    assert parse.parse_hls(False) == (0, 0, 0)
-    assert parse.parse_hls(None) == (0, 0, 0)
+    assert parse.parse_hsl(spaces.Color(255, 0, 0)) == (0, 1, 0.5)
+    assert parse.parse_hsl(spaces.CMYK(0, 100, 100, 0)) == (0, 1, 0.5)
+    assert parse.parse_hsl(spaces.HEX("ff0000")) == (0, 1, 0.5)
+    assert parse.parse_hsl(spaces.HSL(0, 1, 0.5)) == (0, 1, 0.5)
+    assert parse.parse_hsl(spaces.HSV(0, 1, 1)) == (0, 1, 0.5)
+    assert parse.parse_hsl(spaces.RGB(255, 0, 0)) == (0, 1, 0.5)
+    assert parse.parse_hsl(0) == (0, 0, 0)
+    assert parse.parse_hsl(1) == (1, 0, 0)
+    assert parse.parse_hsl(1, 0.5) == (1, 0.5, 0)
+    assert parse.parse_hsl(1, 0.5, 0.2) == (1, 0.5, 0.2)
+    assert parse.parse_hsl(1, 0.5, 0.2) == (1, 0.5, 0.2)
+    assert parse.parse_hsl("1", "0.5", "0.2") == (1, 0.5, 0.2)
+    assert parse.parse_hsl((1, 0.5, 0.2)) == (1, 0.5, 0.2)
+    assert parse.parse_hsl({"h": 1, "s": 0.5, "l": 0.2}) == (1, 0.5, 0.2)
+    assert parse.parse_hsl("ff0000") == (0, 1, 0.5)
+    assert parse.parse_hsl("#ff0000") == (0, 1, 0.5)
+    assert parse.parse_hsl("#f00") == (0, 1, 0.5)
+    assert parse.parse_hsl("f00") == (0, 1, 0.5)
+    assert parse.parse_hsl("") == (0, 0, 0)
+    assert parse.parse_hsl(False) == (0, 0, 0)
+    assert parse.parse_hsl(None) == (0, 0, 0)
 
     # invalid
     invalid_values = ["f0x", (1.1, 0, 0), {"x": 1, "y": 1}]
 
     for value in invalid_values:
         with pytest.raises(ValueError):
-            parse.parse_hls(value)
+            parse.parse_hsl(value)
 
 
 def test_parse_cmyk():
@@ -115,7 +115,7 @@ def test_parse_cmyk():
     assert parse.parse_cmyk(spaces.Color(255, 0, 0)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.CMYK(0, 100, 100, 0)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.HEX("ff0000")) == (0, 100, 100, 0)
-    assert parse.parse_cmyk(spaces.HLS(0, 0.5, 1)) == (0, 100, 100, 0)
+    assert parse.parse_cmyk(spaces.HSL(0, 1, 0.5)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.HSV(0, 1, 1)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(spaces.RGB(255, 0, 0)) == (0, 100, 100, 0)
     assert parse.parse_cmyk(0) == (0, 0, 0, 100)
@@ -146,7 +146,7 @@ def test_parse_rgb():
     assert parse.parse_rgb(spaces.Color(255, 0, 0)) == (255, 0, 0)
     assert parse.parse_rgb(spaces.CMYK(0, 100, 100, 0)) == (255, 0, 0)
     assert parse.parse_rgb(spaces.HEX("ff0000")) == (255, 0, 0)
-    assert parse.parse_rgb(spaces.HLS(0, 0.5, 1)) == (255, 0, 0)
+    assert parse.parse_rgb(spaces.HSL(0, 1, 0.5)) == (255, 0, 0)
     assert parse.parse_rgb(spaces.HSV(0, 1, 1)) == (255, 0, 0)
     assert parse.parse_rgb(spaces.RGB(255, 0, 0)) == (255, 0, 0)
     assert parse.parse_rgb() == (0, 0, 0)

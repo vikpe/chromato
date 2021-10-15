@@ -1,8 +1,8 @@
 CMYK_MIN = 0.0
 CMYK_MAX = 100.0
 
-HLS_MIN = 0.0
-HLS_MAX = 1.0
+HSL_MIN = 0.0
+HSL_MAX = 1.0
 
 HSV_MIN = 0.0
 HSV_MAX = 1.0

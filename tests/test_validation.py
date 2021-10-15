@@ -72,20 +72,20 @@ def test_is_cmyk():
     assert validation.is_cmyk(0, 0, -0.1, 0) is False
 
 
-def test_is_hls_value():
-    valid = [0, 0.5, 1]
-    assert_all_true(validation.is_hls_value, valid)
+def test_is_hsl_value():
+    valid = [0, 1, 0.5]
+    assert_all_true(validation.is_hsl_value, valid)
 
     invalid = ["0.5", -0.1, 1.1, "a"] + NON_VALUES
-    assert_all_false(validation.is_hls_value, invalid)
+    assert_all_false(validation.is_hsl_value, invalid)
 
 
-def test_is_hls():
-    assert validation.is_hls(0, 0.5, 0) is True
+def test_is_hsl():
+    assert validation.is_hsl(0, 0.5, 0) is True
 
-    assert validation.is_hls("1", 0, 0.5) is False
-    assert validation.is_hls(0, 0, "a") is False
-    assert validation.is_hls(0, -0.1, 0) is False
+    assert validation.is_hsl("1", 0, 0.5) is False
+    assert validation.is_hsl(0, 0, "a") is False
+    assert validation.is_hsl(0, -0.1, 0) is False
 
 
 def test_is_hsv_value():

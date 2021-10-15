@@ -1,4 +1,4 @@
-from chromato.spaces import Color, CMYK, HEX, HLS, HSV, RGB
+from chromato.spaces import Color, CMYK, HEX, HSL, HSV, RGB
 
 
 def test_hex():
@@ -8,13 +8,13 @@ def test_hex():
 def test_construct():
     red_hex = HEX("f00")
     red_cmyk = CMYK(0, 100, 100, 0)
-    red_hls = HLS(0, 0.5, 1)
+    red_hsl = HSL(0, 1, 0.5)
     red_hsv = HSV(0, 1, 1)
     red_rgb = RGB(255, 0, 0)
     assert (
         Color(red_hex)
         == Color(red_cmyk)
-        == Color(red_hls)
+        == Color(red_hsl)
         == Color(red_hsv)
         == Color(red_rgb)
     )
@@ -25,7 +25,7 @@ def test_color_properties():
     assert color.rgb == RGB(255, 0, 0)
     assert color.hex == HEX("ff0000")
     assert color.cmyk == CMYK(0, 100, 100, 0)
-    assert color.hls == HLS(0, 0.5, 1)
+    assert color.hsl == HSL(0, 1, 0.5)
     assert color.hsv == HSV(0, 1, 1)
     assert color == Color("ff0000")
     assert color != "255 0 0"

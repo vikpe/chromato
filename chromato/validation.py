@@ -44,16 +44,16 @@ def is_hex(value) -> bool:
     )
 
 
-def is_hls_value(value) -> bool:
+def is_hsl_value(value) -> bool:
     return is_number_in_range(
         value,
-        constants.HLS_MIN,
-        constants.HLS_MAX,
+        constants.HSL_MIN,
+        constants.HSL_MAX,
     )
 
 
-def is_hls(h, l, s) -> bool:
-    return all(is_hls_value(v) for v in (h, l, s))
+def is_hsl(h, s, l) -> bool:
+    return all(is_hsl_value(v) for v in (h, s, l))
 
 
 def is_hsv_value(value) -> bool:

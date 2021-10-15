@@ -8,9 +8,9 @@ def cmyk_to_hex(*args) -> spaces.HEX:
     return rgb_to_hex(rgb)
 
 
-def cmyk_to_hls(*args) -> spaces.HLS:
+def cmyk_to_hsl(*args) -> spaces.HSL:
     rgb = cmyk_to_rgb(*args)
-    return rgb_to_hls(rgb)
+    return rgb_to_hsl(rgb)
 
 
 def cmyk_to_hsv(*args) -> spaces.HSV:
@@ -40,9 +40,9 @@ def hex_to_cmyk(_hex) -> spaces.CMYK:
     return rgb_to_cmyk(rgb)
 
 
-def hex_to_hls(_hex) -> spaces.HLS:
+def hex_to_hsl(_hex) -> spaces.HSL:
     rgb = hex_to_rgb(_hex)
-    return rgb_to_hls(rgb)
+    return rgb_to_hsl(rgb)
 
 
 def hex_to_hsv(_hex) -> spaces.HSV:
@@ -58,24 +58,24 @@ def hex_to_rgb(_hex) -> spaces.RGB:
     return spaces.RGB(r, g, b)
 
 
-def hls_to_cmyk(*args) -> spaces.CMYK:
-    rgb = hls_to_rgb(*args)
+def hsl_to_cmyk(*args) -> spaces.CMYK:
+    rgb = hsl_to_rgb(*args)
     return rgb_to_cmyk(rgb)
 
 
-def hls_to_hex(*args) -> spaces.HEX:
-    rgb = hls_to_rgb(*args)
+def hsl_to_hex(*args) -> spaces.HEX:
+    rgb = hsl_to_rgb(*args)
     return rgb_to_hex(rgb)
 
 
-def hls_to_hsv(*args) -> spaces.HSV:
-    rgb = hls_to_rgb(*args)
+def hsl_to_hsv(*args) -> spaces.HSV:
+    rgb = hsl_to_rgb(*args)
     return rgb_to_hsv(rgb)
 
 
-def hls_to_rgb(*args) -> spaces.RGB:
-    hls = parse.parse_hls(*args)
-    r, g, b = [constants.RGB_MAX * v for v in colorsys.hls_to_rgb(*hls)]
+def hsl_to_rgb(*args) -> spaces.RGB:
+    h, s, l = parse.parse_hsl(*args)
+    r, g, b = [constants.RGB_MAX * v for v in colorsys.hls_to_rgb(h, l, s)]
     return spaces.RGB(r, g, b)
 
 
@@ -89,9 +89,9 @@ def hsv_to_hex(*args) -> spaces.HEX:
     return rgb_to_hex(rgb)
 
 
-def hsv_to_hls(*args) -> spaces.HLS:
+def hsv_to_hsl(*args) -> spaces.HSL:
     rgb = hsv_to_rgb(*args)
-    return rgb_to_hls(rgb)
+    return rgb_to_hsl(rgb)
 
 
 def hsv_to_rgb(*args) -> spaces.RGB:
@@ -133,10 +133,10 @@ def rgb_to_hex(*args) -> spaces.HEX:
     return spaces.HEX(_hex)
 
 
-def rgb_to_hls(*args) -> spaces.HLS:
+def rgb_to_hsl(*args) -> spaces.HSL:
     rgb = parse.parse_rgb(*args)
     h, l, s = colorsys.rgb_to_hls(*[v / constants.RGB_MAX for v in rgb])
-    return spaces.HLS(h, l, s)
+    return spaces.HSL(h, s, l)
 
 
 def rgb_to_hsv(*args) -> spaces.HSV:

@@ -10,7 +10,7 @@
 
 </div>
 
-* [**Color spaces**](#color-spaces): CMYK, HEX, RGB, HLS, HSV
+* [**Color spaces**](#color-spaces): CMYK, HEX, RGB, HSL, HSV
 * [**Color class**](#color-class): Convenience class for color manipulation
 * [**Operations**](#operations): shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
 * [**Conversion**](#conversion): Convert any color space to any color space
@@ -39,7 +39,7 @@ red = Color(255, 0, 0)
 red.cmyk  # CMYK(c=0, m=100, y=100, k=0)
 red.hex   # HEX(ff0000)
 red.rgb   # RGB(r=255, g=0, b=0)
-red.hls   # HLS(h=0, l=0.5, s=1)
+red.hsl   # HSL(h=0, s=1, l=0.5)
 red.hsv   # HSV(h=0, s=1, v=1)
 ```
 
@@ -76,17 +76,16 @@ Name | Properties | Range
 ---|---|---
 CMYK | `c`, `m`, `y`, `k` | `0-100`, `0-100`, `0-100`, `0-100`
 HEX | (is a string) | `000000-ffffff`
-HLS | `h`, `l`, `s` |  `0-1`, `0-1`, `0-1`
+HSL | `h`, `s`, `l` |  `0-1`, `0-1`, `0-1`
 HSV | `h`, `s`, `v` |  `0-1`, `0-1`, `0-1`
 RGB | `r`, `g`, `b` | `0-255`, `0-255`, `0-255`
 
-
 ```python
-from chromato.spaces import CMYK, HEX, HLS, HSV, RGB
+from chromato.spaces import CMYK, HEX, HSL, HSV, RGB
 
 red_cmyk = CMYK(0, 100, 100, 0)
 red_hex  = HEX("ff0000")
-red_hls  = HLS(0, 0.5, 1)
+red_hsl  = HSL(0, 1, 0.5)
 red_hsv  = HSV(0, 1, 1)
 red_rgb  = RGB(255, 0, 0)
 ```
@@ -101,7 +100,7 @@ red = Color(255, 0, 0)
 
 red.cmyk  # CMYK(c=0, m=100, y=100, k=0)
 red.hex   # HEX(ff0000)
-red.hls   # HLS(h=0, l=0.5, s=1)
+red.hsl   # HSL(h=0, s=1, l=0.5)
 red.hsv   # HSV(h=0, s=1, v=1)
 red.rgb   # RGB(r=255, g=0, b=0)
 ```
@@ -120,7 +119,7 @@ Color(Color(255, 0, 0))
 Color(RGB(255, 0, 0))
 Color(HEX("ff0"))
 Color(HSV(0, 1, 1))
-Color(HLS(0, 0.5, 1))
+Color(HSL(0, 0.5, 1))
 Color(CMYK(0, 100, 100, 0))
 ```
 
@@ -162,13 +161,13 @@ invert("ff0000").hex          # HEX(00ffff)
 ## Conversion
 Convert any color space to any color space.
 
-🔀 | RGB | HEX | CMYK | HLS | HSV
+🔀 | RGB | HEX | CMYK | HSL | HSV
 --- | --- | --- | --- | --- | ---
-RGB | <!-- null --> | `hex_to_rgb` | `cmyk_to_rgb` | `hls_to_rgb` | `hsv_to_rgb`
-HEX | `rgb_to_hex` | <!-- null --> | `cmyk_to_hex` | `hls_to_hex` | `hsv_to_hex`
-CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hls_to_cmyk` | `hsv_to_cmyk`
-HLS | `rgb_to_hls` | `hex_to_hls` | `cmyk_to_hls` | <!-- null --> | `hsv_to_hls`
-HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
+RGB | <!-- null --> | `hex_to_rgb` | `cmyk_to_rgb` | `hsl_to_rgb` | `hsv_to_rgb`
+HEX | `rgb_to_hex` | <!-- null --> | `cmyk_to_hex` | `hsl_to_hex` | `hsv_to_hex`
+CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hsl_to_cmyk` | `hsv_to_cmyk`
+HSL | `rgb_to_hsl` | `hex_to_hsl` | `cmyk_to_hsl` | <!-- null --> | `hsv_to_hsl`
+HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hsl_to_hsv` | <!-- null -->
 
 
 **Example**
@@ -177,10 +176,10 @@ HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hls_to_hsv` | <!-- null -->
 from chromato import convert
 
 convert.rgb_to_cmyk(255, 0, 0)  # CMYK(0, 100, 100, 0)
-convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
-convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
-convert.rgb_to_hls(255, 0, 0)   # HLS(0, 0.5, 1)
-convert.rgb_to_hsv(255, 0, 0)   # HSV(0, 1, 1)
+convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
+convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
+convert.rgb_to_hsl(255, 0, 0)  # HSL(0, 0.5, 1)
+convert.rgb_to_hsv(255, 0, 0)  # HSV(0, 1, 1)
 ```
 
 ## Parsing
@@ -190,7 +189,7 @@ Function | Returns | Description
 --- | --- | ---
 **`parse_cmyk`**`(value)` | `tuple(c,m,y,k)` |  Parse value as CMYK 
 **`parse_hex`**`(value)` | `str(hex)` |  Parse value as HEX 
-**`parse_hls`**`(value)` | `tuple(h,l,s)` |  Parse value as HLS 
+**`parse_hsl`**`(value)` | `tuple(h,l,s)` |  Parse value as HSL 
 **`parse_hsv`**`(value)` | `tuple(h,s,v)` |  Parse value as HSV 
 **`parse_rgb`**`(value)` | `tuple(r,g,b)` |  Parse value as RGB 
 
@@ -218,7 +217,7 @@ from chromato import validation
 
 validation.is_cmyk(c, m, y, k)
 validation.is_hex(hex)
-validation.is_hls(h, l, s)
+validation.is_hsl(h, s, l)
 validation.is_hsv(h, s, v)
 validation.is_rgb(r, g, b)
 ```

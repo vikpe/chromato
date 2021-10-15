@@ -1,6 +1,6 @@
 import math
 from chromato import convert, validation, utils
-from chromato.spaces import Color, CMYK, HEX, HLS, HSV, RGB
+from chromato.spaces import Color, CMYK, HEX, HSL, HSV, RGB
 
 
 def _is_possibly_hex(arg):
@@ -25,8 +25,8 @@ def parse_hex(_hex) -> str:
     elif isinstance(_hex, CMYK):
         return str(convert.cmyk_to_hex(_hex))
 
-    elif isinstance(_hex, HLS):
-        return str(convert.hls_to_hex(_hex))
+    elif isinstance(_hex, HSL):
+        return str(convert.hsl_to_hex(_hex))
 
     elif isinstance(_hex, HSV):
         return str(convert.hsv_to_hex(_hex))
@@ -76,8 +76,8 @@ def parse_hsv(*args) -> tuple:
             elif isinstance(arg, CMYK):
                 return tuple(convert.cmyk_to_hsv(arg))
 
-            elif isinstance(arg, HLS):
-                return tuple(convert.hls_to_hsv(arg))
+            elif isinstance(arg, HSL):
+                return tuple(convert.hsl_to_hsv(arg))
 
             elif isinstance(arg, RGB):
                 return tuple(convert.rgb_to_hsv(arg))
@@ -114,8 +114,8 @@ def parse_hsv(*args) -> tuple:
     return h, s, v
 
 
-def parse_hls(*args) -> tuple:
-    h, l, s = (0, 0, 0)
+def parse_hsl(*args) -> tuple:
+    h, s, l = (0, 0, 0)
 
     try:
         num_args = len(args)
@@ -123,51 +123,51 @@ def parse_hls(*args) -> tuple:
         if 1 == num_args:
             arg = args[0]
 
-            if isinstance(arg, HLS):
+            if isinstance(arg, HSL):
                 return tuple(arg)
 
             elif isinstance(arg, HEX):
-                return tuple(convert.hex_to_hls(arg))
+                return tuple(convert.hex_to_hsl(arg))
 
             elif isinstance(arg, CMYK):
-                return tuple(convert.cmyk_to_hls(arg))
+                return tuple(convert.cmyk_to_hsl(arg))
 
             elif isinstance(arg, HSV):
-                return tuple(convert.hsv_to_hls(arg))
+                return tuple(convert.hsv_to_hsl(arg))
 
             elif isinstance(arg, RGB):
-                return tuple(convert.rgb_to_hls(arg))
+                return tuple(convert.rgb_to_hsl(arg))
 
             elif isinstance(arg, Color):
-                return tuple(arg.hls)
+                return tuple(arg.hsl)
 
             elif type(arg) in [tuple, list]:
-                return parse_hls(*arg)
+                return parse_hsl(*arg)
 
-            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hls"):
-                h, l, s = arg["h"], arg["l"], arg["s"]
+            elif isinstance(arg, dict) and utils.dict_has_keys(arg, "hsl"):
+                h, s, l = arg["h"], arg["s"], arg["l"]
 
             elif _is_possibly_hex(arg):
-                h, l, s = convert.hex_to_hls(parse_hex(arg))
+                h, s, l = convert.hex_to_hsl(parse_hex(arg))
 
             else:
                 h = arg
 
         elif 2 == num_args:
-            h, l = args
+            h, s = args
 
         elif 3 == num_args:
-            h, l, s = args
+            h, s, l = args
 
-        h, l, s = _parse_float_values(h, l, s)
+        h, s, l = _parse_float_values(h, s, l)
 
-        if not validation.is_hls(h, l, s):
+        if not validation.is_hsl(h, s, l):
             raise
 
     except BaseException:
-        raise ValueError("Unable to parse value as HLS", args)
+        raise ValueError("Unable to parse value as HSL", args)
 
-    return h, l, s
+    return h, s, l
 
 
 def parse_cmyk(*args) -> tuple:
@@ -185,8 +185,8 @@ def parse_cmyk(*args) -> tuple:
             elif isinstance(arg, HEX):
                 return tuple(convert.hex_to_cmyk(arg))
 
-            elif isinstance(arg, HLS):
-                return tuple(convert.hls_to_cmyk(arg))
+            elif isinstance(arg, HSL):
+                return tuple(convert.hsl_to_cmyk(arg))
 
             elif isinstance(arg, HSV):
                 return tuple(convert.hsv_to_cmyk(arg))
@@ -247,8 +247,8 @@ def parse_rgb(*args) -> tuple:
             elif isinstance(arg, HSV):
                 return tuple(convert.hsv_to_rgb(arg))
 
-            elif isinstance(arg, HLS):
-                return tuple(convert.hls_to_rgb(arg))
+            elif isinstance(arg, HSL):
+                return tuple(convert.hsl_to_rgb(arg))
 
             elif isinstance(arg, HEX):
                 return tuple(convert.hex_to_rgb(arg))

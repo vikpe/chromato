@@ -29,14 +29,14 @@ class HEX(ColorSpace, UserString):
 
 
 @attr.s(init=False)
-class HLS(ColorSpace):
+class HSL(ColorSpace):
     h = attr.ib()
-    l = attr.ib()
     s = attr.ib()
+    l = attr.ib()
 
     def __init__(self, *args):
-        h, l, s = parse.parse_hls(*args)
-        self.__attrs_init__(h, l, s)
+        h, s, l = parse.parse_hsl(*args)
+        self.__attrs_init__(h, s, l)
 
 
 @attr.s(init=False)
@@ -89,8 +89,8 @@ class Color:
         return CMYK(*convert.rgb_to_cmyk(self.rgb))
 
     @property
-    def hls(self) -> HLS:
-        return HLS(*convert.rgb_to_hls(self.rgb))
+    def hsl(self) -> HSL:
+        return HSL(*convert.rgb_to_hsl(self.rgb))
 
     @property
     def hsv(self) -> HSV:
