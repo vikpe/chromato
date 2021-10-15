@@ -119,7 +119,7 @@ Color(Color(255, 0, 0))
 Color(RGB(255, 0, 0))
 Color(HEX("ff0"))
 Color(HSV(0, 1, 1))
-Color(HSL(0, 0.5, 1))
+Color(HSL(0, 1, 0.5))
 Color(CMYK(0, 100, 100, 0))
 ```
 
@@ -175,11 +175,11 @@ HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hsl_to_hsv` | <!-- null -->
 ```python
 from chromato import convert
 
-convert.rgb_to_cmyk(255, 0, 0)  # CMYK(0, 100, 100, 0)
-convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
-convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
-convert.rgb_to_hsl(255, 0, 0)  # HSL(0, 0.5, 1)
-convert.rgb_to_hsv(255, 0, 0)  # HSV(0, 1, 1)
+convert.rgb_to_cmyk(255, 0, 0)  # CMYK(c=0, m=100, y=100, k=0)
+convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
+convert.rgb_to_hex(255, 0, 0)   # HEX(ff0000)
+convert.rgb_to_hsl(255, 0, 0)   # HSL(h=0, s=1, l=0.5)
+convert.rgb_to_hsv(255, 0, 0)   # HSV(h=0, s=1, v=1)
 ```
 
 ## Parsing
@@ -188,7 +188,7 @@ Each parse function takes any kind of value and tries to parse it.
 Function | Returns | Description
 --- | --- | ---
 **`parse_cmyk`**`(value)` | `tuple(c,m,y,k)` |  Parse value as CMYK 
-**`parse_hex`**`(value)` | `str(hex)` |  Parse value as HEX 
+**`parse_hex`**`(value)` | `str(hex)` |  Parse value as HEX
 **`parse_hsl`**`(value)` | `tuple(h,l,s)` |  Parse value as HSL 
 **`parse_hsv`**`(value)` | `tuple(h,s,v)` |  Parse value as HSV 
 **`parse_rgb`**`(value)` | `tuple(r,g,b)` |  Parse value as RGB 
@@ -199,14 +199,14 @@ Function | Returns | Description
 from chromato import parse
 from chromato.spaces import Color, HEX, RGB
 
-parse.parse_hex("f")                 # HEX(ffffff)
-parse.parse_hex("f60")               # HEX(ff6600)
-parse.parse_hex("ff6600")            # HEX(ff6600)
-parse.parse_hex(" #ff6600 ")         # HEX(ff6600)
-parse.parse_hex(333)                 # HEX(333333)
-parse.parse_hex(HEX("ff6600"))       # HEX(ff6600)
-parse.parse_hex(RGB(255, 102, 0))    # HEX(ff6600)
-parse.parse_hex(Color(255, 102, 0))  # HEX(ff6600)
+parse.parse_hex("f")                 # "ffffff"
+parse.parse_hex("f60")               # "ff6600"
+parse.parse_hex("ff6600")            # "ff6600"
+parse.parse_hex(" #ff6600 ")         # "ff6600"
+parse.parse_hex(333)                 # "333333"
+parse.parse_hex(HEX("ff6600"))       # "ff6600"
+parse.parse_hex(RGB(255, 102, 0))    # "ff6600"
+parse.parse_hex(Color(255, 102, 0))  # "ff6600"
 ```
 
 ## Validation
