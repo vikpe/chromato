@@ -155,6 +155,8 @@ blend(white, black, 0.2).rgb  # RGB(r=204, g=204, b=204)
 blend(white, black, 0.8).rgb  # RGB(r=51, g=51, b=51)
 
 invert(black).rgb             # RGB(r=255, g=255, b=255)
+invert((255, 0, 0))           # RGB(r=0, g=255, b=255)
+invert("ff0000").hex          # HEX(00ffff)
 ```
 
 ## Conversion
