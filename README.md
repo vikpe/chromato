@@ -63,7 +63,7 @@ from chromato import convert
 
 convert.rgb_to_hex(255, 0, 0)  # HEX(ff0000)
 convert.hex_to_rgb("ff0000")   # RGB(r=255, g=0, b=0)
-convert.hex_to_cmyk("f0f")     # CMYK(c=0, m=100.0, y=0, k=0)
+convert.hex_to_cmyk("f0f")     # CMYK(c=0, m=100, y=0, k=0)
 ```
 
 <br>
@@ -155,7 +155,7 @@ blend(white, black, 0.2).rgb  # RGB(r=204, g=204, b=204)
 blend(white, black, 0.8).rgb  # RGB(r=51, g=51, b=51)
 
 invert(black).rgb             # RGB(r=255, g=255, b=255)
-invert((255, 0, 0))           # RGB(r=0, g=255, b=255)
+invert((255, 0, 0)).cmyk      # CMYK(c=0, m=100, y=100, k=0)
 invert("ff0000").hex          # HEX(00ffff)
 ```
 
