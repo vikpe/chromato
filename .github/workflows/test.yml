@@ -3,6 +3,7 @@ on: [push]
 
 jobs:
   build:
+    timeout-minutes: 3
     strategy:
       matrix:
         os: [ubuntu-latest]
