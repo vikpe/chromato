@@ -2,6 +2,15 @@ from chromato import constants, parse, utils
 from chromato.spaces import Color, RGB
 
 
+def add(color1, color2) -> Color:
+    r1, g1, b1 = parse.parse_rgb(color1)
+    r2, g2, b2 = parse.parse_rgb(color2)
+    r_sum = min(constants.RGB_MAX, r1 + r2)
+    g_sum = min(constants.RGB_MAX, g1 + g2)
+    b_sum = min(constants.RGB_MAX, b1 + b2)
+    return Color(RGB(r_sum, g_sum, b_sum))
+
+
 def blend(color1, color2, factor: float = 0.5) -> Color:
     r1, g1, b1 = parse.parse_rgb(color1)
     r2, g2, b2 = parse.parse_rgb(color2)
@@ -11,19 +20,11 @@ def blend(color1, color2, factor: float = 0.5) -> Color:
     return Color(RGB(r_blend, g_blend, b_blend))
 
 
-def shade(color, factor: float) -> Color:
-    black = RGB(0, 0, 0)
-    return blend(color, black, factor)
-
-
-def tone(color, factor: float) -> Color:
-    gray = RGB(128, 128, 128)
-    return blend(color, gray, factor)
-
-
-def tint(color, factor: float) -> Color:
-    white = RGB(255, 255, 255)
-    return blend(color, white, factor)
+def complement(color) -> Color:
+    rgb = parse.parse_rgb(color)
+    k = sum([max(*rgb), min(*rgb)])
+    r_comp, g_comp, b_comp = [k - v for v in rgb]
+    return Color(RGB(r_comp, g_comp, b_comp))
 
 
 def grayscale(color) -> Color:
@@ -38,20 +39,18 @@ def invert(color) -> Color:
     return Color(RGB(r_inv, g_inv, b_inv))
 
 
-def complement(color) -> Color:
-    rgb = parse.parse_rgb(color)
-    k = sum([max(*rgb), min(*rgb)])
-    r_comp, g_comp, b_comp = [k - v for v in rgb]
-    return Color(RGB(r_comp, g_comp, b_comp))
-
-
-def add(color1, color2) -> Color:
+def multiply(color1, color2) -> Color:
     r1, g1, b1 = parse.parse_rgb(color1)
     r2, g2, b2 = parse.parse_rgb(color2)
-    r_sum = min(constants.RGB_MAX, r1 + r2)
-    g_sum = min(constants.RGB_MAX, g1 + g2)
-    b_sum = min(constants.RGB_MAX, b1 + b2)
-    return Color(RGB(r_sum, g_sum, b_sum))
+    r_mult = r1 * r2 / constants.RGB_MAX
+    g_mult = g1 * g2 / constants.RGB_MAX
+    b_mult = b1 * b2 / constants.RGB_MAX
+    return Color(RGB(r_mult, g_mult, b_mult))
+
+
+def shade(color, factor: float) -> Color:
+    black = RGB(0, 0, 0)
+    return blend(color, black, factor)
 
 
 def subtract(color1, color2) -> Color:
@@ -63,10 +62,11 @@ def subtract(color1, color2) -> Color:
     return Color(RGB(r_diff, g_diff, b_diff))
 
 
-def multiply(color1, color2) -> Color:
-    r1, g1, b1 = parse.parse_rgb(color1)
-    r2, g2, b2 = parse.parse_rgb(color2)
-    r_mult = r1 * r2 / constants.RGB_MAX
-    g_mult = g1 * g2 / constants.RGB_MAX
-    b_mult = b1 * b2 / constants.RGB_MAX
-    return Color(RGB(r_mult, g_mult, b_mult))
+def tint(color, factor: float) -> Color:
+    white = RGB(255, 255, 255)
+    return blend(color, white, factor)
+
+
+def tone(color, factor: float) -> Color:
+    gray = RGB(128, 128, 128)
+    return blend(color, gray, factor)
