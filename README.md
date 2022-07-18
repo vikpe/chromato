@@ -15,7 +15,7 @@
 * [**Color class**](#color-class): Convenience class for color manipulation
 * [**Operations**](#operations): shade, tone, tint, grayscale, invert, complement, add, subtract, multiply
 * [**Conversion**](#conversion): Convert any color space to any color space
-* [Parsing](#parsing) 
+* [Parsing](#parsing)
 * [Validation](#validation)
 * (zero dependecies!)
 
@@ -32,6 +32,7 @@ pip install chromato
 # Example usage
 
 **Color class**
+
 ```python
 from chromato.spaces import Color
 
@@ -45,6 +46,7 @@ red.hsv   # HSV(h=0, s=1, v=1)
 ```
 
 **Operations**
+
 ```python
 from chromato import operations
 from chromato.spaces import RGB
@@ -59,6 +61,7 @@ operations.tint(red, 0.1).rgb    # RGB(r=255, g=26, b=26)
 ```
 
 **Conversion**
+
 ```python
 from chromato import convert
 
@@ -94,6 +97,7 @@ red_rgb  = RGB(255, 0, 0)
 ## Color class
 
 **Properties**
+
 ```python
 from chromato.spaces import Color
 
@@ -125,6 +129,7 @@ Color(CMYK(0, 100, 100, 0))
 ```
 
 ## Operations
+
 Each operation take one or several color values and returns a `Color` instance.
 
 Operation | Description
@@ -132,6 +137,7 @@ Operation | Description
 **`add`**`(color1, color2)` | Add colors
 **`blend`**`(color1, color2, factor)` | Blend/mix colors
 **`complement`**`(color)` | Complementary color
+**`hsv_mod`**`(color, hue_shift, saturation_shift, value_shift)` | HSV modification
 **`invert`**`(color)` | Invert color
 **`multiply`**`(color1, color2)` | Multiply colors
 **`shade`**`(color, factor)` | Increase darkness (blend with black)
@@ -143,6 +149,7 @@ Operation | Description
 * **Returns**: instance of `Color`
 
 **Example**
+
 ```python
 from chromato.spaces import RGB
 from chromato.operations import blend, invert
@@ -160,6 +167,7 @@ invert("ff0000").hex          # HEX(00ffff)
 ```
 
 ## Conversion
+
 Convert any color space to any color space.
 
 🔀 | RGB | HEX | CMYK | HSL | HSV
@@ -169,7 +177,6 @@ HEX | `rgb_to_hex` | <!-- null --> | `cmyk_to_hex` | `hsl_to_hex` | `hsv_to_hex`
 CMYK | `rgb_to_cmyk` | `hex_to_cmyk` | <!-- null --> | `hsl_to_cmyk` | `hsv_to_cmyk`
 HSL | `rgb_to_hsl` | `hex_to_hsl` | `cmyk_to_hsl` | <!-- null --> | `hsv_to_hsl`
 HSV | `rgb_to_hsv` | `hex_to_hsv` | `cmyk_to_hsv` | `hsl_to_hsv` | <!-- null -->
-
 
 **Example**
 
@@ -184,15 +191,16 @@ convert.rgb_to_hsv(255, 0, 0)   # HSV(h=0, s=1, v=1)
 ```
 
 ## Parsing
+
 Each parse function takes any kind of value and tries to parse it.
 
 Function | Returns | Description
 --- | --- | ---
-**`parse_cmyk`**`(value)` | `tuple(c,m,y,k)` |  Parse value as CMYK 
+**`parse_cmyk`**`(value)` | `tuple(c,m,y,k)` |  Parse value as CMYK
 **`parse_hex`**`(value)` | `str(hex)` |  Parse value as HEX
-**`parse_hsl`**`(value)` | `tuple(h,l,s)` |  Parse value as HSL 
-**`parse_hsv`**`(value)` | `tuple(h,s,v)` |  Parse value as HSV 
-**`parse_rgb`**`(value)` | `tuple(r,g,b)` |  Parse value as RGB 
+**`parse_hsl`**`(value)` | `tuple(h,l,s)` |  Parse value as HSL
+**`parse_hsv`**`(value)` | `tuple(h,s,v)` |  Parse value as HSV
+**`parse_rgb`**`(value)` | `tuple(r,g,b)` |  Parse value as RGB
 
 **Example**
 
@@ -211,6 +219,7 @@ parse.parse_hex(Color(255, 102, 0))  # "ff6600"
 ```
 
 ## Validation
+
 Each validation function validates type and range. Returns `True`/`False`.
 
 ```python

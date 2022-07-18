@@ -1,5 +1,5 @@
 from chromato import constants, parse, utils
-from chromato.spaces import Color, RGB
+from chromato.spaces import Color, RGB, HSV
 
 
 def add(color1, color2) -> Color:
@@ -25,6 +25,16 @@ def complement(color) -> Color:
     k = sum([max(*rgb), min(*rgb)])
     r_comp, g_comp, b_comp = [k - v for v in rgb]
     return Color(RGB(r_comp, g_comp, b_comp))
+
+
+def hsv_mod(color: Color, hue_shift=0.0, saturation_shift=0.0, value_shift=0.0):
+    h, s, v = parse.parse_hsv(color)
+    result_hsv = HSV(
+        max(0, min(1, h + hue_shift)),
+        max(0, min(1, s + saturation_shift)),
+        max(0, min(1, v + value_shift)),
+    )
+    return Color(result_hsv)
 
 
 def grayscale(color) -> Color:

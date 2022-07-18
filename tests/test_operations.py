@@ -97,3 +97,9 @@ def test_multiply():
     assert op.multiply(RED, BLUE) == BLACK
     assert op.multiply(MAGENTA, BLUE) == BLUE
     assert op.multiply(Color(80, 40, 20), Color(255, 0, 127)) == Color(80, 0, 10)
+
+
+def test_hsv_mod():
+    assert op.hsv_mod(RED, 0.5) == CYAN
+    assert op.hsv_mod(RED, 0, -1) == WHITE
+    assert op.hsv_mod(RED, 0, 0, -1) == BLACK
