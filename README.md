@@ -52,9 +52,9 @@ from chromato.spaces import RGB
 red = RGB(255, 0, 0)
 blue = RGB(0, 0, 255)
 
-operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
 operations.add(red, blue)        # RGB(r=255, g=0, b=255)
 operations.blend(red, blue).rgb  # RGB(r=128, g=0, b=128)
+operations.invert(red).rgb       # RGB(r=0, g=255, b=255)
 operations.tint(red, 0.1).rgb    # RGB(r=255, g=26, b=26)
 ```
 
@@ -129,15 +129,15 @@ Each operation take one or several color values and returns a `Color` instance.
 
 Operation | Description
 --- | ---
-**`blend`**`(color1, color2, factor)` | Blend/mix colors
-**`tint`**`(color, factor)` | Increase lightness (blend with white)
-**`shade`**`(color, factor)` | Increase darkness (blend with black)
-**`tone`**`(color, factor)` | Reduce colorfullness (blend with gray)
-**`invert`**`(color)` | Invert color
-**`complement`**`(color)` | Complementary color
 **`add`**`(color1, color2)` | Add colors
-**`subtract`**`(color1, color2)` | Subtract colors
+**`blend`**`(color1, color2, factor)` | Blend/mix colors
+**`complement`**`(color)` | Complementary color
+**`invert`**`(color)` | Invert color
 **`multiply`**`(color1, color2)` | Multiply colors
+**`shade`**`(color, factor)` | Increase darkness (blend with black)
+**`subtract`**`(color1, color2)` | Subtract colors
+**`tint`**`(color, factor)` | Increase lightness (blend with white)
+**`tone`**`(color, factor)` | Reduce colorfullness (blend with gray)
 
 * **Arguments**: `color<any>`, `factor <float> [0-1]`
 * **Returns**: instance of `Color`
